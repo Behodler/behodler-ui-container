@@ -1,0 +1,23 @@
+
+start:
+    image: node:14
+    command: sh -c "npm start"
+    working_dir: /app
+    volumes:
+        - ./:/app
+    ports:
+        - 3000:3000
+
+install:
+    image: node:14
+    command: sh -c "yarn install"
+    working_dir: /app
+    volumes:
+        - ./:/app
+
+build:
+    image: node:14
+    command: sh -c "yarn build"
+    working_dir: /app
+    volumes:
+        - ./:/app
