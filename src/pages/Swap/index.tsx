@@ -4,7 +4,6 @@ import React, { FC } from 'react'
 import Inner from './inner'
 
 const Swap: FC<UIContainerContextProps> = (props) => {
-    console.log(props)
     return (
         <UIContainerContext.Provider value={props}>
             <Inner />

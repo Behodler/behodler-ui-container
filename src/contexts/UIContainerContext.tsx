@@ -8,6 +8,7 @@ export interface UIContainerContextProps {
     walletContext: Web3ReactContextInterface
     networkContext: Web3ReactContextInterface
     walletState: {
+        toggleWalletModal: () => void,
         transactions: { [txHash: string]: TransactionDetails },
         addTransaction: (
             response: TransactionResponse,
@@ -35,10 +36,13 @@ const getDefaultWeb3Context = (): Web3ReactContextInterface => ({
     }
 })
 
-export const UIContainerContext = React.createContext<UIContainerContextProps>({
+const defaultContext = {
     walletContext: getDefaultWeb3Context(),
     networkContext: getDefaultWeb3Context(),
     walletState: {
+        toggleWalletModal: () => {
+            throw Error("Wallet state has not been initiated!")
+        },
         transactions: {},
         addTransaction: (
             _response: TransactionResponse,
@@ -54,7 +58,9 @@ export const UIContainerContext = React.createContext<UIContainerContextProps>({
     userState: {
         userDarkMode: false
     }
-})
+}
+
+export const UIContainerContext = React.createContext<UIContainerContextProps>(defaultContext)
 
 export const useWeb3WalletContext = () => useContext(UIContainerContext).walletContext
 export const useWeb3NetworkContext = () => useContext(UIContainerContext).networkContext
