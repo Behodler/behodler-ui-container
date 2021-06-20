@@ -22,7 +22,7 @@ import useWrapCallback, { WrapType } from '../../hooks/useWrapCallback'
 import AddressInputPanel from '../../components/AddressInputPanel'
 import AdvancedSwapDetailsDropdown from '../../components/swap/AdvancedSwapDetailsDropdown'
 import { ArrowDown } from 'react-feather'
-import { ClickableText } from '../Pool/styleds'
+import { ClickableText } from './styleds'
 import ConfirmSwapModal from '../../components/swap/ConfirmSwapModal'
 import CurrencyInputPanel from '../../components/CurrencyInputPanel'
 import { Field } from '../../state/swap/actions'
@@ -31,18 +31,15 @@ import { INITIAL_ALLOWED_SLIPPAGE } from '../../constants'
 import { Link } from 'react-router-dom'
 import Loader from '../../components/Loader'
 import Lottie from 'lottie-react'
-import PolygonLogo from '../../assets/images/matic-logo.png'
 import ProgressSteps from '../../components/ProgressSteps'
 import ReactGA from 'react-ga'
 import SwapHeader from '../../components/ExchangeHeader'
-import { SwapPoolTabs } from '../../components/NavigationTabs'
 import { Text } from 'rebass'
 import { ThemeContext } from 'styled-components'
 import TokenWarningModal from '../../components/TokenWarningModal'
 import TradePrice from '../../components/swap/TradePrice'
 import UnsupportedCurrencyFooter from 'components/swap/UnsupportedCurrencyFooter'
 import confirmPriceImpactWithoutFee from '../../components/swap/confirmPriceImpactWithoutFee'
-import { isTradeBetter } from 'utils/trades'
 import { maxAmountSpend } from '../../utils/maxAmountSpend'
 import swapArrowsAnimationData from '../../assets/animation/swap-arrows.json'
 import { t, Trans } from '@lingui/macro'
@@ -314,7 +311,6 @@ export default function Swap() {
                 tokens={importTokensNotInDefault}
                 onConfirm={handleConfirmTokenWarning}
             />
-            <SwapPoolTabs active={'swap'} />
             <div className="bg-dark-900 shadow-swap-blue-glow w-full max-w-2xl rounded">
                 <SwapHeader input={currencies[Field.INPUT]} output={currencies[Field.OUTPUT]} />
                 <Wrapper id="swap-page">

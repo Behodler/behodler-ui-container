@@ -39,7 +39,7 @@ import { useExpertModeManager, useUserSingleHopOnly, useUserSlippageTolerance } 
 import { LinkStyledButton, TYPE } from '../../theme'
 import { maxAmountSpend } from '../../utils/maxAmountSpend'
 import { computeTradePriceBreakdown, warningSeverity } from '../../utils/prices'
-import { ClickableText } from '../Pool/styleds'
+import { ClickableText } from './styleds'
 import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 
