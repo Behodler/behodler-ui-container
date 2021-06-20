@@ -1,10 +1,23 @@
 import { AbstractConnector } from '@web3-react/abstract-connector'
 import { Web3ReactContextInterface } from '@web3-react/core/dist/types'
+import { TransactionResponse } from '@ethersproject/providers'
 import React, { useContext } from 'react'
+import { TransactionDetails } from 'state/transactions/reducer'
 
 export interface UIContainerContextProps {
     walletContext: Web3ReactContextInterface
     networkContext: Web3ReactContextInterface
+    walletState: {
+        transactions: { [txHash: string]: TransactionDetails },
+        addTransaction: (
+            response: TransactionResponse,
+            customData?: {
+                summary?: string
+                approval?: { tokenAddress: string; spender: string }
+                claim?: { recipient: string }
+            }
+        ) => void
+    }
 }
 
 const getDefaultWeb3Context = (): Web3ReactContextInterface => ({
@@ -21,7 +34,18 @@ const getDefaultWeb3Context = (): Web3ReactContextInterface => ({
 
 export const UIContainerContext = React.createContext<UIContainerContextProps>({
     walletContext: getDefaultWeb3Context(),
-    networkContext: getDefaultWeb3Context()
+    networkContext: getDefaultWeb3Context(),
+    walletState: {
+        transactions: {},
+        addTransaction: (
+            _response: TransactionResponse,
+            _customData?: {
+                summary?: string
+                approval?: { tokenAddress: string; spender: string }
+                claim?: { recipient: string }
+            }
+        ) => {}
+    }
 })
 
 export const useWeb3WalletContext = () => useContext(UIContainerContext).walletContext
