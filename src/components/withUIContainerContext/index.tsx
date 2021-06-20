@@ -3,6 +3,7 @@ import { NetworkContextName } from '../../constants'
 import React from 'react'
 import { UIContainerContextProps } from 'contexts/UIContainerContext'
 import { useAllTransactions, useTransactionAdder } from 'state/transactions/hooks'
+import { useIsDarkMode } from 'state/user/hooks'
 
 /**
  * This HOC injects UIContainerContext as props to the underlying component
@@ -15,6 +16,7 @@ const withUIContainerContext = <P extends object>(
     const networkContext = useWeb3React(NetworkContextName)
     const transactions = useAllTransactions()
     const addTransaction = useTransactionAdder()
+    const userDarkMode = useIsDarkMode()
 
     return (
         <Component
@@ -22,6 +24,7 @@ const withUIContainerContext = <P extends object>(
             walletContext={walletContext}
             networkContext={networkContext}
             walletState={{ transactions, addTransaction }}
+            userState={{ userDarkMode }}
         />
     )
 }

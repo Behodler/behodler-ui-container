@@ -17,6 +17,9 @@ export interface UIContainerContextProps {
                 claim?: { recipient: string }
             }
         ) => void
+    },
+    userState: {
+        userDarkMode: boolean
     }
 }
 
@@ -25,10 +28,10 @@ const getDefaultWeb3Context = (): Web3ReactContextInterface => ({
     activate: (_connector: AbstractConnector, _onError?: (error: Error) => void, _throwErrors?: boolean) =>
         Promise.reject(),
     setError: (_error: Error) => {
-        throw Error('Web3 Context has not yet initiated!')
+        throw Error('Web3 Context has not been initiated!')
     },
     deactivate: () => {
-        throw Error('Web3 Context has not yet initiated!')
+        throw Error('Web3 Context has not been initiated!')
     }
 })
 
@@ -44,7 +47,12 @@ export const UIContainerContext = React.createContext<UIContainerContextProps>({
                 approval?: { tokenAddress: string; spender: string }
                 claim?: { recipient: string }
             }
-        ) => {}
+        ) => {
+            throw Error("Wallet state has not been initiated!")
+        }
+    },
+    userState: {
+        userDarkMode: false
     }
 })
 
