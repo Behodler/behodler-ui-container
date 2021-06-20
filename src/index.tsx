@@ -4,14 +4,12 @@ import 'react-tabs/style/react-tabs.css'
 import './bootstrap'
 
 import { createWeb3ReactRoot, Web3ReactProvider } from '@web3-react/core'
-import { KashiProvider } from 'kashi'
 import React, { StrictMode } from 'react'
 import { isMobile } from 'react-device-detect'
 import ReactDOM from 'react-dom'
 import ReactGA from 'react-ga'
 import { Provider } from 'react-redux'
 import { BrowserRouter as Router } from 'react-router-dom'
-import Blocklist from './components/Blocklist'
 import { NetworkContextName } from './constants'
 import App from './pages/App'
 import store from './state'
@@ -67,21 +65,17 @@ ReactDOM.render(
     <StrictMode>
         <Web3ReactProvider getLibrary={getLibrary}>
             <Web3ProviderNetwork getLibrary={getLibrary}>
-                <Blocklist>
-                    <Provider store={store}>
-                        <Updaters />
-                        <LanguageProvider>
-                            <ThemeProvider>
-                                <ThemedGlobalStyle />
-                                <KashiProvider>
-                                    <Router>
-                                        <App />
-                                    </Router>
-                                </KashiProvider>
-                            </ThemeProvider>
-                        </LanguageProvider>
-                    </Provider>
-                </Blocklist>
+                <Provider store={store}>
+                    <Updaters />
+                    <LanguageProvider>
+                        <ThemeProvider>
+                            <ThemedGlobalStyle />
+                            <Router>
+                                <App />
+                            </Router>
+                        </ThemeProvider>
+                    </LanguageProvider>
+                </Provider>
             </Web3ProviderNetwork>
         </Web3ReactProvider>
     </StrictMode>,
