@@ -1,34 +1,14 @@
-import { CurrencyAmount, JSBI, Token, Trade } from '@sushiswap/sdk'
-import UnsupportedCurrencyFooter from 'components/swap/UnsupportedCurrencyFooter'
-import { useIsTransactionUnsupported } from 'hooks/Trades'
-import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react'
-import { ArrowDown } from 'react-feather'
-import ReactGA from 'react-ga'
-import { Text } from 'rebass'
-import { ThemeContext } from 'styled-components'
-import AddressInputPanel from '../../components/AddressInputPanel'
-import { ButtonConfirmed, ButtonError, ButtonLight, ButtonPrimary } from '../../components/ButtonLegacy'
-import Card, { GreyCard } from '../../components/CardLegacy'
-import Column, { AutoColumn } from '../../components/Column'
-import CurrencyInputPanel from '../../components/CurrencyInputPanel'
-import Loader from '../../components/Loader'
-import ProgressSteps from '../../components/ProgressSteps'
-import { AutoRow, RowBetween } from '../../components/Row'
-import { AdvancedSwapDetails } from '../../components/swap/AdvancedSwapDetails'
-import confirmPriceImpactWithoutFee from '../../components/swap/confirmPriceImpactWithoutFee'
-import ConfirmSwapModal from '../../components/swap/ConfirmSwapModal'
-import { ArrowWrapper, BottomGrouping, SwapCallbackError, Wrapper } from '../../components/swap/styleds'
-import SwapHeader from '../../components/ExchangeHeader'
-import TradePrice from '../../components/swap/TradePrice'
-import { INITIAL_ALLOWED_SLIPPAGE } from '../../constants'
-import { useActiveWeb3React } from '../../hooks/useActiveWeb3React'
-import { useAllTokens, useCurrency } from '../../hooks/Tokens'
 import { ApprovalState, useApproveCallbackFromTrade } from '../../hooks/useApproveCallback'
-import useENSAddress from '../../hooks/useENSAddress'
-import { useSwapCallback } from '../../hooks/useSwapCallback'
-import useWrapCallback, { WrapType } from '../../hooks/useWrapCallback'
-import { useToggleSettingsMenu, useWalletModalToggle } from '../../state/application/hooks'
-import { Field } from '../../state/swap/actions'
+import { ArrowWrapper, BottomGrouping, SwapCallbackError, Wrapper } from '../../components/swap/styleds'
+import { AutoRow, RowBetween } from '../../components/Row'
+import { ButtonConfirmed, ButtonError, ButtonLight, ButtonPrimary } from '../../components/ButtonLegacy'
+import Card, { DarkCard, GreyCard } from '../../components/CardLegacy'
+import { ChainId, CurrencyAmount, JSBI, Token, Trade } from '@sushiswap/sdk'
+import Column, { AutoColumn } from '../../components/Column'
+import { LinkStyledButton, TYPE } from '../../theme'
+import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react'
+import { computeTradePriceBreakdown, warningSeverity } from '../../utils/prices'
+import { useAllTokens, useCurrency } from '../../hooks/Tokens'
 import {
     useDefaultsFromURLSearch,
     useDerivedSwapInfo,
@@ -36,15 +16,45 @@ import {
     useSwapState
 } from '../../state/swap/hooks'
 import { useExpertModeManager, useUserSingleHopOnly, useUserSlippageTolerance } from '../../state/user/hooks'
-import { LinkStyledButton, TYPE } from '../../theme'
-import { maxAmountSpend } from '../../utils/maxAmountSpend'
-import { computeTradePriceBreakdown, warningSeverity } from '../../utils/prices'
+import { useNetworkModalToggle, useToggleSettingsMenu, useWalletModalToggle } from '../../state/application/hooks'
+import useWrapCallback, { WrapType } from '../../hooks/useWrapCallback'
+
+import AddressInputPanel from '../../components/AddressInputPanel'
+import AdvancedSwapDetailsDropdown from '../../components/swap/AdvancedSwapDetailsDropdown'
+import { ArrowDown } from 'react-feather'
 import { ClickableText } from './styleds'
-import { t } from '@lingui/macro'
+import ConfirmSwapModal from '../../components/swap/ConfirmSwapModal'
+import CurrencyInputPanel from '../../components/CurrencyInputPanel'
+import { Field } from '../../state/swap/actions'
+import { Helmet } from 'react-helmet'
+import { INITIAL_ALLOWED_SLIPPAGE } from '../../constants'
+import { Link } from 'react-router-dom'
+import Loader from '../../components/Loader'
+import Lottie from 'lottie-react'
+import ProgressSteps from '../../components/ProgressSteps'
+import ReactGA from 'react-ga'
+import SwapHeader from '../../components/ExchangeHeader'
+import { Text } from 'rebass'
+import { ThemeContext } from 'styled-components'
+import TokenWarningModal from '../../components/TokenWarningModal'
+import TradePrice from '../../components/swap/TradePrice'
+import UnsupportedCurrencyFooter from 'components/swap/UnsupportedCurrencyFooter'
+import confirmPriceImpactWithoutFee from '../../components/swap/confirmPriceImpactWithoutFee'
+import { maxAmountSpend } from '../../utils/maxAmountSpend'
+import swapArrowsAnimationData from '../../assets/animation/swap-arrows.json'
+import { t, Trans } from '@lingui/macro'
+import { useActiveWeb3React } from '../../hooks/useActiveWeb3React'
+import useENSAddress from '../../hooks/useENSAddress'
+import { useIsTransactionUnsupported } from 'hooks/Trades'
 import { useLingui } from '@lingui/react'
+import { useSwapCallback } from '../../hooks/useSwapCallback'
+import MisoBanner from '../../assets/images/miso-banner.jpg'
+import MisoLogo from '../../assets/images/miso-logo.png'
 
 export default function Swap() {
     const { i18n } = useLingui()
+    const toggleNetworkModal = useNetworkModalToggle()
+
     const loadedUrlParams = useDefaultsFromURLSearch()
 
     // token warning stuff
@@ -207,7 +217,10 @@ export default function Swap() {
                             : (recipientAddress ?? recipient) === account
                             ? 'Swap w/o Send + recipient'
                             : 'Swap w/ Send',
-                    label: [trade?.inputAmount?.currency?.symbol, trade?.outputAmount?.currency?.symbol].join('/')
+                    label: [
+                        trade?.inputAmount?.currency?.getSymbol(chainId),
+                        trade?.outputAmount?.currency?.getSymbol(chainId)
+                    ].join('/')
                 })
 
                 ReactGA.event({
@@ -233,6 +246,7 @@ export default function Swap() {
         recipientAddress,
         account,
         trade,
+        chainId,
         singleHopOnly
     ])
 
@@ -281,10 +295,24 @@ export default function Swap() {
 
     const swapIsUnsupported = useIsTransactionUnsupported(currencies?.INPUT, currencies?.OUTPUT)
 
+    const [animateSwapArrows, setAnimateSwapArrows] = useState<boolean>(false)
+
     return (
         <>
-            <div className="relative w-full max-w-lg rounded bg-dark-900">
-                <SwapHeader />
+            <Helmet>
+                <title>{i18n._(t`Swap`)} | Sushi</title>
+                <meta
+                    name="description"
+                    content="Sushi allows for swapping of ERC20 compatible tokens across multiple networks"
+                />
+            </Helmet>
+            <TokenWarningModal
+                isOpen={importTokensNotInDefault.length > 0 && !dismissTokenWarning}
+                tokens={importTokensNotInDefault}
+                onConfirm={handleConfirmTokenWarning}
+            />
+            <div className="bg-dark-900 shadow-swap-blue-glow w-full max-w-2xl rounded">
+                <SwapHeader input={currencies[Field.INPUT]} output={currencies[Field.OUTPUT]} />
                 <Wrapper id="swap-page">
                     <ConfirmSwapModal
                         isOpen={showConfirm}
@@ -299,13 +327,39 @@ export default function Swap() {
                         swapErrorMessage={swapErrorMessage}
                         onDismiss={handleConfirmDismiss}
                     />
-                    {/* <AutoColumn gap={isExpertMode ? 'md' : 'none'} style={{ paddingBottom: '1rem' }}> */}
-                    <AutoColumn gap={isExpertMode ? 'md' : '3px'}>
+                    {chainId && chainId === ChainId.MATIC && (
+                        <div className="hidden md:block pb-4 space-y-2">
+                            <DarkCard>
+                                <div className="flex justify-between items-center">
+                                    <div>
+                                        <div className="text-white">New Yield Farms! renDOGE, SNX, USDC, DAI</div>
+                                        <div className="text-purple text-sm">Add liquidity and stake now</div>
+                                    </div>
+                                    <div className=""></div>
+                                    <Link
+                                        to="/yield"
+                                        className="inline-flex items-center rounded-sm px-3 py-2 border-2 border-purple text-purple"
+                                    >
+                                        Visit Yield
+                                    </Link>
+                                    {/* <a
+                                        href="https://ayokiroll.medium.com/cf7e932f3a8"
+                                        target="_blank"
+                                        rel="noreferrer noopener"
+                                        className="inline-flex items-center rounded-sm px-3 py-2 border-2 border-purple text-purple"
+                                    >
+                                        Read Tutorial
+                                    </a> */}
+                                </div>
+                            </DarkCard>
+                        </div>
+                    )}
+                    <AutoColumn gap={'md'}>
                         <CurrencyInputPanel
                             label={
                                 independentField === Field.OUTPUT && !showWrap && trade
-                                    ? i18n._(t`From (estimated)`)
-                                    : i18n._(t`From`)
+                                    ? i18n._(t`Swap From (est.):`)
+                                    : i18n._(t`Swap From:`)
                             }
                             value={formattedAmounts[Field.INPUT]}
                             showMaxButton={!atMaxAmountInput}
@@ -315,86 +369,69 @@ export default function Swap() {
                             onCurrencySelect={handleInputSelect}
                             otherCurrency={currencies[Field.OUTPUT]}
                             id="swap-currency-input"
-                            cornerRadiusBottomNone={isExpertMode ? false : true}
-                            //containerBackground={'#101b31'}
                         />
-                        {isExpertMode && !showWrap && (
-                            <AutoColumn justify="space-between">
-                                <AutoRow
-                                    justify={isExpertMode ? 'space-between' : 'center'}
-                                    style={{ padding: '0 1rem' }}
-                                >
-                                    <ArrowWrapper clickable>
-                                        <ArrowDown
-                                            size="16"
-                                            onClick={() => {
-                                                setApprovalSubmitted(false) // reset 2 step UI for approvals
-                                                onSwitchTokens()
-                                            }}
-                                            color={
-                                                currencies[Field.INPUT] && currencies[Field.OUTPUT]
-                                                    ? theme.primary1
-                                                    : theme.text2
-                                            }
-                                        />
-                                    </ArrowWrapper>
-                                    {recipient === null && !showWrap && isExpertMode ? (
-                                        <LinkStyledButton
-                                            id="add-recipient-button"
-                                            onClick={() => onChangeRecipient('')}
-                                        >
-                                            {i18n._(t`+ Add a send (optional)`)}
-                                        </LinkStyledButton>
-                                    ) : null}
-                                </AutoRow>
-                            </AutoColumn>
-                        )}
-                        {!isExpertMode && (
-                            <div style={{ position: 'relative', zIndex: 2 }}>
-                                <div
-                                    style={{
-                                        position: 'absolute',
-                                        width: '100%',
-                                        cursor: 'pointer',
-                                        marginTop: '-10px'
-                                    }}
+                        <AutoColumn justify="space-between">
+                            <AutoRow
+                                justify={isExpertMode ? 'space-between' : 'flex-start'}
+                                style={{ padding: '0 1rem' }}
+                            >
+                                <button
+                                    className="bg-dark-900 rounded-full p-3px -mt-6 -mb-6 z-10"
                                     onClick={() => {
                                         setApprovalSubmitted(false) // reset 2 step UI for approvals
                                         onSwitchTokens()
                                     }}
                                 >
-                                    <svg
-                                        style={{ height: '1.4rem', width: '100%', margin: '0 auto' }}
-                                        fill="none"
-                                        stroke="currentColor"
-                                        viewBox="0 0 24 24"
-                                        xmlns="http://www.w3.org/2000/svg"
+                                    <div
+                                        className="bg-dark-800 hover:bg-dark-700 rounded-full p-3"
+                                        onMouseEnter={() => setAnimateSwapArrows(true)}
+                                        onMouseLeave={() => setAnimateSwapArrows(false)}
                                     >
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            strokeWidth={2}
-                                            d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"
+                                        <Lottie
+                                            animationData={swapArrowsAnimationData}
+                                            autoplay={animateSwapArrows}
+                                            loop={false}
+                                            style={{ width: 32, height: 32 }}
+
+                                            // className="text-secondary fill-current"
                                         />
-                                    </svg>
-                                </div>
-                            </div>
-                        )}
+                                    </div>
+                                </button>
+                                {/* <ArrowWrapper clickable>
+                                      <ArrowDown
+                                        size="16"
+                                        onClick={() => {
+                                            setApprovalSubmitted(false) // reset 2 step UI for approvals
+                                            onSwitchTokens()
+                                        }}
+                                        color={
+                                            currencies[Field.INPUT] && currencies[Field.OUTPUT]
+                                                ? theme.primary1
+                                                : theme.text2
+                                        }
+                                    />
+                                </ArrowWrapper> */}
+                                {recipient === null && !showWrap && isExpertMode ? (
+                                    <LinkStyledButton id="add-recipient-button" onClick={() => onChangeRecipient('')}>
+                                        + Add a send (optional)
+                                    </LinkStyledButton>
+                                ) : null}
+                            </AutoRow>
+                        </AutoColumn>
+
                         <CurrencyInputPanel
                             value={formattedAmounts[Field.OUTPUT]}
                             onUserInput={handleTypeOutput}
                             label={
                                 independentField === Field.INPUT && !showWrap && trade
-                                    ? i18n._(t`To (estimated)`)
-                                    : i18n._(t`To`)
+                                    ? i18n._(t`Swap To (est.):`)
+                                    : i18n._(t`Swap To:`)
                             }
                             showMaxButton={false}
                             currency={currencies[Field.OUTPUT]}
                             onCurrencySelect={handleOutputSelect}
                             otherCurrency={currencies[Field.INPUT]}
                             id="swap-currency-output"
-                            cornerRadiusTopNone={isExpertMode ? false : true}
-                            //containerBackground={'#16182b'}
                         />
 
                         {recipient !== null && !showWrap ? (
@@ -407,20 +444,59 @@ export default function Swap() {
                                         id="remove-recipient-button"
                                         onClick={() => onChangeRecipient(null)}
                                     >
-                                        {i18n._(t`- Remove send`)}
+                                        - {i18n._(t`Remove send`)}
                                     </LinkStyledButton>
                                 </AutoRow>
                                 <AddressInputPanel id="recipient" value={recipient} onChange={onChangeRecipient} />
                             </>
                         ) : null}
+
+                        {showWrap ? null : (
+                            <Card padding={showWrap ? '.25rem 1rem 0 1rem' : '0px'} borderRadius={'20px'}>
+                                <AutoColumn gap="8px" style={{ padding: '0 16px' }}>
+                                    {Boolean(trade) && (
+                                        <RowBetween align="center">
+                                            <Text fontWeight={500} fontSize={14} color={theme.text2}>
+                                                {i18n._(t`Price`)}
+                                            </Text>
+                                            <TradePrice
+                                                price={trade?.executionPrice}
+                                                showInverted={showInverted}
+                                                setShowInverted={setShowInverted}
+                                            />
+                                        </RowBetween>
+                                    )}
+                                    {allowedSlippage !== INITIAL_ALLOWED_SLIPPAGE && (
+                                        <RowBetween align="center">
+                                            <ClickableText
+                                                fontWeight={500}
+                                                fontSize={14}
+                                                color={theme.text2}
+                                                onClick={toggleSettings}
+                                            >
+                                                {i18n._(t`Slippage Tolerance`)}
+                                            </ClickableText>
+                                            <ClickableText
+                                                fontWeight={500}
+                                                fontSize={14}
+                                                color={theme.text2}
+                                                onClick={toggleSettings}
+                                            >
+                                                {allowedSlippage / 100}%
+                                            </ClickableText>
+                                        </RowBetween>
+                                    )}
+                                </AutoColumn>
+                            </Card>
+                        )}
                     </AutoColumn>
-                    <BottomGrouping style={{ paddingBottom: '1rem' }}>
+                    <BottomGrouping>
                         {swapIsUnsupported ? (
                             <ButtonPrimary disabled={true}>
-                                <TYPE.main mb="4px">Unsupported Asset</TYPE.main>
+                                <TYPE.main mb="4px">{i18n._(t`Unsupported Asset`)}</TYPE.main>
                             </ButtonPrimary>
                         ) : !account ? (
-                            <ButtonLight onClick={toggleWalletModal}>Connect Wallet</ButtonLight>
+                            <ButtonLight onClick={toggleWalletModal}>{i18n._(t`Connect Wallet`)}</ButtonLight>
                         ) : showWrap ? (
                             <ButtonPrimary disabled={Boolean(wrapInputError)} onClick={onWrap}>
                                 {wrapInputError ??
@@ -525,50 +601,53 @@ export default function Swap() {
                         )}
                         {isExpertMode && swapErrorMessage ? <SwapCallbackError error={swapErrorMessage} /> : null}
                     </BottomGrouping>
-                    <AutoColumn>
-                        {showWrap ? null : (
-                            <Card padding={showWrap ? '.25rem 1rem 0 1rem' : '0px'} borderRadius={'20px'}>
-                                <AutoColumn gap="8px" style={{ padding: '0 16px' }}>
-                                    {Boolean(trade) && (
-                                        <RowBetween align="center">
-                                            <Text fontWeight={500} fontSize={14} color={theme.text3}>
-                                                {i18n._(t`Price`)}
-                                            </Text>
-                                            <TradePrice
-                                                price={trade?.executionPrice}
-                                                showInverted={showInverted}
-                                                setShowInverted={setShowInverted}
-                                            />
-                                        </RowBetween>
-                                    )}
-                                    {allowedSlippage !== INITIAL_ALLOWED_SLIPPAGE && (
-                                        <RowBetween align="center">
-                                            <ClickableText
-                                                fontWeight={500}
-                                                fontSize={14}
-                                                color={theme.text2}
-                                                onClick={toggleSettings}
-                                            >
-                                                {i18n._(t`Slippage Tolerance`)}
-                                            </ClickableText>
-                                            <ClickableText
-                                                fontWeight={500}
-                                                fontSize={14}
-                                                color={theme.text2}
-                                                onClick={toggleSettings}
-                                            >
-                                                {allowedSlippage / 100}%
-                                            </ClickableText>
-                                        </RowBetween>
-                                    )}
-                                </AutoColumn>
-                            </Card>
-                        )}
-                        <AdvancedSwapDetails trade={trade} />
-                    </AutoColumn>
+                    {/*{!trade && chainId && chainId === ChainId.MAINNET && (*/}
+                    {/*    <div*/}
+                    {/*        className="hidden sm:block w-full cursor-pointer pt-4"*/}
+                    {/*        onClick={() => toggleNetworkModal()}*/}
+                    {/*    >*/}
+                    {/*        <DarkCard>*/}
+                    {/*            <div className="flex justify-between items-center overflow-hidden">*/}
+                    {/*                <img src={PolygonLogo} className="w-24 h-24 absolute top-2" alt="" />*/}
+                    {/*                <div className="pl-32">*/}
+                    {/*                    <div className="text-high-emphesis">*/}
+                    {/*                        {i18n._(t`Check out Sushi on Polygon (Matic)`)}*/}
+                    {/*                    </div>*/}
+                    {/*                    <div className="text-high-emphesis text-sm">*/}
+                    {/*                        {i18n._(t`Click here to switch to Polygon using Metamask`)}*/}
+                    {/*                    </div>*/}
+                    {/*                </div>*/}
+                    {/*            </div>*/}
+                    {/*        </DarkCard>*/}
+                    {/*    </div>*/}
+                    {/*)}*/}
+                    <a
+                        href="https://miso.sushi.com"
+                        className="hidden sm:block w-full cursor-pointer mt-4 py-6 rounded"
+                        style={{
+                            backgroundImage: `url(${MisoBanner})`,
+                            backgroundPosition: 'center',
+                            backgroundSize: 'cover',
+                            backgroundRepeat: 'no-repeat'
+                        }}
+                    >
+                        <div className="justify-between flex pl-5 pr-8 items-center gap-6">
+                            <span className="text-high-emphesis font-normal" style={{ lineHeight: 1.3, maxWidth: 250 }}>
+                                <Trans>
+                                    Pour a hot bowl of MISO, the new <span className="font-bold">token launchpad</span>{' '}
+                                    from SUSHI
+                                </Trans>
+                            </span>
+                            <div style={{ maxWidth: 195 }}>
+                                <img src={MisoLogo} style={{ maxWidth: '100%' }} />
+                            </div>
+                        </div>
+                    </a>
                 </Wrapper>
             </div>
-            {!swapIsUnsupported ? null : (
+            {!swapIsUnsupported ? (
+                <AdvancedSwapDetailsDropdown trade={trade} />
+            ) : (
                 <UnsupportedCurrencyFooter
                     show={swapIsUnsupported}
                     currencies={[currencies.INPUT, currencies.OUTPUT]}

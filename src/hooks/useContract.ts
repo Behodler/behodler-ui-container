@@ -17,21 +17,12 @@ import { abi as MERKLE_DISTRIBUTOR_ABI } from '@uniswap/merkle-distributor/build
 import { FACTORY_ADDRESS as UNI_FACTORY_ADDRESS } from '@uniswap/sdk'
 import { abi as IUniswapV2PairABI } from '@uniswap/v2-core/build/IUniswapV2Pair.json'
 import { abi as UNI_FACTORY_ABI } from '@uniswap/v2-core/build/UniswapV2Factory.json'
-import {
-    BENTOBOX_ADDRESS,
-    CHAINLINK_ORACLE_ADDRESS,
-    KASHI_ADDRESS,
-    SUSHISWAP_SWAPPER_ADDRESS,
-    SUSHISWAP_MULTISWAPPER_ADDRESS,
-    BORING_HELPER_ADDRESS
-} from 'kashi'
 import { useMemo } from 'react'
 import { MERKLE_DISTRIBUTOR_ADDRESS, SUSHI } from '../constants'
 import {
     ARGENT_WALLET_DETECTOR_ABI,
     ARGENT_WALLET_DETECTOR_MAINNET_ADDRESS
 } from '../constants/abis/argent-wallet-detector'
-import BORING_HELPER_ABI from '../constants/abis/boring-helper.json'
 import ENS_PUBLIC_RESOLVER_ABI from '../constants/abis/ens-public-resolver.json'
 import ENS_ABI from '../constants/abis/ens-registrar.json'
 import { ERC20_BYTES32_ABI } from '../constants/abis/erc20'
@@ -40,12 +31,9 @@ import { MIGRATOR_ABI, MIGRATOR_ADDRESS } from '../constants/abis/migrator'
 import WETH_ABI from '../constants/abis/weth.json'
 import { MULTICALL_ABI, MULTICALL_NETWORKS } from '../constants/multicall'
 import BAR_ABI from '../constants/abis/bar.json'
-import BENTOBOX_ABI from '../constants/abis/bentobox.json'
-import CHAINLINK_ORACLE_ABI from '../constants/abis/chainlink-oracle.json'
 import DASHBOARD_ABI from '../constants/abis/dashboard.json'
 import DASHBOARD2_ABI from '../constants/abis/dashboard2.json'
 import FACTORY_ABI from '../constants/abis/factory.json'
-import KASHIPAIR_ABI from '../constants/abis/kashipair.json'
 import MAKER_ABI from '../constants/abis/maker.json'
 import MASTERCHEF_ABI from '../constants/abis/masterchef.json'
 import MINICHEFV2_ABI from '../constants/abis/miniChefV2.json'
@@ -53,9 +41,7 @@ import PENDING_ABI from '../constants/abis/pending.json'
 import ROUTER_ABI from '../constants/abis/router.json'
 import SAAVE_ABI from '../constants/abis/saave.json'
 import SUSHI_ABI from '../constants/abis/sushi.json'
-import BASE_SWAPPER_ABI from '../constants/abis/swapper.json'
 import TIMELOCK_ABI from '../constants/abis/timelock.json'
-import SUSHISWAP_MULTISWAPPER_ABI from '../constants/abis/sushiswapmultiswapper.json'
 import { FAUCET_ABI, FAUCET_ADDRESS } from '../constants/abis/faucet'
 import { V1_EXCHANGE_ABI, V1_FACTORY_ABI, V1_FACTORY_ADDRESSES } from '../constants/v1'
 import { getContract } from '../utils'
@@ -149,11 +135,6 @@ export function useStakingContract(stakingAddress?: string, withSignerIfPossible
     return useContract(stakingAddress, STAKING_REWARDS_ABI, withSignerIfPossible)
 }
 
-export function useBoringHelperContract(): Contract | null {
-    const { chainId } = useActiveWeb3React()
-    return useContract(chainId && BORING_HELPER_ADDRESS[chainId], BORING_HELPER_ABI, false)
-}
-
 export function usePendingContract(): Contract | null {
     return useContract('0x9aeadfE6cd03A2b5730474bF6dd79802d5bCD029', PENDING_ABI, false)
 }
@@ -209,25 +190,6 @@ export function useMakerContract(): Contract | null {
 export function useTimelockContract(): Contract | null {
     const { chainId } = useActiveWeb3React()
     return useContract(chainId && TIMELOCK_ADDRESS[chainId], TIMELOCK_ABI, false)
-}
-
-export function useBentoBoxContract(withSignerIfPossible?: boolean): Contract | null {
-    const { chainId } = useActiveWeb3React()
-    return useContract(chainId && BENTOBOX_ADDRESS[chainId], BENTOBOX_ABI, withSignerIfPossible)
-}
-
-export function useKashiPairContract(withSignerIfPossible?: boolean): Contract | null {
-    const { chainId } = useActiveWeb3React()
-    return useContract(chainId && KASHI_ADDRESS[chainId], KASHIPAIR_ABI, withSignerIfPossible)
-}
-
-export function useSushiSwapSwapper(): Contract | null {
-    const { chainId } = useActiveWeb3React()
-    return useContract(chainId && SUSHISWAP_SWAPPER_ADDRESS[chainId], BASE_SWAPPER_ABI, false)
-}
-
-export function useChainlinkOracle(): Contract | null {
-    return useContract(CHAINLINK_ORACLE_ADDRESS, CHAINLINK_ORACLE_ABI, false)
 }
 
 // experimental:
@@ -425,11 +387,6 @@ export function useDashboard2Contract(): Contract | null {
         }
     }
     return useContract(address, DASHBOARD2_ABI, false)
-}
-
-export function useSushiSwapMultiSwapper(): Contract | null {
-    const { chainId } = useActiveWeb3React()
-    return useContract(chainId && SUSHISWAP_MULTISWAPPER_ADDRESS[chainId], SUSHISWAP_MULTISWAPPER_ABI)
 }
 
 export function useQuickSwapFactoryContract(): Contract | null {
