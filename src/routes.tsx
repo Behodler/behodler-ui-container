@@ -1,12 +1,9 @@
 import React from 'react'
 import { Redirect, Route, RouteComponentProps, useLocation, Switch } from 'react-router-dom'
 import { useActiveWeb3React } from 'hooks/useActiveWeb3React'
+import { Swap, RedirectToSwap, RedirectPathToSwapOnly  } from '@behodler/swap'
+
 import Connect from './pages/Connect'
-import Swap from './pages/Swap'
-import {
-    RedirectPathToSwapOnly,
-    RedirectToSwap
-} from './pages/Swap/redirects'
 import Transactions from './pages/Transactions'
 
 function Routes(): JSX.Element {
