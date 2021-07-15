@@ -1,9 +1,11 @@
 import React, { FC } from 'react'
 import { UIContainerProvider } from '@weidaiecosystem/behodler-sdk'
-import { TransactionResponse, Web3Provider } from '@ethersproject/providers'
+import { Web3Provider } from '@ethersproject/providers'
 import { useWeb3React } from '@web3-react/core'
 
 import { NetworkContextName } from '../../constants'
+import { useWalletModalToggle } from '../../state/application/hooks'
+import { useAllTransactions, useTransactionAdder } from '../../state/transactions/hooks'
 
 export const Web3ContextProvider: FC = ({ children }) => {
     const walletContext = useWeb3React<Web3Provider>()
@@ -13,20 +15,9 @@ export const Web3ContextProvider: FC = ({ children }) => {
         walletContext,
         networkContext,
         walletState: {
-            toggleWalletModal: () => {
-                throw Error("Wallet state has not been initiated!")
-            },
-            transactions: {},
-            addTransaction: (
-                _response: TransactionResponse,
-                _customData?: {
-                    summary?: string
-                    approval?: { tokenAddress: string; spender: string }
-                    claim?: { recipient: string }
-                }
-            ) => {
-                throw Error("Wallet state has not been initiated!")
-            }
+            toggleWalletModal: useWalletModalToggle(),
+            transactions: useAllTransactions(),
+            addTransaction: useTransactionAdder(),
         },
         userState: {
             userDarkMode: false

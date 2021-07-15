@@ -1365,10 +1365,10 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@behodler/swap@0.0.5":
-  version "0.0.5"
-  resolved "http://localhost:4873/@behodler%2fswap/-/swap-0.0.5.tgz#d78612823ceb519f9f45237dcb5ece9c8c39120e"
-  integrity sha512-TTI7R8qrbRi6mMkxG1Ud4n6Qv4Gf6z2mq4wiCWafsDXdz4SBD/nXcRP+y9jtHm7JtWarfaBiBa4tVF9LUFGw6Q==
+"@behodler/swap@0.0.6":
+  version "0.0.6"
+  resolved "http://localhost:4873/@behodler%2fswap/-/swap-0.0.6.tgz#a7011a4f5da800411208097db51c0ed184309aa4"
+  integrity sha512-Y4KmXrQgtKr2+9tmUniFzxZhIufxiscGor6ocp2dvE2BErD0vg0x/UXvSSypokw6W2v1aAC9yHjOKQ7cX1Cnpw==
   dependencies:
     "@ethersproject/experimental" "^5.0.1"
     "@lingui/macro" "^3.8.10"
