@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { UIContainerContext } from '@weidaiecosystem/behodler-sdk'
-import { WalletState } from '@weidaiecosystem/behodler-sdk/dist/types/wallet'
+import { UIContainerContext } from '@behodler/sdk'
+import { WalletState } from '@behodler/sdk/dist/types/wallet'
 
 export const useWalletState = ():WalletState => useContext(UIContainerContext).walletState

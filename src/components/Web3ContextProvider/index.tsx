@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { UIContainerProvider } from '@weidaiecosystem/behodler-sdk'
+import { UIContainerProvider } from '@behodler/sdk'
 import { Web3Provider } from '@ethersproject/providers'
 import { useWeb3React } from '@web3-react/core'
 

@@ -1,7 +1,7 @@
 {
-    "name": "@sushiswap/interface",
-    "description": "SushiSwap Interface",
-    "homepage": "https://app.sushi.com",
+    "name": "@behodler/ui-container",
+    "description": "UI container for Behodler dapps",
+    "homepage": "https://behodler.io",
     "private": true,
     "lint-staged": {
         "*.{js,jsx,ts,tsx}": [
@@ -10,6 +10,13 @@
         ],
         "*.{md,css}": "prettier --write"
     },
+    "files": [
+        "dist"
+    ],
+    "engines": {
+        "node": ">=14.17.0"
+    },
+    "repository": "git@github.com:Behodler/behodler-ui-container.git",
     "devDependencies": {
         "@apollo/client": "^3.2.0",
         "@apollo/react-components": "^3.1.5",
@@ -176,8 +183,8 @@
     },
     "license": "GPL-3.0-or-later",
     "dependencies": {
+        "@behodler/sdk": "0.1.0",
         "@behodler/swap": "0.0.6",
-        "@lufycz/sushi-data": "^2.0.0-canary-21",
-        "@weidaiecosystem/behodler-sdk": "^0.1.1"
+        "@lufycz/sushi-data": "^2.0.0-canary-21"
     }
 }
