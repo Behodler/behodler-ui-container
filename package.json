@@ -1,5 +1,6 @@
 {
     "name": "@behodler/ui-container",
+    "version": "0.0.1",
     "description": "UI container for Behodler dapps",
     "homepage": "https://behodler.io",
     "private": true,
