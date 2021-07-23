@@ -21,6 +21,7 @@ import UserUpdater from './state/user/updater'
 import ThemeProvider, { ThemedGlobalStyle } from './theme'
 import getLibrary from './utils/getLibrary'
 import LanguageProvider from 'language'
+import { Web3ContextProvider } from 'components/Web3ContextProvider'
 
 const Web3ProviderNetwork = createWeb3ReactRoot(NetworkContextName)
 
@@ -66,15 +67,17 @@ ReactDOM.render(
         <Web3ReactProvider getLibrary={getLibrary}>
             <Web3ProviderNetwork getLibrary={getLibrary}>
                 <Provider store={store}>
-                    <Updaters />
-                    <LanguageProvider>
-                        <ThemeProvider>
-                            <ThemedGlobalStyle />
-                            <Router>
-                                <App />
-                            </Router>
-                        </ThemeProvider>
-                    </LanguageProvider>
+                    <Web3ContextProvider>
+                        <Updaters />
+                        <LanguageProvider>
+                            <ThemeProvider>
+                                <ThemedGlobalStyle />
+                                <Router>
+                                    <App />
+                                </Router>
+                            </ThemeProvider>
+                        </LanguageProvider>
+                    </Web3ContextProvider>
                 </Provider>
             </Web3ProviderNetwork>
         </Web3ReactProvider>

@@ -10,7 +10,6 @@ import { useTotalSupply } from '../../data/TotalSupply'
 import { useActiveWeb3React } from '../../hooks/useActiveWeb3React'
 import { useColor } from '../../hooks/useColor'
 import { useTokenBalance } from '../../state/wallet/hooks'
-import { TYPE } from '../../theme'
 import { currencyId } from '../../utils/currencyId'
 import { unwrappedToken } from '../../utils/wrappedCurrency'
 import { ButtonEmpty, ButtonPrimary, ButtonPrimaryNormal } from '../ButtonLegacy'
@@ -19,9 +18,29 @@ import { AutoColumn } from '../Column'
 import CurrencyLogo from '../CurrencyLogo'
 import DoubleCurrencyLogo from '../DoubleLogo'
 import { AutoRow, RowBetween, RowFixed } from '../Row'
-import { Dots } from '../swap/styleds'
 import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
+
+export const Dots = styled.span`
+    &::after {
+        display: inline-block;
+        animation: ellipsis 1.25s infinite;
+        content: '.';
+        width: 1em;
+        text-align: left;
+    }
+    @keyframes ellipsis {
+        0% {
+            content: '.';
+        }
+        33% {
+            content: '..';
+        }
+        66% {
+            content: '...';
+        }
+    }
+`
 
 export const FixedHeightRow = styled(RowBetween)`
     height: 24px;
@@ -35,7 +54,7 @@ export const HoverCard = styled(Card)`
 `
 const StyledPositionCard = styled(LightCard)<{ bgColor: any }>`
   /* border: 1px solid ${({ theme }) => theme.text4}; */
-  border: none
+  border: none;
   background: ${({ theme }) => transparentize(0.6, theme.bg1)};
   /* background: ${({ theme, bgColor }) =>
       `radial-gradient(91.85% 100% at 1.84% 0%, ${transparentize(0.8, bgColor)} 0%, ${theme.bg3} 100%) `}; */
