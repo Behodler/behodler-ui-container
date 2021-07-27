@@ -2,7 +2,7 @@ import React from 'react'
 import { Redirect, Route, RouteComponentProps, useLocation, Switch } from 'react-router-dom'
 import { useActiveWeb3React } from 'hooks/useActiveWeb3React'
 import { Swap, RedirectToSwap, RedirectPathToSwapOnly  } from '@behodler/swap'
-
+import DappsNavigation from "@behodler/dapps-navigation-page";
 import Connect from './pages/Connect'
 import Transactions from './pages/Transactions'
 
@@ -12,6 +12,7 @@ function Routes(): JSX.Element {
             <PublicRoute exact path="/connect" component={Connect} />
 
             {/* Pages */}
+            <Route exact strict path="/apps" component={DappsNavigation} />
             <Route exact strict path="/trade" component={Swap} />
             <Route exact strict path="/swap" component={Swap} />
             <Route exact strict path="/swap/:outputCurrency" component={RedirectToSwap} />

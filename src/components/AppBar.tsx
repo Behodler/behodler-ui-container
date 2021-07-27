@@ -23,18 +23,30 @@ function AppBar(): JSX.Element {
         'w-screen bg-transparent gradiant-border-bottom z-10 backdrop-filter backdrop-blur'
     )
 
+    const [headerClassList, setHeaderClassList] = useState(
+        'flex flex-row flex-nowrap justify-between w-screen'
+    )
+
     const userEthBalance = useETHBalances(account ? [account] : [])?.[account ?? '']
 
     useEffect(() => {
         if (pathname === '/trade') {
             setNavClassList('w-screen bg-transparent z-10 backdrop-filter backdrop-blur')
+        } else if (pathname === '/apps') {
+            setNavClassList('w-screen bg-transparent z-10')
         } else {
             setNavClassList('w-screen bg-transparent gradiant-border-bottom z-10 backdrop-filter backdrop-blur')
+        }
+
+        if (pathname === '/apps') {
+            setHeaderClassList('flex flex-row flex-nowrap justify-between w-screen absolute')
+        } else {
+            setHeaderClassList('flex flex-row flex-nowrap justify-between w-screen')
         }
     }, [pathname])
 
     return (
-        <header className="flex flex-row flex-nowrap justify-between w-screen">
+        <header className={headerClassList}>
             <Disclosure as="nav" className={navClassList}>
                 {({ open }) => (
                     <>
@@ -48,6 +60,9 @@ function AppBar(): JSX.Element {
                                         <div className="flex space-x-2">
                                             <NavLink id={`swap-nav-link`} to={'/swap'}>
                                                 {i18n._(t`Swap`)}
+                                            </NavLink>
+                                            <NavLink id={`apps-nav-link`} to={'/apps'}>
+                                                {i18n._(t`Apps`)}
                                             </NavLink>
                                         </div>
                                     </div>
@@ -94,6 +109,9 @@ function AppBar(): JSX.Element {
                             <div className="flex flex-col px-4 pt-2 pb-3 space-y-1">
                                 <NavLink id={`swap-nav-link`} to={'/swap'}>
                                     {i18n._(t`Swap`)}
+                                </NavLink>
+                                <NavLink id={`apps-nav-link`} to={'/apps'}>
+                                    {i18n._(t`Apps`)}
                                 </NavLink>
                             </div>
                         </Disclosure.Panel>

@@ -21,7 +21,7 @@ function App(): JSX.Element {
     )
 
     useEffect(() => {
-        if (pathname === '/trade') {
+        if (pathname === '/trade' || pathname === '/apps') {
             setWrapperClassList(
                 'flex flex-col flex-1 items-center justify-start w-screen h-full overflow-y-auto overflow-x-hidden z-0'
             )
