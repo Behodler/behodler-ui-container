@@ -16,22 +16,6 @@ function App(): JSX.Element {
 
     const dispatch = useDispatch<AppDispatch>()
 
-    const [wrapperClassList, setWrapperClassList] = useState(
-        'flex flex-col flex-1 items-center justify-start w-screen h-full overflow-y-auto overflow-x-hidden z-0 pt-4 sm:pt-8 px-4 md:pt-10 pb-20'
-    )
-
-    useEffect(() => {
-        if (pathname === '/trade' || pathname === '/apps') {
-            setWrapperClassList(
-                'flex flex-col flex-1 items-center justify-start w-screen h-full overflow-y-auto overflow-x-hidden z-0'
-            )
-        } else {
-            setWrapperClassList(
-                'flex flex-col flex-1 items-center justify-start w-screen h-full overflow-y-auto overflow-x-hidden z-0 pt-4 sm:pt-8 px-4 md:pt-10 pb-20'
-            )
-        }
-    }, [pathname])
-
     useEffect(() => {
         if (bodyRef.current) {
             bodyRef.current.scrollTo(0, 0)
@@ -66,7 +50,7 @@ function App(): JSX.Element {
         <Suspense fallback={null}>
             <div className="flex flex-col items-start overflow-x-hidden h-screen">
                 <AppBar />
-                <div ref={bodyRef} className={wrapperClassList}>
+                <div ref={bodyRef} className="flex flex-col flex-1 items-center justify-start w-screen h-full overflow-y-auto overflow-x-hidden z-0">
                     <Popups />
                     <Polling />
                     <Web3ReactManager>
