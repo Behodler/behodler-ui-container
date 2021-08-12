@@ -1376,6 +1376,21 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
+"@behodler/dapps-navigation-page@0.0.6":
+  version "0.0.6"
+  resolved "https://npm.pkg.github.com/download/@behodler/dapps-navigation-page/0.0.6/48393f964bae3aedbe65561f0b9788b32ed201f47816794eb41b6ac73fdf3ddf#5b1070557f3977a2ca27343206a48d85a6104425"
+  integrity sha512-DvCN6Hh2eOqCgf3gtehCHQasybRd5v97oclUfyIQ3Al0M1oOU/Uh/vMlAzvNC24DJA7Dcb+cD4A/lUPxeIX05Q==
+  dependencies:
+    "@lingui/macro" "^3.8.10"
+    "@lingui/react" "^3.8.10"
+    react "^17.0.2"
+    react-device-detect "^1.6.2"
+    react-dom "^17.0.2"
+    react-ga "^2.5.7"
+    react-helmet "^6.1.0"
+    react-router-dom "^5.2.0"
+    styled-components "^4.2.0"
+
 "@behodler/sdk@0.1.0":
   version "0.1.0"
   resolved "https://npm.pkg.github.com/download/@behodler/sdk/0.1.0/51b8c9f023093191a88b147eb5744b7a6192157c49d6b39d7add954f64ef7600#7ee8f0b5bd76682d81311bc7bf8582906969e063"
@@ -10697,9 +10712,9 @@ graph-results-pager@LufyCZ/graph-results-pager#types:
   dependencies:
     node-fetch "2.6.1"
 
-"graph-results-pager@git+https://github.com/LufyCZ/graph-results-pager.git":
+"graph-results-pager@https://github.com/LufyCZ/graph-results-pager":
   version "1.0.3"
-  resolved "git+https://github.com/LufyCZ/graph-results-pager.git#9b230f05b8d79aeedc9e167ac5a1fea33e04d51f"
+  resolved "https://github.com/LufyCZ/graph-results-pager#9b230f05b8d79aeedc9e167ac5a1fea33e04d51f"
   dependencies:
     node-fetch "2.6.1"
 
