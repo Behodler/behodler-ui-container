@@ -1,11 +1,14 @@
-import { Currency } from '@sushiswap/sdk'
+import { Currency, ChainId, TokenAmount } from '@sushiswap/sdk'
 import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
-import Logo from '../assets/images/logo.png'
+import { ReactComponent as Logo } from '../assets/images/logo.svg'
 import { useActiveWeb3React } from '../hooks/useActiveWeb3React'
-import { useETHBalances } from '../state/wallet/hooks'
+import { useETHBalances, useTokenBalancesWithLoadingIndicator } from '../state/wallet/hooks'
 import { ReactComponent as Burger } from '../assets/images/burger.svg'
 import { ReactComponent as X } from '../assets/images/x.svg'
+import { ReactComponent as Eye } from '../assets/images/eye-logo.svg'
+import ScxLogo from '../assets/images/scx-logo.png'
+import { SCX, EYE } from '../constants'
 import Web3Network from './Web3Network'
 import Web3Status from './Web3Status'
 import MoreMenu from './Menu'
@@ -18,6 +21,17 @@ function AppBar(): JSX.Element {
     const { i18n } = useLingui()
     const { account, chainId, library } = useActiveWeb3React()
     const { pathname } = useLocation()
+    const tokensShowBalance = [
+        {
+            token: SCX[ChainId.MAINNET],
+            logo: <img src={ScxLogo} alt={'portis logo'} />,
+        },
+        {
+            token: EYE[ChainId.MAINNET],
+            logo: <Eye />,
+        },
+    ]
+    const scxToken = SCX[ChainId.MAINNET]
 
     const [navClassList, setNavClassList] = useState(
         'w-screen bg-transparent gradiant-border-bottom z-10 backdrop-filter backdrop-blur'
@@ -28,6 +42,7 @@ function AppBar(): JSX.Element {
     )
 
     const userEthBalance = useETHBalances(account ? [account] : [])?.[account ?? '']
+    const [tokenBalances, isLoadingTokenBalances] = useTokenBalancesWithLoadingIndicator(account || undefined, tokensShowBalance.map(t => t.token))
 
     useEffect(() => {
         if (pathname === '/trade') {
@@ -45,17 +60,33 @@ function AppBar(): JSX.Element {
         }
     }, [pathname])
 
+    const renderTokenBalance = (tokenAddress: string, balance?: TokenAmount) => {
+        const token = tokensShowBalance.find(t => t.token?.address == tokenAddress)
+        if (!token) {
+            return null
+        }
+
+
+        return (
+            <div className="flex flex-row">
+                <div>{token.logo}</div>
+                <div className="pl-1.5 text-white">{balance ? balance.toFixed(0) : "0"}</div>
+            </div>
+        )
+    }
+
     return (
         <header className={headerClassList}>
             <Disclosure as="nav" className={navClassList}>
                 {({ open }) => (
                     <>
-                        <div className="px-4 py-1.5">
+                        <div className="px-4 py-6">
                             <div className="flex items-center justify-between h-16">
                                 <div className="flex items-center">
                                     <div className="flex-shrink-0">
-                                        <img src={Logo} alt="Sushi" className="h-10 w-auto" />
+                                        <Logo title="Behodler" className="w-auto" style={{marginTop: -24}} />
                                     </div>
+                                    <div className="text-white font-bold" style={{fontSize: 24}}>Behodler</div>
                                     <div className="hidden sm:block sm:ml-4">
                                         <div className="flex space-x-2">
                                             <NavLink id={`swap-nav-link`} to={'/swap'}>
@@ -64,17 +95,28 @@ function AppBar(): JSX.Element {
                                             <NavLink id={`apps-nav-link`} to={'/apps'}>
                                                 {i18n._(t`Apps`)}
                                             </NavLink>
+                                            <NavLink id={`analytics-nav-link`} to={'/analytics'}>
+                                                {i18n._(t`Analytics`)}
+                                            </NavLink>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div className="flex flex-row items-center justify-center w-full lg:w-auto p-4 fixed left-0 bottom-0 bg-dark-1000 lg:relative lg:p-0 lg:bg-transparent">
-                                    <div className="flex items-center justify-between sm:justify-end space-x-2 w-full">
+                                    <div className="flex items-center justify-between sm:justify-end space-x-5 w-full">
                                         {library && library.provider.isMetaMask && (
                                             <div className="hidden sm:inline-block">
                                                 <Web3Network />
                                             </div>
                                         )}
+
+                                        {
+                                            !isLoadingTokenBalances && (
+                                                tokensShowBalance.map(t => (
+                                                    renderTokenBalance(t.token!.address, tokenBalances[t.token!.address])
+                                                ))
+                                            )
+                                        }
 
                                         <div className="w-auto flex items-center rounded bg-dark-900 hover:bg-dark-800 p-0.5 whitespace-nowrap text-sm font-bold cursor-pointer select-none pointer-events-auto">
                                             {account && chainId && userEthBalance && (
@@ -112,6 +154,9 @@ function AppBar(): JSX.Element {
                                 </NavLink>
                                 <NavLink id={`apps-nav-link`} to={'/apps'}>
                                     {i18n._(t`Apps`)}
+                                </NavLink>
+                                <NavLink id={`analytics-nav-link`} to={'/analytics'}>
+                                    {i18n._(t`Analytics`)}
                                 </NavLink>
                             </div>
                         </Disclosure.Panel>
