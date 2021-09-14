@@ -1376,13 +1376,11 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@behodler/dapps-navigation-page@0.0.6":
-  version "0.0.6"
-  resolved "https://npm.pkg.github.com/download/@behodler/dapps-navigation-page/0.0.6/48393f964bae3aedbe65561f0b9788b32ed201f47816794eb41b6ac73fdf3ddf#5b1070557f3977a2ca27343206a48d85a6104425"
-  integrity sha512-DvCN6Hh2eOqCgf3gtehCHQasybRd5v97oclUfyIQ3Al0M1oOU/Uh/vMlAzvNC24DJA7Dcb+cD4A/lUPxeIX05Q==
+"@behodler/dapps-navigation-page@0.0.7":
+  version "0.0.7"
+  resolved "https://npm.pkg.github.com/download/@behodler/dapps-navigation-page/0.0.7/c3ef22b7171a904e2f96d6e24093c0929d7267d33d6e7f9bdf37e204c28f8988#fc21692daae992eb7526113234ee2a139009daee"
+  integrity sha512-KjV6Bu5kLPfBRzuG3J8Dg2cxyXWPwrdZz3c7sQcvu0J81SXVNataUXvMLXyHIybUgiv9VLpDbYOximwLbvh89g==
   dependencies:
-    "@lingui/macro" "^3.8.10"
-    "@lingui/react" "^3.8.10"
     react "^17.0.2"
     react-device-detect "^1.6.2"
     react-dom "^17.0.2"
