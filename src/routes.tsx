@@ -3,16 +3,10 @@ import { Redirect, Route, RouteComponentProps, useLocation, Switch } from 'react
 import { useActiveWeb3React } from 'hooks/useActiveWeb3React'
 import { RedirectToSwap, RedirectPathToSwapOnly  } from '@behodler/swap'
 import DappsNavigation from "@behodler/dapps-navigation-page";
-import { BehodlerUISwap, UIContainerContextDevProvider } from "behodler-ui";
+import { BehodlerUISwap } from 'behodler-ui'
 
 import Connect from './pages/Connect'
 import Transactions from './pages/Transactions'
-
-const ConnectedSwap = (props: any) => (
-    <UIContainerContextDevProvider>
-        <BehodlerUISwap {...props} />
-    </UIContainerContextDevProvider>
-)
 
 function Routes(): JSX.Element {
     return (
@@ -21,8 +15,8 @@ function Routes(): JSX.Element {
 
             {/* Pages */}
             <Route exact strict path="/apps" component={DappsNavigation} />
-            <Route exact strict path="/trade" component={ConnectedSwap} />
-            <Route exact strict path="/swap" component={ConnectedSwap} />
+            <Route exact strict path="/trade" component={BehodlerUISwap} />
+            <Route exact strict path="/swap" component={BehodlerUISwap} />
             <Route exact strict path="/swap/:outputCurrency" component={RedirectToSwap} />
             <Route exact strict path="/transactions" component={Transactions} />
 
