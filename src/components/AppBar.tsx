@@ -24,14 +24,13 @@ function AppBar(): JSX.Element {
     const tokensShowBalance = [
         {
             token: SCX[ChainId.MAINNET],
-            logo: <img src={ScxLogo} alt={'portis logo'} />,
+            logo: <img src={ScxLogo} alt={'SCX'} />,
         },
         {
             token: EYE[ChainId.MAINNET],
             logo: <Eye />,
         },
     ]
-    const scxToken = SCX[ChainId.MAINNET]
 
     const [navClassList, setNavClassList] = useState(
         'w-screen bg-transparent gradiant-border-bottom z-10 backdrop-filter backdrop-blur'
@@ -62,15 +61,22 @@ function AppBar(): JSX.Element {
 
     const renderTokenBalance = (tokenAddress: string, balance?: TokenAmount) => {
         const token = tokensShowBalance.find(t => t.token?.address == tokenAddress)
+
         if (!token) {
             return null
         }
 
+        let formattedBalance = balance?.toFixed(2) || '0'
+        if (parseFloat(formattedBalance) === 0) {
+            formattedBalance = '0'
+        }
 
         return (
             <div className="flex flex-row">
                 <div>{token.logo}</div>
-                <div className="pl-1.5 text-white">{balance ? balance.toFixed(0) : "0"}</div>
+                <div className="pl-1.5 text-white">
+                    {formattedBalance}
+                </div>
             </div>
         )
     }
