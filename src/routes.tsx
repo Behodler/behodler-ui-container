@@ -3,7 +3,7 @@ import { Redirect, Route, RouteComponentProps, useLocation, Switch } from 'react
 import { useActiveWeb3React } from 'hooks/useActiveWeb3React'
 import { RedirectToSwap, RedirectPathToSwapOnly  } from '@behodler/swap'
 import DappsNavigation from "@behodler/dapps-navigation-page";
-import { BehodlerUISwap } from 'behodler-ui'
+import { BehodlerUISwap } from '@behodler/swap-legacy'
 
 import Connect from './pages/Connect'
 import Transactions from './pages/Transactions'

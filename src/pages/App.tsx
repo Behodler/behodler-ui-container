@@ -1,5 +1,7 @@
-import React, { Suspense, useEffect, useRef, useState } from 'react'
+import React, { Suspense, useEffect, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
+import { swapBackgroundImage } from "@behodler/swap-legacy";
+
 import { AppBar, Polling, Popups } from '../components'
 import Web3ReactManager from '../components/Web3ReactManager'
 import ReactGA from 'react-ga'
@@ -8,7 +10,6 @@ import { useDispatch } from 'react-redux'
 import { AppDispatch } from '../state'
 import { updateUserDarkMode } from '../state/user/actions'
 import { parse } from 'qs'
-import { swapBackgroundImage } from "behodler-ui";
 
 function App(): JSX.Element {
     const bodyRef = useRef<any>(null)
@@ -51,10 +52,10 @@ function App(): JSX.Element {
         <Suspense fallback={null}>
             <div
                 className="flex flex-col items-start overflow-x-hidden h-screen"
-                style={{
+                style={pathname.match('/swap') ? {
                     background: `#19143C url(${swapBackgroundImage}) 50% 0 repeat`,
                     backgroundSize: 'cover',
-                }}
+                } : undefined}
             >
                 <AppBar />
                 <div ref={bodyRef} className="flex flex-col flex-1 items-center justify-start w-screen h-full overflow-y-auto overflow-x-hidden z-0">
