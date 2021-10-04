@@ -8,31 +8,29 @@ import { TorusConnector } from '@web3-react/torus-connector'
 import { WalletConnectConnector } from '@web3-react/walletconnect-connector'
 import { WalletLinkConnector } from '@web3-react/walletlink-connector'
 import { Web3Provider } from '@ethersproject/providers'
-// import { BscConnector } from '@binance-chain/bsc-connector'
 
 const RPC = {
-    [ChainId.MAINNET]: 'https://eth-mainnet.alchemyapi.io/v2/q1gSNoSMEzJms47Qn93f9-9Xg5clkmEC',
-    [ChainId.ROPSTEN]: 'https://eth-ropsten.alchemyapi.io/v2/cidKix2Xr-snU3f6f6Zjq_rYdalKKHmW',
-    [ChainId.RINKEBY]: 'https://eth-rinkeby.alchemyapi.io/v2/XVLwDlhGP6ApBXFz_lfv0aZ6VmurWhYD',
-    [ChainId.GÖRLI]: 'https://eth-goerli.alchemyapi.io/v2/Dkk5d02QjttYEoGmhZnJG37rKt8Yl3Im',
-    [ChainId.KOVAN]: 'https://eth-kovan.alchemyapi.io/v2/6OVAa_B_rypWWl9HqtiYK26IRxXiYqER',
-    [ChainId.FANTOM]: 'https://rpcapi.fantom.network',
-    [ChainId.FANTOM_TESTNET]: 'https://rpc.testnet.fantom.network',
-    [ChainId.MATIC]: 'https://rpc-mainnet.maticvigil.com',
-    //'https://matic-mainnet.chainstacklabs.com/',
-    [ChainId.MATIC_TESTNET]: 'https://rpc-mumbai.matic.today',
-    [ChainId.XDAI]: 'https://rpc.xdaichain.com',
-    [ChainId.BSC]: 'https://bsc-dataseed.binance.org/',
-    [ChainId.BSC_TESTNET]: 'https://data-seed-prebsc-2-s3.binance.org:8545',
-    [ChainId.MOONBASE]: 'https://rpc.testnet.moonbeam.network',
-    [ChainId.AVALANCHE]: 'https://api.avax.network/ext/bc/C/rpc',
-    [ChainId.FUJI]: 'https://api.avax-test.network/ext/bc/C/rpc',
-    [ChainId.HECO]: 'https://http-mainnet.hecochain.com',
-    [ChainId.HECO_TESTNET]: 'https://http-testnet.hecochain.com',
-    [ChainId.HARMONY]: 'https://explorer.harmony.one',
-    [ChainId.HARMONY_TESTNET]: 'https://explorer.pops.one',
-    [ChainId.OKEX]: 'https://exchainrpc.okex.org',
-    [ChainId.OKEX_TESTNET]: 'https://exchaintestrpc.okex.org'
+    [ChainId.MAINNET]: process.env.REACT_APP_ETH_MAINNET_RPC ?? '',
+    [ChainId.ROPSTEN]: process.env.REACT_APP_ETH_ROPSTEN_RPC ?? '',
+    [ChainId.RINKEBY]: process.env.REACT_APP_ETH_RINKEBY_RPC ?? '',
+    [ChainId.GÖRLI]: process.env.REACT_APP_ETH_GOERLI_RPC ?? '',
+    [ChainId.KOVAN]: process.env.REACT_APP_ETH_KOVAN_RPC ?? '',
+    [ChainId.FANTOM]: process.env.REACT_APP_FANTOM_RPC ?? '',
+    [ChainId.FANTOM_TESTNET]: process.env.REACT_APP_FANTOM_TESTNET_RPC ?? '',
+    [ChainId.MATIC]: process.env.REACT_APP_MATIC_RPC ?? '',
+    [ChainId.MATIC_TESTNET]: process.env.REACT_APP_MATIC_TESTNET_RPC ?? '',
+    [ChainId.XDAI]: process.env.REACT_APP_XDAI_RPC ?? '',
+    [ChainId.BSC]: process.env.REACT_APP_BSC_RPC ?? '',
+    [ChainId.BSC_TESTNET]: process.env.REACT_APP_BSC_TESTNET_RPC ?? '',
+    [ChainId.MOONBASE]: process.env.REACT_APP_MOONBASE_RPC ?? '',
+    [ChainId.AVALANCHE]: process.env.REACT_APP_AVALANCHE_RPC ?? '',
+    [ChainId.FUJI]: process.env.REACT_APP_FUJI_RPC ?? '',
+    [ChainId.HECO]: process.env.REACT_APP_HECO_RPC ?? '',
+    [ChainId.HECO_TESTNET]: process.env.REACT_APP_HECO_TESTNET_RPC ?? '',
+    [ChainId.HARMONY]: process.env.REACT_APP_HARMONY_RPC ?? '',
+    [ChainId.HARMONY_TESTNET]: process.env.REACT_APP_HARMONY_TESTNET_RPC ?? '',
+    [ChainId.OKEX]: process.env.REACT_APP_OKEX_RPC ?? '',
+    [ChainId.OKEX_TESTNET]: process.env.REACT_APP_OKEX_TESTNET_RPC ?? '',
 }
 
 export const network = new NetworkConnector({
@@ -85,7 +83,7 @@ export const walletconnect = new WalletConnectConnector({
 export const lattice = new LatticeConnector({
     chainId: 1,
     url: RPC[ChainId.MAINNET],
-    appName: 'SushiSwap'
+    appName: 'BehodlerAMM'
 })
 
 // mainnet only
@@ -103,8 +101,8 @@ export const portis = new PortisConnector({
 // mainnet only
 export const walletlink = new WalletLinkConnector({
     url: RPC[ChainId.MAINNET],
-    appName: 'SushiSwap',
-    appLogoUrl: 'https://raw.githubusercontent.com/sushiswap/art/master/sushi/logo-256x256.png'
+    appName: 'BehodlerAMM',
+    appLogoUrl: 'https://raw.githubusercontent.com/Behodler/behodler-ui-container/1739e3e2b57e88ccc0354e9f626ec32e37187aa2/public/images/logo-192x192.png?token=ABIXNG2RZ5TYT2UPDBLQSM3BLL5J4'
 })
 
 // mainnet only
