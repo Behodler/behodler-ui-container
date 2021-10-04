@@ -33,14 +33,22 @@ const RPC = {
     [ChainId.OKEX_TESTNET]: process.env.REACT_APP_OKEX_TESTNET_RPC ?? '',
 }
 
-console.info('RPC', {
-    RPC,
-    filtered: Object.fromEntries(Object.entries(RPC).filter(([key, value]) => !!value)),
-});
+export const SUPPORTED_NETWORK_CHAIN_IDS: number[] = process.env.REACT_APP_SUPPORTED_NETWORK_CHAIN_IDS
+    ? process.env.REACT_APP_SUPPORTED_NETWORK_CHAIN_IDS
+        .split(',')
+        .map(stringValue => parseInt(stringValue, 10))
+    : [ChainId.MAINNET]
+
+export const ACTIVE_RPC = Object.fromEntries((
+    Object
+        .entries(RPC)
+        .filter(([chainId, rpcUrl]) => !!rpcUrl)
+        .filter(([chainId]) => SUPPORTED_NETWORK_CHAIN_IDS.includes(parseInt(chainId, 10)))
+))
 
 export const network = new NetworkConnector({
     defaultChainId: 1,
-    urls: Object.fromEntries(Object.entries(RPC).filter(([key, value]) => !!value)),
+    urls: ACTIVE_RPC,
 })
 
 let networkLibrary: Web3Provider | undefined
