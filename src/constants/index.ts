@@ -298,7 +298,13 @@ export interface WalletInfo {
     mobileOnly?: true
 }
 
-export const SUPPORTED_WALLETS: { [key: string]: WalletInfo } = {
+const ACTIVE_WALLET_PROVIDERS: string[] = process.env.REACT_APP_SUPPORTED_WALLET_PROVIDERS
+    ? process.env.REACT_APP_SUPPORTED_WALLET_PROVIDERS.split(',')
+    : ['METAMASK', 'WALLET_CONNECT']
+
+type SupportedWallets = { [key: string]: WalletInfo }
+
+const ALL_SUPPORTED_WALLETS: SupportedWallets = {
     INJECTED: {
         connector: injected,
         name: 'Injected',
@@ -379,6 +385,15 @@ export const SUPPORTED_WALLETS: { [key: string]: WalletInfo } = {
         mobile: true
     }
 }
+
+export const SUPPORTED_WALLETS: SupportedWallets = Object
+    .fromEntries((
+        ACTIVE_WALLET_PROVIDERS
+            .map(walletPrividerName => [
+                walletPrividerName,
+                ALL_SUPPORTED_WALLETS[walletPrividerName],
+            ])
+    ))
 
 export const NetworkContextName = 'NETWORK'
 
