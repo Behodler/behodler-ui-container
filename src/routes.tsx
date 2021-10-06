@@ -4,6 +4,7 @@ import { useActiveWeb3React } from 'hooks/useActiveWeb3React'
 import { RedirectToSwap, RedirectPathToSwapOnly  } from '@behodler/swap'
 import DappsNavigation from "@behodler/dapps-navigation-page";
 import { BehodlerUISwap } from '@behodler/swap-legacy'
+import { BehodlerUIPyrotokens } from '@behodler/pyrotokens-legacy'
 
 import Connect from './pages/Connect'
 import Transactions from './pages/Transactions'
@@ -22,7 +23,8 @@ function Routes(): JSX.Element {
             <Route exact strict path="/transactions" component={Transactions} />
             <Route exact strict path="/bonfire" component={ComingSoon} />
             <Route exact strict path="/limbo" component={ComingSoon} />
-            <Route exact strict path="/pyrotokens" component={ComingSoon} />
+            <Route exact strict path="/analytics" component={ComingSoon} />
+            <Route exact strict path="/pyrotokens" component={BehodlerUIPyrotokens} />
 
             {/* Redirects for app routes */}
             <Route
