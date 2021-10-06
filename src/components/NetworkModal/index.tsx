@@ -1,11 +1,12 @@
-import { NETWORK_ICON, NETWORK_LABEL } from '../../constants/networks'
-import { useModalOpen, useNetworkModalToggle } from '../../state/application/hooks'
-
-import { ApplicationModal } from '../../state/application/actions'
+import React from 'react'
 import { ChainId } from '@sushiswap/sdk'
+
+import { NETWORK_ICON, NETWORK_LABEL } from '../../constants/networks'
+import { ACTIVE_RPC } from '../../connectors'
+import { useModalOpen, useNetworkModalToggle } from '../../state/application/hooks'
+import { ApplicationModal } from '../../state/application/actions'
 import Modal from '../Modal'
 import ModalHeader from '../ModalHeader'
-import React from 'react'
 import { useActiveWeb3React } from 'hooks/useActiveWeb3React'
 
 const PARAMS: {
@@ -136,7 +137,7 @@ export default function NetworkModal(): JSX.Element | null {
         <Modal isOpen={networkModalOpen} onDismiss={toggleNetworkModal}>
             <ModalHeader onClose={toggleNetworkModal} title="Select a Network" />
             <div className="text-lg text-primary mb-6">
-                You are currently browsing <span className="font-bold text-pink">SUSHI</span>
+                You are currently using <span className="font-bold text-blue">Behodler AMM</span>
                 <br /> on the <span className="font-bold text-blue">{NETWORK_LABEL[chainId]}</span> network
             </div>
 
@@ -151,7 +152,7 @@ export default function NetworkModal(): JSX.Element | null {
                     ChainId.HARMONY,
                     ChainId.AVALANCHE,
                     ChainId.OKEX
-                ].map((key: ChainId, i: number) => {
+                ].filter(chainId => ACTIVE_RPC[chainId]).map((key: ChainId, i: number) => {
                     if (chainId === key) {
                         return (
                             <button key={i} className="bg-gradient-to-r from-blue to-pink w-full rounded p-px">

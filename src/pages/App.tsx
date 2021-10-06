@@ -1,5 +1,7 @@
-import React, { Suspense, useEffect, useRef, useState } from 'react'
+import React, { Suspense, useEffect, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
+import { swapBackgroundImage } from "@behodler/swap-legacy";
+
 import { AppBar, Polling, Popups } from '../components'
 import Web3ReactManager from '../components/Web3ReactManager'
 import ReactGA from 'react-ga'
@@ -48,7 +50,13 @@ function App(): JSX.Element {
 
     return (
         <Suspense fallback={null}>
-            <div className="flex flex-col items-start overflow-x-hidden h-screen">
+            <div
+                className="flex flex-col items-start overflow-x-hidden h-screen"
+                style={pathname.match('/swap') ? {
+                    background: `#19143C url(${swapBackgroundImage}) 50% 0 repeat`,
+                    backgroundSize: 'cover',
+                } : undefined}
+            >
                 <AppBar />
                 <div ref={bodyRef} className="flex flex-col flex-1 items-center justify-start w-screen h-full overflow-y-auto overflow-x-hidden z-0">
                     <Popups />
