@@ -7,6 +7,7 @@ import { BehodlerUISwap } from '@behodler/swap-legacy'
 
 import Connect from './pages/Connect'
 import Transactions from './pages/Transactions'
+import ComingSoon from './components/ComingSoon'
 
 function Routes(): JSX.Element {
     return (
@@ -19,6 +20,9 @@ function Routes(): JSX.Element {
             <Route exact strict path="/swap" component={BehodlerUISwap} />
             <Route exact strict path="/swap/:outputCurrency" component={RedirectToSwap} />
             <Route exact strict path="/transactions" component={Transactions} />
+            <Route exact strict path="/bonfire" component={ComingSoon} />
+            <Route exact strict path="/limbo" component={ComingSoon} />
+            <Route exact strict path="/pyrotokens" component={ComingSoon} />
 
             {/* Redirects for app routes */}
             <Route
