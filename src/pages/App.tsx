@@ -52,7 +52,7 @@ function App(): JSX.Element {
         <Suspense fallback={null}>
             <div
                 className="flex flex-col items-start overflow-x-hidden h-screen"
-                style={pathname.match('/swap') ? {
+                style={pathname.match('/swap') || pathname.match('/pyrotokens') ? {
                     background: `#19143C url(${swapBackgroundImage}) 50% 0 repeat`,
                     backgroundSize: 'cover',
                 } : undefined}
