@@ -187,7 +187,7 @@
         "@behodler/dapps-navigation-page": "0.0.7",
         "@behodler/sdk": "0.1.0",
         "@behodler/swap": "0.0.6",
-        "@behodler/swap-legacy": "0.1.1",
+        "@behodler/swap-legacy": "0.2.1",
         "@lufycz/sushi-data": "^2.0.0-canary-21"
     },
     "resolutions": {
