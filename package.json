@@ -188,7 +188,7 @@
         "@behodler/pyrotokens-legacy": "0.1.2",
         "@behodler/sdk": "0.1.0",
         "@behodler/swap": "0.0.6",
-        "@behodler/swap-legacy": "0.2.4",
+        "@behodler/swap-legacy": "0.3.0",
         "@lufycz/sushi-data": "^2.0.0-canary-21"
     },
     "resolutions": {
