@@ -58,7 +58,7 @@ function App(): JSX.Element {
                 } : undefined}
             >
                 <AppBar />
-                <div ref={bodyRef} className="flex flex-col flex-1 items-center justify-start w-screen h-full overflow-y-auto overflow-x-hidden z-0">
+                <div ref={bodyRef} className="flex flex-col flex-1 items-center justify-start w-screen h-full overflow-y-auto overflow-x-hidden z-0 pb-96 lg:pb-0">
                     <Popups />
                     <Polling />
                     <Web3ReactManager>

@@ -19,9 +19,9 @@ import { shortenAddress } from '../../utils'
 import { ButtonSecondary } from '../ButtonLegacy'
 import Loader from '../Loader'
 import WalletModal from '../WalletModal'
-import { ReactComponent as Chef } from '../../assets/images/chef.svg'
 import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
+import Identicon from '../Identicon'
 
 const IconWrapper = styled.div<{ size?: number }>`
     ${({ theme }) => theme.flexColumnNoWrap};
@@ -132,8 +132,7 @@ const SOCK = (
 // eslint-disable-next-line react/prop-types
 function StatusIcon({ connector }: { connector: AbstractConnector }) {
     if (connector === injected) {
-        return <Chef width={20} height={20} />
-        // return <Identicon />
+        return <Identicon />
     } else if (connector === walletconnect) {
         return (
             <IconWrapper size={16}>
@@ -202,7 +201,7 @@ function Web3StatusInner() {
                         <Loader stroke="white" />
                     </div>
                 ) : (
-                    <div className="mr-2">{ENSName || shortenAddress(account)}</div>
+                    <div className="mr-2 hidden lg:block">{ENSName || shortenAddress(account)}</div>
                 )}
                 {!hasPendingTransactions && connector && <StatusIcon connector={connector} />}
             </div>

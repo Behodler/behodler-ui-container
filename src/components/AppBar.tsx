@@ -72,7 +72,7 @@ function AppBar(): JSX.Element {
         }
 
         return (
-            <div className="flex flex-row">
+            <div className="hidden md:flex flex-row">
                 <div>{token.logo}</div>
                 <div className="pl-1.5 text-white">
                     {formattedBalance}
@@ -86,14 +86,18 @@ function AppBar(): JSX.Element {
             <Disclosure as="nav" className={navClassList}>
                 {({ open }) => (
                     <>
-                        <div className="px-4 py-6">
-                            <div className="flex items-center justify-between h-16">
-                                <div className="flex items-center">
+                        <div className="px-4 py-0 md:py-4 bg-dark-1000 lg:bg-transparent">
+                            <div className="flex items-center justify-between h-18 md:h-16 w-full">
+
+                                <div className="flex items-center w-1/2">
+
                                     <div className="flex-shrink-0">
                                         <Logo title="Behodler" className="w-auto" style={{marginTop: -24}} />
                                     </div>
+
                                     <div className="text-white font-bold" style={{fontSize: 24}}>Behodler</div>
-                                    <div className="hidden sm:block sm:ml-4">
+
+                                    <div className="hidden md:block sm:ml-4">
                                         <div className="flex space-x-2">
                                             <NavLink id={`swap-nav-link`} to={'/swap'}>
                                                 {i18n._(t`Swap`)}
@@ -106,12 +110,25 @@ function AppBar(): JSX.Element {
                                             </NavLink>
                                         </div>
                                     </div>
+
+                                    <div className="-mr-2 flex md:hidden">
+                                        {/* Mobile menu button */}
+                                        <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-primary hover:text-high-emphesis focus:outline-none">
+                                            <span className="sr-only">{i18n._(t`Open main menu`)}</span>
+                                            {open ? (
+                                                <X title="Close" className="block h-6 w-6" aria-hidden="true" />
+                                            ) : (
+                                                <Burger title="Burger" className="block h-6 w-6" aria-hidden="true" />
+                                            )}
+                                        </Disclosure.Button>
+                                    </div>
+
                                 </div>
 
-                                <div className="flex flex-row items-center justify-center w-full lg:w-auto p-4 fixed left-0 bottom-0 bg-dark-1000 lg:relative lg:p-0 lg:bg-transparent">
+                                <div className="flex flex-row items-center justify-center w-1/2 p-4 lg:p-0">
                                     <div className="flex items-center justify-between sm:justify-end space-x-5 w-full">
                                         {library && library.provider.isMetaMask && (
-                                            <div className="hidden sm:inline-block">
+                                            <div className="hidden lg:inline-block">
                                                 <Web3Network />
                                             </div>
                                         )}
@@ -126,12 +143,10 @@ function AppBar(): JSX.Element {
 
                                         <div className="w-auto flex items-center rounded bg-dark-900 hover:bg-dark-800 p-0.5 whitespace-nowrap text-sm font-bold cursor-pointer select-none pointer-events-auto">
                                             {account && chainId && userEthBalance && (
-                                                <>
-                                                    <div className="py-2 px-3 text-primary text-bold">
-                                                        {userEthBalance?.toSignificant(4)}{' '}
-                                                        {Currency.getNativeCurrencySymbol(chainId)}
-                                                    </div>
-                                                </>
+                                                <div className="py-2 px-3 text-primary text-bold">
+                                                    {userEthBalance?.toSignificant(4)}{' '}
+                                                    {Currency.getNativeCurrencySymbol(chainId)}
+                                                </div>
                                             )}
                                             <Web3Status />
                                         </div>
@@ -139,21 +154,10 @@ function AppBar(): JSX.Element {
                                         {/*<MoreMenu />*/}
                                     </div>
                                 </div>
-                                <div className="-mr-2 flex sm:hidden">
-                                    {/* Mobile menu button */}
-                                    <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-primary hover:text-high-emphesis focus:outline-none">
-                                        <span className="sr-only">{i18n._(t`Open main menu`)}</span>
-                                        {open ? (
-                                            <X title="Close" className="block h-6 w-6" aria-hidden="true" />
-                                        ) : (
-                                            <Burger title="Burger" className="block h-6 w-6" aria-hidden="true" />
-                                        )}
-                                    </Disclosure.Button>
-                                </div>
                             </div>
                         </div>
 
-                        <Disclosure.Panel className="sm:hidden">
+                        <Disclosure.Panel className="md:hidden">
                             <div className="flex flex-col px-4 pt-2 pb-3 space-y-1">
                                 <NavLink id={`swap-nav-link`} to={'/swap'}>
                                     {i18n._(t`Swap`)}
