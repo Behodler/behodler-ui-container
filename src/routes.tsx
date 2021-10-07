@@ -5,10 +5,36 @@ import { RedirectToSwap, RedirectPathToSwapOnly  } from '@behodler/swap'
 import DappsNavigation from "@behodler/dapps-navigation-page";
 import { BehodlerUISwap } from '@behodler/swap-legacy'
 import { BehodlerUIPyrotokens } from '@behodler/pyrotokens-legacy'
+import styled from 'styled-components'
 
 import Connect from './pages/Connect'
 import Transactions from './pages/Transactions'
 import ComingSoon from './components/ComingSoon'
+
+const StyledDappsNavigationWrapper = styled.div`
+  background-color: rgba(2,5,26,1);
+
+  @media (min-width: 976px) {
+    padding-top: 120px;
+    position: relative;
+  }
+  
+  div.bg-bottom {
+    background-position: bottom;
+    height: 100vh;
+    width: 100vw;
+
+    @media (min-width: 976px) {
+      top: 120px !important;
+    }
+  }
+`
+
+const AppsPage = (props: any) => (
+    <StyledDappsNavigationWrapper>
+        <DappsNavigation {...props} />
+    </StyledDappsNavigationWrapper>
+);
 
 function Routes(): JSX.Element {
     return (
@@ -16,7 +42,7 @@ function Routes(): JSX.Element {
             <PublicRoute exact path="/connect" component={Connect} />
 
             {/* Pages */}
-            <Route exact strict path="/apps" component={DappsNavigation} />
+            <Route exact strict path="/apps" component={AppsPage} />
             <Route exact strict path="/trade" component={BehodlerUISwap} />
             <Route exact strict path="/swap" component={BehodlerUISwap} />
             <Route exact strict path="/swap/:outputCurrency" component={RedirectToSwap} />
