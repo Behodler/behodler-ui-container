@@ -220,7 +220,8 @@ function Web3StatusInner() {
     } else {
         return (
             <Web3StatusConnect id="connect-wallet" onClick={toggleWalletModal} faded={!account}>
-                <Text>{i18n._(t`Connect to a wallet`)}</Text>
+                <Text className="hidden sm:block">{i18n._(t`Connect to a wallet`)}</Text>
+                <Text className="sm:hidden">{i18n._(t`Connect`)}</Text>
             </Web3StatusConnect>
         )
     }

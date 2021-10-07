@@ -95,7 +95,9 @@ function AppBar(): JSX.Element {
                                         <Logo title="Behodler" className="w-auto" style={{marginTop: -24}} />
                                     </div>
 
-                                    <div className="text-white font-bold" style={{fontSize: 24}}>Behodler</div>
+                                    <div className="text-white font-bold hidden sm:block" style={{fontSize: 24}}>
+                                        Behodler
+                                    </div>
 
                                     <div className="hidden md:block sm:ml-4">
                                         <div className="flex space-x-2">
