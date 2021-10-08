@@ -1,6 +1,6 @@
 import { Currency, ChainId, TokenAmount } from '@sushiswap/sdk'
 import React, { useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, Link } from 'react-router-dom'
 import { ReactComponent as Logo } from '../assets/images/logo.svg'
 import { useActiveWeb3React } from '../hooks/useActiveWeb3React'
 import { useETHBalances, useTokenBalancesWithLoadingIndicator } from '../state/wallet/hooks'
@@ -92,11 +92,15 @@ function AppBar(): JSX.Element {
                                 <div className="flex items-center w-1/2">
 
                                     <div className="flex-shrink-0">
-                                        <Logo title="Behodler" className="w-auto" style={{marginTop: -24}} />
+                                        <Link to="/">
+                                            <Logo title="Behodler" className="w-auto" style={{marginTop: -24}} />
+                                        </Link>
                                     </div>
 
                                     <div className="text-white font-bold hidden sm:block" style={{fontSize: 24}}>
-                                        Behodler
+                                        <Link to="/" className="hover:text-high-emphesis">
+                                            Behodler
+                                        </Link>
                                     </div>
 
                                     <div className="hidden md:block sm:ml-4">
