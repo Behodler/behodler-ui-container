@@ -21,8 +21,12 @@ const Message = styled.h2`
 
 export default function Web3ReactManager({ children }: { children: JSX.Element }) {
     const { i18n } = useLingui()
-    const { active } = useWeb3React()
+    const { active, chainId } = useWeb3React()
     const { active: networkActive, error: networkError, activate: activateNetwork } = useWeb3React(NetworkContextName)
+
+    console.info('web3', {
+        chainId
+    });
 
     // try to eagerly connect to an injected provider, if it exists and has granted access already
     const triedEager = useEagerConnect()
@@ -52,6 +56,19 @@ export default function Web3ReactManager({ children }: { children: JSX.Element }
     // on page load, do nothing until we've tried to connect to the injected connector
     if (!triedEager) {
         return null
+    }
+
+    // if the account context isn't active, and there's an error on the network context, it's an irrecoverable error
+    if (chainId && chainId !== 1) {
+        return (
+            <MessageWrapper>
+                <Message>
+                    {i18n._(
+                        t`Unsupported network detected. Please switch to Ethereum mainnet.`
+                    )}
+                </Message>
+            </MessageWrapper>
+        )
     }
 
     // if the account context isn't active, and there's an error on the network context, it's an irrecoverable error

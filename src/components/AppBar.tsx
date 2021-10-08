@@ -19,6 +19,7 @@ import Web3Status from './Web3Status'
 import MoreMenu from './Menu'
 import { NavLink } from './Link'
 import { ReactComponent as ExternalLinkIcon } from '../assets/images/link.svg'
+import Loader from './Loader'
 
 const StyledExternalLinkIcon = styled(ExternalLinkIcon)`
   display: inline-block;
@@ -114,12 +115,15 @@ function AppBar(): JSX.Element {
 
                                     <div className="hidden md:block sm:ml-4">
                                         <div className="flex space-x-2">
+
                                             <NavLink id="swap-nav-link" to="/swap">
                                                 {i18n._(t`Swap`)}
                                             </NavLink>
+
                                             <NavLink id="apps-nav-link" to="/apps">
                                                 {i18n._(t`Apps`)}
                                             </NavLink>
+
                                             <a
                                                 id="analytics-nav-link"
                                                 href="https://analytics.behodler.io"
@@ -128,6 +132,7 @@ function AppBar(): JSX.Element {
                                             >
                                                 <StyledExternalLinkIcon /> {i18n._(t`Analytics`)}
                                             </a>
+
                                         </div>
                                     </div>
 
@@ -147,14 +152,16 @@ function AppBar(): JSX.Element {
 
                                 <div className="flex flex-row items-center justify-center w-1/2 p-4 lg:p-0">
                                     <div className="flex items-center justify-between sm:justify-end space-x-5 w-full">
-                                        {library && library.provider.isMetaMask && (
-                                            <div className="hidden lg:inline-block">
-                                                <Web3Network />
-                                            </div>
-                                        )}
+                                        {/*{library && library.provider.isMetaMask && (*/}
+                                        {/*    <div className="hidden lg:inline-block">*/}
+                                        {/*        <Web3Network />*/}
+                                        {/*    </div>*/}
+                                        {/*)}*/}
 
                                         {
-                                            !isLoadingTokenBalances && (
+                                            isLoadingTokenBalances ? (
+                                                <Loader />
+                                            ) : (
                                                 tokensShowBalance.map(t => (
                                                     renderTokenBalance(t.token!.address, tokenBalances[t.token!.address])
                                                 ))
@@ -179,12 +186,15 @@ function AppBar(): JSX.Element {
 
                         <Disclosure.Panel className="md:hidden">
                             <div className="flex flex-col px-4 pt-2 pb-3 space-y-1">
+
                                 <Disclosure.Button as={NavLink} id="swap-nav-link" to="/swap">
                                     {i18n._(t`Swap`)}
                                 </Disclosure.Button>
+
                                 <Disclosure.Button as={NavLink} id="apps-nav-link" to="/apps">
                                     {i18n._(t`Apps`)}
                                 </Disclosure.Button>
+
                                 <Disclosure.Button
                                     as="a"
                                     id="analytics-nav-link"
@@ -194,6 +204,7 @@ function AppBar(): JSX.Element {
                                 >
                                     <StyledExternalLinkIcon /> {i18n._(t`Analytics`)}
                                 </Disclosure.Button>
+
                             </div>
                         </Disclosure.Panel>
                     </>
