@@ -165,15 +165,15 @@ function AppBar(): JSX.Element {
 
                         <Disclosure.Panel className="md:hidden">
                             <div className="flex flex-col px-4 pt-2 pb-3 space-y-1">
-                                <NavLink id={`swap-nav-link`} to={'/swap'}>
+                                <Disclosure.Button as={NavLink} id={`swap-nav-link`} to={'/swap'}>
                                     {i18n._(t`Swap`)}
-                                </NavLink>
-                                <NavLink id={`apps-nav-link`} to={'/apps'}>
+                                </Disclosure.Button>
+                                <Disclosure.Button as={NavLink} id={`apps-nav-link`} to={'/apps'}>
                                     {i18n._(t`Apps`)}
-                                </NavLink>
-                                <NavLink id={`analytics-nav-link`} to={'/analytics'}>
+                                </Disclosure.Button>
+                                <Disclosure.Button as={NavLink} id={`analytics-nav-link`} to={'/analytics'}>
                                     {i18n._(t`Analytics`)}
-                                </NavLink>
+                                </Disclosure.Button>
                             </div>
                         </Disclosure.Panel>
                     </>
