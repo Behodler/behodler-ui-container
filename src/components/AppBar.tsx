@@ -1,6 +1,11 @@
 import { Currency, ChainId, TokenAmount } from '@sushiswap/sdk'
 import React, { useEffect, useState } from 'react'
 import { useLocation, Link } from 'react-router-dom'
+import styled from 'styled-components'
+import { Disclosure } from '@headlessui/react'
+import { t } from '@lingui/macro'
+import { useLingui } from '@lingui/react'
+
 import { ReactComponent as Logo } from '../assets/images/logo.svg'
 import { useActiveWeb3React } from '../hooks/useActiveWeb3React'
 import { useETHBalances, useTokenBalancesWithLoadingIndicator } from '../state/wallet/hooks'
@@ -13,9 +18,13 @@ import Web3Network from './Web3Network'
 import Web3Status from './Web3Status'
 import MoreMenu from './Menu'
 import { NavLink } from './Link'
-import { Disclosure } from '@headlessui/react'
-import { t } from '@lingui/macro'
-import { useLingui } from '@lingui/react'
+import { ReactComponent as ExternalLinkIcon } from '../assets/images/link.svg'
+
+const StyledExternalLinkIcon = styled(ExternalLinkIcon)`
+  display: inline-block;
+  margin: -1px 4px 0 0;
+  width: 17px; 
+`
 
 function AppBar(): JSX.Element {
     const { i18n } = useLingui()
@@ -115,9 +124,9 @@ function AppBar(): JSX.Element {
                                                 id="analytics-nav-link"
                                                 href="https://analytics.behodler.io"
                                                 target="blank"
-                                                className="text-baseline text-primary hover:text-high-emphesis focus:text-high-emphesis p-2 md:p-3 whitespace-nowrap"
+                                                className="text-baseline text-primary hover:text-high-emphesis focus:text-high-emphesis p-2 md:p-3 whitespace-nowrap flex items-center"
                                             >
-                                                {i18n._(t`Analytics`)}
+                                                <StyledExternalLinkIcon /> {i18n._(t`Analytics`)}
                                             </a>
                                         </div>
                                     </div>
@@ -181,9 +190,9 @@ function AppBar(): JSX.Element {
                                     id="analytics-nav-link"
                                     href="https://analytics.behodler.io"
                                     target="blank"
-                                    className="text-baseline text-primary hover:text-high-emphesis focus:text-high-emphesis p-2 md:p-3 whitespace-nowrap"
+                                    className="text-baseline text-primary hover:text-high-emphesis focus:text-high-emphesis p-2 md:p-3 whitespace-nowrap flex items-center"
                                 >
-                                    {i18n._(t`Analytics`)}
+                                    <StyledExternalLinkIcon /> {i18n._(t`Analytics`)}
                                 </Disclosure.Button>
                             </div>
                         </Disclosure.Panel>
