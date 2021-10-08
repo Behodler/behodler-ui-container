@@ -70,3 +70,17 @@ input:focus {
     width: 100px;
   }
 }
+
+*::-webkit-scrollbar-track {
+  background-color: #15102f !important;
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+  background-color: #F5F5F5 !important;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: rgba(107,80,181,0.7) !important;
+}

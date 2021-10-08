@@ -2045,10 +2045,10 @@
     react-router-dom "^5.2.0"
     styled-components "^4.2.0"
 
-"@behodler/pyrotokens-legacy@0.1.4":
-  version "0.1.4"
-  resolved "https://npm.pkg.github.com/download/@behodler/pyrotokens-legacy/0.1.4/e3f2c885e4e44329935045bbef4bd6187ae43d2eb7062111e0b36109aeecc7fc#36c0da30502321d3c10dbd8d29b13933339caf9f"
-  integrity sha512-DrkdgkNmiwhmtkHb7qy8jm+7OpKB2BFwU/mCg14TcfPuKFCZ5yFeJKxBJ6WoYHXQsOGSnB60QsRKHTeFTTq3WA==
+"@behodler/pyrotokens-legacy@0.1.5":
+  version "0.1.5"
+  resolved "https://npm.pkg.github.com/download/@behodler/pyrotokens-legacy/0.1.5/0fdb46c100f0ea1b22e428d829a380cc7a6501e84d01b06fb8a816c1537e10a2#a5d1dca47b958f0eaf16a9642d7c4af422f7ee51"
+  integrity sha512-o7x2Bec+x8rLX72eoirVAzAUjnIlbQQteIRKb8lcLfcP817Lp5P7rr+MdQExJWzJsPyD+rT+RoG87qc0ExcJSQ==
   dependencies:
     "@ethereumjs/vm" "^5.5.2"
     "@ethersproject/abi" "^5.4.1"
@@ -2092,10 +2092,10 @@
   resolved "https://npm.pkg.github.com/download/@behodler/sdk/0.1.0/51b8c9f023093191a88b147eb5744b7a6192157c49d6b39d7add954f64ef7600#7ee8f0b5bd76682d81311bc7bf8582906969e063"
   integrity sha512-KkE2/RhwzO+FIudMk9tDdNL7pqbo5dVHOSsKf91HPHQiHz/NS85ebvp+XQ8UFZrthFfDoVGd5jPQB6UdpM328w==
 
-"@behodler/swap-legacy@0.3.2":
-  version "0.3.2"
-  resolved "https://npm.pkg.github.com/download/@behodler/swap-legacy/0.3.2/0cbd5ffd03e02b8a4720db57510ab52c8c6b254e72b53598fe73227c142c88dc#f02ac50132d91947673db429ee9452ef02852fec"
-  integrity sha512-k9W4blKlnNVMo6R8eZhbVqMn+6gXOuz0wW24d2KoAr01dvm57YcurY8dIToO3KdugPKPoAwuA6qcGwlOL9wrzg==
+"@behodler/swap-legacy@0.3.3":
+  version "0.3.3"
+  resolved "https://npm.pkg.github.com/download/@behodler/swap-legacy/0.3.3/772e8ee30b36f661aa8e0d7ecb806938581999ffc2253166f9f707d433c50b1d#e1388eb40805e29103209111d152591b4cfad832"
+  integrity sha512-S0Tii5AZ9df13FFnqrs3utILsMdZ/mODz2I/Gg1uy2dfLbnENoPkVkq1c+6Op8e59EpL0vjmEqs0Bv0HMhlnpQ==
   dependencies:
     "@ethereumjs/vm" "^5.5.2"
     "@ethersproject/abi" "^5.4.1"
