@@ -12,11 +12,17 @@ import Transactions from './pages/Transactions'
 import ComingSoon from './components/ComingSoon'
 
 const StyledDappsNavigationWrapper = styled.div`
-  background-color: rgba(2,5,26,1);
+  background: linear-gradient(
+      0deg, rgba(0,4,23,1) 0%, rgba(2,5,26,1) 38%, rgba(7,12,43,1) 70%, rgba(4,6,19,1) 100%
+  );
 
   @media (min-width: 976px) {
     padding-top: 120px;
     position: relative;
+  }
+  
+  > div {
+    background: 0 none;
   }
   
   div.bg-bottom {
