@@ -105,15 +105,20 @@ function AppBar(): JSX.Element {
 
                                     <div className="hidden md:block sm:ml-4">
                                         <div className="flex space-x-2">
-                                            <NavLink id={`swap-nav-link`} to={'/swap'}>
+                                            <NavLink id="swap-nav-link" to="/swap">
                                                 {i18n._(t`Swap`)}
                                             </NavLink>
-                                            <NavLink id={`apps-nav-link`} to={'/apps'}>
+                                            <NavLink id="apps-nav-link" to="/apps">
                                                 {i18n._(t`Apps`)}
                                             </NavLink>
-                                            <NavLink id={`analytics-nav-link`} to={'/analytics'}>
+                                            <a
+                                                id="analytics-nav-link"
+                                                href="https://analytics.behodler.io"
+                                                target="blank"
+                                                className="text-baseline text-primary hover:text-high-emphesis focus:text-high-emphesis p-2 md:p-3 whitespace-nowrap"
+                                            >
                                                 {i18n._(t`Analytics`)}
-                                            </NavLink>
+                                            </a>
                                         </div>
                                     </div>
 
@@ -165,13 +170,19 @@ function AppBar(): JSX.Element {
 
                         <Disclosure.Panel className="md:hidden">
                             <div className="flex flex-col px-4 pt-2 pb-3 space-y-1">
-                                <Disclosure.Button as={NavLink} id={`swap-nav-link`} to={'/swap'}>
+                                <Disclosure.Button as={NavLink} id="swap-nav-link" to="/swap">
                                     {i18n._(t`Swap`)}
                                 </Disclosure.Button>
-                                <Disclosure.Button as={NavLink} id={`apps-nav-link`} to={'/apps'}>
+                                <Disclosure.Button as={NavLink} id="apps-nav-link" to="/apps">
                                     {i18n._(t`Apps`)}
                                 </Disclosure.Button>
-                                <Disclosure.Button as={NavLink} id={`analytics-nav-link`} to={'/analytics'}>
+                                <Disclosure.Button
+                                    as="a"
+                                    id="analytics-nav-link"
+                                    href="https://analytics.behodler.io"
+                                    target="blank"
+                                    className="text-baseline text-primary hover:text-high-emphesis focus:text-high-emphesis p-2 md:p-3 whitespace-nowrap"
+                                >
                                     {i18n._(t`Analytics`)}
                                 </Disclosure.Button>
                             </div>
