@@ -184,7 +184,7 @@
     },
     "license": "GPL-3.0-or-later",
     "dependencies": {
-        "@behodler/dapps-navigation-page": "0.0.10",
+        "@behodler/dapps-navigation-page": "0.0.11",
         "@behodler/pyrotokens-legacy": "0.1.7",
         "@behodler/sdk": "0.1.0",
         "@behodler/swap": "0.0.6",
