@@ -7,6 +7,8 @@ import { NetworkContextName } from '../../constants'
 import { useEagerConnect, useInactiveListener } from '../../hooks'
 import Loader from '../Loader'
 import { useLingui } from '@lingui/react'
+import { Web3StatusConnect, Text as Web3StatusText } from '../Web3Status'
+import { useWalletModalToggle } from '../../state/application/hooks'
 
 const MessageWrapper = styled.div`
     display: flex;
@@ -19,10 +21,22 @@ const Message = styled.h2`
     color: ${({ theme }) => theme.secondary1};
 `
 
+const StyledNetworkErrorWrapper = styled.div`
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+`
+
+const StyledWeb3StatusConnect = styled(Web3StatusConnect)`
+  margin-top: 10px;
+  width: auto;
+`
+
 export default function Web3ReactManager({ children }: { children: JSX.Element }) {
     const { i18n } = useLingui()
     const { active, chainId } = useWeb3React()
-    const { active: networkActive, error: networkError, activate: activateNetwork } = useWeb3React(NetworkContextName)
+    const { active: networkActive, error: networkError, activate: activateNetwork, account } = useWeb3React(NetworkContextName)
+    const toggleWalletModal = useWalletModalToggle()
 
     console.info('web3', {
         chainId
@@ -75,11 +89,19 @@ export default function Web3ReactManager({ children }: { children: JSX.Element }
     if (!active && networkError) {
         return (
             <MessageWrapper>
-                <Message>
-                    {i18n._(
-                        t`Oops! An unknown error occurred. Please refresh the page, or visit from another browser or device`
-                    )}
-                </Message>
+                <StyledNetworkErrorWrapper>
+
+                    <Message>
+                        {i18n._(
+                            t`Oops! An unknown error occurred. Please refresh the page, visit from another browser or device, or try to re-connect a wallet`
+                        )}
+                    </Message>
+
+                    <StyledWeb3StatusConnect id="connect-wallet" onClick={toggleWalletModal} faded={!account}>
+                        <Web3StatusText className="hidden sm:block">{i18n._(t`Connect to a wallet`)}</Web3StatusText>
+                    </StyledWeb3StatusConnect>
+
+                </StyledNetworkErrorWrapper>
             </MessageWrapper>
         )
     }
