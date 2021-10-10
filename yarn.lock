@@ -1570,10 +1570,10 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@behodler/dapps-navigation-page@0.0.14":
-  version "0.0.14"
-  resolved "https://npm.pkg.github.com/download/@behodler/dapps-navigation-page/0.0.14/d32bcdc117d8d8263814e33e4926d800e3c74e00b29a3bb170ae9bca7e31437e#4c2be8bb89bc91931483621dbc3e07f690362eea"
-  integrity sha512-anGkfQQIqh4qIg/J5VpjaXEpMVc3BYwzPb98Q4+0QQ6sm1G30aPTJ1n2MIWU+hf+UOm2WWnkhoTMaV9RQucnwA==
+"@behodler/dapps-navigation-page@0.0.15":
+  version "0.0.15"
+  resolved "https://npm.pkg.github.com/download/@behodler/dapps-navigation-page/0.0.15/2a604de4bbb57a884bb66e2d48bf2efd1f5f8c4cfe8f59318fa54b79e9cb2b4f#1eebe64ff782a40a0acdd66cd06f4a9ccc371f4d"
+  integrity sha512-4+vNPXcvl5ErEwI4qvc40p/H+A9HqU5wIiyOeTRDgDDqf3mhzwjOVjeR2WHCx6go3H5WaO9beVYO3j9ra6zmkQ==
   dependencies:
     react "^17.0.2"
     react-device-detect "^1.6.2"
