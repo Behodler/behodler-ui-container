@@ -1570,10 +1570,10 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@behodler/dapps-navigation-page@0.0.11":
-  version "0.0.11"
-  resolved "https://npm.pkg.github.com/download/@behodler/dapps-navigation-page/0.0.11/1be16a8ab97857d3c1d8a4907147a998a803218baba6e3bf9f79e6be618ccb6b#7403a617ef9ab42025dccb94cc91783d992f4347"
-  integrity sha512-ET1gzECI+d3wG5wOueGihKvrXRJKrmHAw45cguUxLN6n8OyTmxMaNwbPRMWL52g8aZstFNbh7al7XUfVssDeFA==
+"@behodler/dapps-navigation-page@0.0.14":
+  version "0.0.14"
+  resolved "https://npm.pkg.github.com/download/@behodler/dapps-navigation-page/0.0.14/d32bcdc117d8d8263814e33e4926d800e3c74e00b29a3bb170ae9bca7e31437e#4c2be8bb89bc91931483621dbc3e07f690362eea"
+  integrity sha512-anGkfQQIqh4qIg/J5VpjaXEpMVc3BYwzPb98Q4+0QQ6sm1G30aPTJ1n2MIWU+hf+UOm2WWnkhoTMaV9RQucnwA==
   dependencies:
     react "^17.0.2"
     react-device-detect "^1.6.2"
@@ -10058,9 +10058,9 @@ css-what@^3.2.1:
   integrity sha512-ACUm3L0/jiZTqfzRM3Hi9Q8eZqd6IK37mMWPLz9PJxkLWllYeRf+EHUSHYEtFop2Eqytaq1FizFVh7XfBnXCDQ==
 
 css-what@^5.0.0, css-what@^5.0.1:
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/css-what/-/css-what-5.0.1.tgz#3efa820131f4669a8ac2408f9c32e7c7de9f4cad"
-  integrity sha512-FYDTSHb/7KXsWICVsxdmiExPjCfRC4qRFBdVwv7Ax9hMnvMmEjP9RfxTEZ3qPZGmADDn2vAKSo9UcN1jKVYscg==
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/css-what/-/css-what-5.1.0.tgz#3f7b707aadf633baf62c2ceb8579b545bb40f7fe"
+  integrity sha512-arSMRWIIFY0hV8pIxZMEfmMI47Wj3R/aWpZDDxWYCPEiOMv6tfOrnpDtgxBYPEQD4V0Y/958+1TdC3iWTFcUPw==
 
 css@2.X, css@^2.0.0:
   version "2.2.4"
@@ -11610,9 +11610,9 @@ eslint-plugin-import@^2.22.1:
     tsconfig-paths "^3.11.0"
 
 eslint-plugin-jest@^24.1.0:
-  version "24.6.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-jest/-/eslint-plugin-jest-24.6.0.tgz#73ac7cd40419a227b3f1b2b686c023563ceb1e51"
-  integrity sha512-xNz0ajbu7ijrNMI1RMDXZis40DWBNTe/i+eXIzovva1Jk2UmI6AdN6xleZiunb1U0G/doMwG3rJjrmlCl5IHkQ==
+  version "24.7.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-jest/-/eslint-plugin-jest-24.7.0.tgz#206ac0833841e59e375170b15f8d0955219c4889"
+  integrity sha512-wUxdF2bAZiYSKBclsUMrYHH6WxiBreNjyDxbRv345TIvPeoCEgPNEn3Sa+ZrSqsf1Dl9SqqSREXMHExlMMu1DA==
   dependencies:
     "@typescript-eslint/experimental-utils" "^4.0.1"
 
@@ -14561,9 +14561,9 @@ graph-results-pager@LufyCZ/graph-results-pager#types:
   dependencies:
     node-fetch "2.6.1"
 
-"graph-results-pager@git+https://github.com/LufyCZ/graph-results-pager.git":
+"graph-results-pager@https://github.com/LufyCZ/graph-results-pager":
   version "1.0.3"
-  resolved "git+https://github.com/LufyCZ/graph-results-pager.git#9b230f05b8d79aeedc9e167ac5a1fea33e04d51f"
+  resolved "https://github.com/LufyCZ/graph-results-pager#9b230f05b8d79aeedc9e167ac5a1fea33e04d51f"
   dependencies:
     node-fetch "2.6.1"
 
