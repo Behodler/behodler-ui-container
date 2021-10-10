@@ -82,7 +82,7 @@ function AppBar(): JSX.Element {
         }
 
         return (
-            <div className="hidden md:flex flex-row">
+            <div className="hidden md:flex flex-row" key={tokenAddress}>
                 <div>{token.logo}</div>
                 <div className="pl-1.5 text-white">
                     {formattedBalance}
