@@ -1630,10 +1630,10 @@
   resolved "https://npm.pkg.github.com/download/@behodler/sdk/0.1.0/51b8c9f023093191a88b147eb5744b7a6192157c49d6b39d7add954f64ef7600#7ee8f0b5bd76682d81311bc7bf8582906969e063"
   integrity sha512-KkE2/RhwzO+FIudMk9tDdNL7pqbo5dVHOSsKf91HPHQiHz/NS85ebvp+XQ8UFZrthFfDoVGd5jPQB6UdpM328w==
 
-"@behodler/swap-legacy@0.3.5":
-  version "0.3.5"
-  resolved "https://npm.pkg.github.com/download/@behodler/swap-legacy/0.3.5/f52bc53edba5a23a023b413657feff22c50978b8d3a5084d2764ef31e5b99c81#272a5fe7beedaa692cb3bd97e5a16d90b3a0e8df"
-  integrity sha512-uiCPbj86IuWJ5RM2dw3+Mtt+IjSyKZuConuCYHyGuLaRROnh5D3kq4Oy7Naep4NXaORv9IkokJ76M0ctVklaIw==
+"@behodler/swap-legacy@0.4.0":
+  version "0.4.0"
+  resolved "https://npm.pkg.github.com/download/@behodler/swap-legacy/0.4.0/7f9e63d440263038459130ed23f10657f13a8cabd4e6df9497cf683ee9dd6e4f#4921aac7e185e36154043e61b87ead384841fdfa"
+  integrity sha512-CcqTeRKrTB4/jJNwXp9HDc0MlpphtVWFOER9Xh0tgb0idgLFp0be4C/Bsc6OcVl1AfR0J4i5aDyWZU8TLbjqtw==
   dependencies:
     "@ethereumjs/vm" "^5.5.2"
     "@ethersproject/abi" "^5.4.1"
@@ -14561,9 +14561,9 @@ graph-results-pager@LufyCZ/graph-results-pager#types:
   dependencies:
     node-fetch "2.6.1"
 
-"graph-results-pager@git+https://github.com/LufyCZ/graph-results-pager.git":
+"graph-results-pager@https://github.com/LufyCZ/graph-results-pager":
   version "1.0.3"
-  resolved "git+https://github.com/LufyCZ/graph-results-pager.git#9b230f05b8d79aeedc9e167ac5a1fea33e04d51f"
+  resolved "https://github.com/LufyCZ/graph-results-pager#9b230f05b8d79aeedc9e167ac5a1fea33e04d51f"
   dependencies:
     node-fetch "2.6.1"
 
