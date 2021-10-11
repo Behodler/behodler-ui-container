@@ -1570,10 +1570,10 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@behodler/dapps-navigation-page@0.0.10":
-  version "0.0.10"
-  resolved "https://npm.pkg.github.com/download/@behodler/dapps-navigation-page/0.0.10/39a01215a94750cb46cbaab6ebf060fe854724de138f88ae353d16128fc7fc27#8cc7ce7b04a507f156288c0dc31d091fcb22294c"
-  integrity sha512-4bgZIxvP8AMSMyGgQgBnZAAaxuOv0GDyrj/NBpz6Btrxvm0Lwlwoc69rrtbtqBJegeYbKh3onjvn18qAtgcFoQ==
+"@behodler/dapps-navigation-page@^0.0.15":
+  version "0.0.15"
+  resolved "https://npm.pkg.github.com/download/@behodler/dapps-navigation-page/0.0.15/2a604de4bbb57a884bb66e2d48bf2efd1f5f8c4cfe8f59318fa54b79e9cb2b4f#1eebe64ff782a40a0acdd66cd06f4a9ccc371f4d"
+  integrity sha512-4+vNPXcvl5ErEwI4qvc40p/H+A9HqU5wIiyOeTRDgDDqf3mhzwjOVjeR2WHCx6go3H5WaO9beVYO3j9ra6zmkQ==
   dependencies:
     react "^17.0.2"
     react-device-detect "^1.6.2"
@@ -1583,10 +1583,10 @@
     react-router-dom "^5.2.0"
     styled-components "^4.2.0"
 
-"@behodler/pyrotokens-legacy@0.1.7":
-  version "0.1.7"
-  resolved "https://npm.pkg.github.com/download/@behodler/pyrotokens-legacy/0.1.7/ef202c36ae57ae25dc50047350e90c2acc133ef5bdffb0e242842fff009ceb75#8af2786efeda56d1bedb77fe36fae446b013039e"
-  integrity sha512-/9pNXsy64zKHB0Yu0nncuwWlbpif0J5cC3kzjsldjH/D35bAuxEtIIIpi1lEZEojWfBHHN4a5YMPTPPLj+ECjw==
+"@behodler/pyrotokens-legacy@^0.2.7":
+  version "0.2.7"
+  resolved "https://npm.pkg.github.com/download/@behodler/pyrotokens-legacy/0.2.7/cb3dd683e4bb2013aa93697390589b53b8971acc9d73ea8f6d6c48823a42dab6#4ca49bf75bfd96459fda1d6e71ee91bebb625f7f"
+  integrity sha512-F16suW3BA1w3QMApSLvIagLcDmERQIT4pbp21pg+1q4L2bvwLGD5TrjurRpeXzSS3eu6XEsY0d9m+S0RBQ9WlA==
   dependencies:
     "@ethereumjs/vm" "^5.5.2"
     "@ethersproject/abi" "^5.4.1"
@@ -1630,10 +1630,22 @@
   resolved "https://npm.pkg.github.com/download/@behodler/sdk/0.1.0/51b8c9f023093191a88b147eb5744b7a6192157c49d6b39d7add954f64ef7600#7ee8f0b5bd76682d81311bc7bf8582906969e063"
   integrity sha512-KkE2/RhwzO+FIudMk9tDdNL7pqbo5dVHOSsKf91HPHQiHz/NS85ebvp+XQ8UFZrthFfDoVGd5jPQB6UdpM328w==
 
-"@behodler/swap-legacy@0.3.5":
-  version "0.3.5"
-  resolved "https://npm.pkg.github.com/download/@behodler/swap-legacy/0.3.5/f52bc53edba5a23a023b413657feff22c50978b8d3a5084d2764ef31e5b99c81#272a5fe7beedaa692cb3bd97e5a16d90b3a0e8df"
-  integrity sha512-uiCPbj86IuWJ5RM2dw3+Mtt+IjSyKZuConuCYHyGuLaRROnh5D3kq4Oy7Naep4NXaORv9IkokJ76M0ctVklaIw==
+"@behodler/sdk@0.1.1":
+  version "0.1.1"
+  resolved "https://npm.pkg.github.com/download/@behodler/sdk/0.1.1/9909c6b9c3a82c2fb2017a7748275624a933795250b1d45986fcc8d2631a8332#a8d6f5274346dd5536724588ccc6bd1dc1861953"
+  integrity sha512-dUf0Xgq84fgTc/LU2ebNTP5ocaMUyD9n8Lba2hH+tMuTw8WgMp/TcuC87yXZNdsJX8vfukAc6hmp1eKNQJ6OTQ==
+  dependencies:
+    big.js "^6.1.1"
+    decimal.js-light "^2.5.1"
+    jsbi "^3.1.6"
+    tiny-invariant "^1.1.0"
+    tiny-warning "^1.0.3"
+    toformat "^2.0.0"
+
+"@behodler/swap-legacy@^0.5.0":
+  version "0.5.0"
+  resolved "https://npm.pkg.github.com/download/@behodler/swap-legacy/0.5.0/d31fdc891b45a1373a75f461c3666427b757b637574e75d0a19780e663990f49#1dadc2977113eb08e7e68470abe86d7cf363c85a"
+  integrity sha512-bUNZcen0Dx9lUwHVcHXGmtBGniGyE9N4UEEWimHbOX0UlqyptwJcHs0yaxGju15kNBsXURoUT7r9Gl25XKyx2Q==
   dependencies:
     "@ethereumjs/vm" "^5.5.2"
     "@ethersproject/abi" "^5.4.1"
@@ -1670,12 +1682,12 @@
     typeface-roboto "0.0.75"
     web3 "^1.5.2"
 
-"@behodler/swap@0.0.6":
-  version "0.0.6"
-  resolved "https://npm.pkg.github.com/download/@behodler/swap/0.0.6/b773e974604d7e0ef30aa7b9466d2d9aed92336e943022c021abcf44c29241d9#2a990f7efdb37471ed3c33e7bf7b4b3e273d0f8c"
-  integrity sha512-nz4PnVaxNxjtJ5pk+ZKXsidOEjjTqI8LqL85mUEcOCPtxVzzL+1jGeP+dfEq8iEZw3nQWO59f+7JuShsEgP5nA==
+"@behodler/swap@^0.1.0":
+  version "0.1.0"
+  resolved "https://npm.pkg.github.com/download/@behodler/swap/0.1.0/2db3da562c246df26e28041561f0e03cf0b149bcb548c9edbb892af0a3dd5f7c#5b3364cd7a490af5e4d5fbad42d70320da410e7d"
+  integrity sha512-iTgOhmet/aXh12KGUAVHLOZatAHLYZyUGGEUT33s0yXpT0naXnmWUSz/MXRADRsZecn+T8xW5s1wLFJ2nmxrvg==
   dependencies:
-    "@behodler/sdk" "0.1.0"
+    "@behodler/sdk" "0.1.1"
     "@ethersproject/experimental" "^5.0.1"
     "@lingui/macro" "^3.8.10"
     "@lingui/react" "^3.8.10"
@@ -1686,7 +1698,6 @@
     "@reduxjs/toolkit" "^1.3.5"
     "@sushiswap/core" "2.0.0-canary.0"
     "@sushiswap/default-token-list" "^6.21.0"
-    "@sushiswap/sdk" "5.0.0-canary.7"
     "@sushiswap/sushi-data" "1.0.26"
     "@uniswap/governance" "^1.0.2"
     "@uniswap/liquidity-staker" "^1.0.2"
@@ -1729,6 +1740,8 @@
     redux-localstorage-simple "^2.3.1"
     styled-components "^4.2.0"
     swr "^0.5.5"
+    tiny-invariant "1.1.0"
+    tiny-warning "^1.0.3"
 
 "@chaitanyapotti/random-id@^1.0.3":
   version "1.0.3"
@@ -7832,6 +7845,11 @@ big.js@^5.2.2:
   resolved "https://registry.yarnpkg.com/big.js/-/big.js-5.2.2.tgz#65f0af382f578bcdc742bd9c281e9cb2d7768328"
   integrity sha512-vyL2OymJxmarO8gxMr0mhChsO9QGwhynfuu4+MHTAW6czfq9humCB7rKpUjDd9YUiDPU4mzpyupFSvOClAwbmQ==
 
+big.js@^6.1.1:
+  version "6.1.1"
+  resolved "https://registry.yarnpkg.com/big.js/-/big.js-6.1.1.tgz#63b35b19dc9775c94991ee5db7694880655d5537"
+  integrity sha512-1vObw81a8ylZO5ePrtMay0n018TcftpTA5HFKDaSuiUDBo8biRBtjIobw60OpwuvrGk+FsxKamqN4cnmj/eXdg==
+
 bignumber.js@7.2.1, bignumber.js@^7.2.1:
   version "7.2.1"
   resolved "https://registry.yarnpkg.com/bignumber.js/-/bignumber.js-7.2.1.tgz#80c048759d826800807c4bfd521e50edbba57a5f"
@@ -10058,9 +10076,9 @@ css-what@^3.2.1:
   integrity sha512-ACUm3L0/jiZTqfzRM3Hi9Q8eZqd6IK37mMWPLz9PJxkLWllYeRf+EHUSHYEtFop2Eqytaq1FizFVh7XfBnXCDQ==
 
 css-what@^5.0.0, css-what@^5.0.1:
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/css-what/-/css-what-5.0.1.tgz#3efa820131f4669a8ac2408f9c32e7c7de9f4cad"
-  integrity sha512-FYDTSHb/7KXsWICVsxdmiExPjCfRC4qRFBdVwv7Ax9hMnvMmEjP9RfxTEZ3qPZGmADDn2vAKSo9UcN1jKVYscg==
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/css-what/-/css-what-5.1.0.tgz#3f7b707aadf633baf62c2ceb8579b545bb40f7fe"
+  integrity sha512-arSMRWIIFY0hV8pIxZMEfmMI47Wj3R/aWpZDDxWYCPEiOMv6tfOrnpDtgxBYPEQD4V0Y/958+1TdC3iWTFcUPw==
 
 css@2.X, css@^2.0.0:
   version "2.2.4"
@@ -10426,7 +10444,7 @@ decamelize@^1.0.0, decamelize@^1.1.0, decamelize@^1.1.1, decamelize@^1.2.0:
   resolved "https://registry.yarnpkg.com/decamelize/-/decamelize-1.2.0.tgz#f6534d15148269b20352e7bee26f501f9a191290"
   integrity sha1-9lNNFRSCabIDUue+4m9QH5oZEpA=
 
-decimal.js-light@^2.5.0:
+decimal.js-light@^2.5.0, decimal.js-light@^2.5.1:
   version "2.5.1"
   resolved "https://registry.yarnpkg.com/decimal.js-light/-/decimal.js-light-2.5.1.tgz#134fd32508f19e208f4fb2f8dac0d2626a867934"
   integrity sha512-qIMFpTMZmny+MMIitAB6D7iVPEorVw6YQRWkvarTkT4tBeSLLiHzcwj6q0MmYSFCiVpiqPJTJEYIrpcPzVEIvg==
@@ -11610,9 +11628,9 @@ eslint-plugin-import@^2.22.1:
     tsconfig-paths "^3.11.0"
 
 eslint-plugin-jest@^24.1.0:
-  version "24.6.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-jest/-/eslint-plugin-jest-24.6.0.tgz#73ac7cd40419a227b3f1b2b686c023563ceb1e51"
-  integrity sha512-xNz0ajbu7ijrNMI1RMDXZis40DWBNTe/i+eXIzovva1Jk2UmI6AdN6xleZiunb1U0G/doMwG3rJjrmlCl5IHkQ==
+  version "24.7.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-jest/-/eslint-plugin-jest-24.7.0.tgz#206ac0833841e59e375170b15f8d0955219c4889"
+  integrity sha512-wUxdF2bAZiYSKBclsUMrYHH6WxiBreNjyDxbRv345TIvPeoCEgPNEn3Sa+ZrSqsf1Dl9SqqSREXMHExlMMu1DA==
   dependencies:
     "@typescript-eslint/experimental-utils" "^4.0.1"
 
@@ -17345,7 +17363,7 @@ jsan@^3.1.13:
   resolved "https://registry.yarnpkg.com/jsan/-/jsan-3.1.13.tgz#4de8c7bf8d1cfcd020c313d438f930cec4b91d86"
   integrity sha512-9kGpCsGHifmw6oJet+y8HaCl14y7qgAsxVdV3pCHDySNR3BfDC30zgkssd7x5LRVAT22dnpbe9JdzzmXZnq9/g==
 
-jsbi@^3.1.1:
+jsbi@^3.1.1, jsbi@^3.1.6:
   version "3.2.5"
   resolved "https://registry.yarnpkg.com/jsbi/-/jsbi-3.2.5.tgz#b37bb90e0e5c2814c1c2a1bcd8c729888a2e37d6"
   integrity sha512-aBE4n43IPvjaddScbvWRA2YlTzKEynHzu7MqOyTipdHucf/VxS63ViCjxYRg86M8Rxwbt/GfzHl1kKERkt45fQ==
@@ -26189,7 +26207,7 @@ timsort@^0.3.0:
   resolved "https://registry.yarnpkg.com/timsort/-/timsort-0.3.0.tgz#405411a8e7e6339fe64db9a234de11dc31e02bd4"
   integrity sha1-QFQRqOfmM5/mTbmiNN4R3DHgK9Q=
 
-tiny-invariant@^1.0.2, tiny-invariant@^1.0.6, tiny-invariant@^1.1.0:
+tiny-invariant@1.1.0, tiny-invariant@^1.0.2, tiny-invariant@^1.0.6, tiny-invariant@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/tiny-invariant/-/tiny-invariant-1.1.0.tgz#634c5f8efdc27714b7f386c35e6760991d230875"
   integrity sha512-ytxQvrb1cPc9WBEI/HSeYYoGD0kWnGEOR8RY6KomWLBVhqz0RgTwVO9dLrGz7dC+nN9llyI7OKAgRq8Vq4ZBSw==
