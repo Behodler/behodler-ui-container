@@ -7,7 +7,7 @@
 /coverage
 
 # production
-/build
+#/build
 
 # catalogs
 /src/language/locales/**/*.js
