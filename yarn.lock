@@ -1630,18 +1630,6 @@
   resolved "https://npm.pkg.github.com/download/@behodler/sdk/0.1.0/51b8c9f023093191a88b147eb5744b7a6192157c49d6b39d7add954f64ef7600#7ee8f0b5bd76682d81311bc7bf8582906969e063"
   integrity sha512-KkE2/RhwzO+FIudMk9tDdNL7pqbo5dVHOSsKf91HPHQiHz/NS85ebvp+XQ8UFZrthFfDoVGd5jPQB6UdpM328w==
 
-"@behodler/sdk@0.1.1":
-  version "0.1.1"
-  resolved "https://npm.pkg.github.com/download/@behodler/sdk/0.1.1/9909c6b9c3a82c2fb2017a7748275624a933795250b1d45986fcc8d2631a8332#a8d6f5274346dd5536724588ccc6bd1dc1861953"
-  integrity sha512-dUf0Xgq84fgTc/LU2ebNTP5ocaMUyD9n8Lba2hH+tMuTw8WgMp/TcuC87yXZNdsJX8vfukAc6hmp1eKNQJ6OTQ==
-  dependencies:
-    big.js "^6.1.1"
-    decimal.js-light "^2.5.1"
-    jsbi "^3.1.6"
-    tiny-invariant "^1.1.0"
-    tiny-warning "^1.0.3"
-    toformat "^2.0.0"
-
 "@behodler/swap-legacy@^0.5.0":
   version "0.5.0"
   resolved "https://npm.pkg.github.com/download/@behodler/swap-legacy/0.5.0/d31fdc891b45a1373a75f461c3666427b757b637574e75d0a19780e663990f49#1dadc2977113eb08e7e68470abe86d7cf363c85a"
@@ -1682,12 +1670,12 @@
     typeface-roboto "0.0.75"
     web3 "^1.5.2"
 
-"@behodler/swap@^0.1.0":
-  version "0.1.0"
-  resolved "https://npm.pkg.github.com/download/@behodler/swap/0.1.0/2db3da562c246df26e28041561f0e03cf0b149bcb548c9edbb892af0a3dd5f7c#5b3364cd7a490af5e4d5fbad42d70320da410e7d"
-  integrity sha512-iTgOhmet/aXh12KGUAVHLOZatAHLYZyUGGEUT33s0yXpT0naXnmWUSz/MXRADRsZecn+T8xW5s1wLFJ2nmxrvg==
+"@behodler/swap@0.0.7":
+  version "0.0.7"
+  resolved "https://npm.pkg.github.com/download/@behodler/swap/0.0.7/0c8a312450642399b8808b0c69207020d80ccbbca44bc02775c9d89ec9edbfe0#a3056b6abddb59a640a2ff72cb100ec3f1542497"
+  integrity sha512-INfFyGXm7w9q46vXN6qUYZeu+oLRzgZsHIjCp2eB0/cSL0BL8UG3UR45+uf+5Kz9v+vb5ZfY782B6bZKdwSZrA==
   dependencies:
-    "@behodler/sdk" "0.1.1"
+    "@behodler/sdk" "0.1.0"
     "@ethersproject/experimental" "^5.0.1"
     "@lingui/macro" "^3.8.10"
     "@lingui/react" "^3.8.10"
@@ -1698,6 +1686,7 @@
     "@reduxjs/toolkit" "^1.3.5"
     "@sushiswap/core" "2.0.0-canary.0"
     "@sushiswap/default-token-list" "^6.21.0"
+    "@sushiswap/sdk" "5.0.0-canary.7"
     "@sushiswap/sushi-data" "1.0.26"
     "@uniswap/governance" "^1.0.2"
     "@uniswap/liquidity-staker" "^1.0.2"
@@ -1740,8 +1729,6 @@
     redux-localstorage-simple "^2.3.1"
     styled-components "^4.2.0"
     swr "^0.5.5"
-    tiny-invariant "1.1.0"
-    tiny-warning "^1.0.3"
 
 "@chaitanyapotti/random-id@^1.0.3":
   version "1.0.3"
@@ -7845,11 +7832,6 @@ big.js@^5.2.2:
   resolved "https://registry.yarnpkg.com/big.js/-/big.js-5.2.2.tgz#65f0af382f578bcdc742bd9c281e9cb2d7768328"
   integrity sha512-vyL2OymJxmarO8gxMr0mhChsO9QGwhynfuu4+MHTAW6czfq9humCB7rKpUjDd9YUiDPU4mzpyupFSvOClAwbmQ==
 
-big.js@^6.1.1:
-  version "6.1.1"
-  resolved "https://registry.yarnpkg.com/big.js/-/big.js-6.1.1.tgz#63b35b19dc9775c94991ee5db7694880655d5537"
-  integrity sha512-1vObw81a8ylZO5ePrtMay0n018TcftpTA5HFKDaSuiUDBo8biRBtjIobw60OpwuvrGk+FsxKamqN4cnmj/eXdg==
-
 bignumber.js@7.2.1, bignumber.js@^7.2.1:
   version "7.2.1"
   resolved "https://registry.yarnpkg.com/bignumber.js/-/bignumber.js-7.2.1.tgz#80c048759d826800807c4bfd521e50edbba57a5f"
@@ -10444,7 +10426,7 @@ decamelize@^1.0.0, decamelize@^1.1.0, decamelize@^1.1.1, decamelize@^1.2.0:
   resolved "https://registry.yarnpkg.com/decamelize/-/decamelize-1.2.0.tgz#f6534d15148269b20352e7bee26f501f9a191290"
   integrity sha1-9lNNFRSCabIDUue+4m9QH5oZEpA=
 
-decimal.js-light@^2.5.0, decimal.js-light@^2.5.1:
+decimal.js-light@^2.5.0:
   version "2.5.1"
   resolved "https://registry.yarnpkg.com/decimal.js-light/-/decimal.js-light-2.5.1.tgz#134fd32508f19e208f4fb2f8dac0d2626a867934"
   integrity sha512-qIMFpTMZmny+MMIitAB6D7iVPEorVw6YQRWkvarTkT4tBeSLLiHzcwj6q0MmYSFCiVpiqPJTJEYIrpcPzVEIvg==
@@ -14579,9 +14561,9 @@ graph-results-pager@LufyCZ/graph-results-pager#types:
   dependencies:
     node-fetch "2.6.1"
 
-"graph-results-pager@git+https://github.com/LufyCZ/graph-results-pager.git":
+"graph-results-pager@https://github.com/LufyCZ/graph-results-pager":
   version "1.0.3"
-  resolved "git+https://github.com/LufyCZ/graph-results-pager.git#9b230f05b8d79aeedc9e167ac5a1fea33e04d51f"
+  resolved "https://github.com/LufyCZ/graph-results-pager#9b230f05b8d79aeedc9e167ac5a1fea33e04d51f"
   dependencies:
     node-fetch "2.6.1"
 
@@ -17363,7 +17345,7 @@ jsan@^3.1.13:
   resolved "https://registry.yarnpkg.com/jsan/-/jsan-3.1.13.tgz#4de8c7bf8d1cfcd020c313d438f930cec4b91d86"
   integrity sha512-9kGpCsGHifmw6oJet+y8HaCl14y7qgAsxVdV3pCHDySNR3BfDC30zgkssd7x5LRVAT22dnpbe9JdzzmXZnq9/g==
 
-jsbi@^3.1.1, jsbi@^3.1.6:
+jsbi@^3.1.1:
   version "3.2.5"
   resolved "https://registry.yarnpkg.com/jsbi/-/jsbi-3.2.5.tgz#b37bb90e0e5c2814c1c2a1bcd8c729888a2e37d6"
   integrity sha512-aBE4n43IPvjaddScbvWRA2YlTzKEynHzu7MqOyTipdHucf/VxS63ViCjxYRg86M8Rxwbt/GfzHl1kKERkt45fQ==
@@ -26207,7 +26189,7 @@ timsort@^0.3.0:
   resolved "https://registry.yarnpkg.com/timsort/-/timsort-0.3.0.tgz#405411a8e7e6339fe64db9a234de11dc31e02bd4"
   integrity sha1-QFQRqOfmM5/mTbmiNN4R3DHgK9Q=
 
-tiny-invariant@1.1.0, tiny-invariant@^1.0.2, tiny-invariant@^1.0.6, tiny-invariant@^1.1.0:
+tiny-invariant@^1.0.2, tiny-invariant@^1.0.6, tiny-invariant@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/tiny-invariant/-/tiny-invariant-1.1.0.tgz#634c5f8efdc27714b7f386c35e6760991d230875"
   integrity sha512-ytxQvrb1cPc9WBEI/HSeYYoGD0kWnGEOR8RY6KomWLBVhqz0RgTwVO9dLrGz7dC+nN9llyI7OKAgRq8Vq4ZBSw==
