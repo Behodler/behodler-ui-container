@@ -5,7 +5,6 @@ import { RedirectToSwap, RedirectPathToSwapOnly  } from '@behodler/swap'
 import DappsNavigation from "@behodler/dapps-navigation-page";
 import { BehodlerUISwap } from '@behodler/swap-legacy'
 import { BehodlerUIPyrotokens } from '@behodler/pyrotokens-legacy'
-import styled from 'styled-components'
 
 import Connect from './pages/Connect'
 import Transactions from './pages/Transactions'

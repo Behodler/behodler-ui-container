@@ -185,10 +185,10 @@
     "license": "GPL-3.0-or-later",
     "dependencies": {
         "@behodler/dapps-navigation-page": "^0.0.15",
-        "@behodler/pyrotokens-legacy": "^0.2.7",
+        "@behodler/pyrotokens-legacy": "^0.3.0",
         "@behodler/sdk": "0.1.0",
         "@behodler/swap": "0.0.7",
-        "@behodler/swap-legacy": "^0.5.0",
+        "@behodler/swap-legacy": "^0.6.0",
         "@lufycz/sushi-data": "^2.0.0-canary-21"
     },
     "resolutions": {
