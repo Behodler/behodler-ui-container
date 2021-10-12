@@ -168,7 +168,8 @@
         "test": "react-app-rewired test --env=jsdom",
         "integration-test": "start-server-and-test 'serve build -l 3000' http://localhost:3000 'cypress run'",
         "prepare": "husky install",
-        "lingui": "lingui extract && lingui compile"
+        "lingui": "lingui extract && lingui compile",
+        "deploy": "docker-compose up -d S3"
     },
     "browserslist": {
         "production": [
@@ -188,7 +189,7 @@
         "@behodler/pyrotokens-legacy": "^0.3.0",
         "@behodler/sdk": "0.1.0",
         "@behodler/swap": "0.0.7",
-        "@behodler/swap-legacy": "0.6.1",
+        "@behodler/swap-legacy": "^0.8.0",
         "@lufycz/sushi-data": "^2.0.0-canary-21"
     },
     "resolutions": {

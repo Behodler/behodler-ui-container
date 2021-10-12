@@ -1630,10 +1630,10 @@
   resolved "https://npm.pkg.github.com/download/@behodler/sdk/0.1.0/51b8c9f023093191a88b147eb5744b7a6192157c49d6b39d7add954f64ef7600#7ee8f0b5bd76682d81311bc7bf8582906969e063"
   integrity sha512-KkE2/RhwzO+FIudMk9tDdNL7pqbo5dVHOSsKf91HPHQiHz/NS85ebvp+XQ8UFZrthFfDoVGd5jPQB6UdpM328w==
 
-"@behodler/swap-legacy@0.6.1":
-  version "0.6.1"
-  resolved "https://npm.pkg.github.com/download/@behodler/swap-legacy/0.6.1/3e800c52fec865e3a8124a6021831367d853f55bca012936229b28572521ff22#a83090f8556eaf9c156793fa200c27c30e2c3e91"
-  integrity sha512-YMmDvj/lPqlWbJv1I0wcJGQZHpFIczhXJGf8wf1LI2on4iZE7RMPqgsoKVfMgjhdUzSDu+bEs0uWPN+hTCQPvw==
+"@behodler/swap-legacy@^0.8.0":
+  version "0.8.0"
+  resolved "https://npm.pkg.github.com/download/@behodler/swap-legacy/0.8.0/3a2728b92f93d00e86ea275e6fbb13984ab91025d0bfd03bae25d161422d9329#ec7a4b5f0b7cac0aa65c2daaff5b05e0b2fc2f65"
+  integrity sha512-43fhull819DwsHh8l5tHDq7cWzezhBx40AJ0eFU1hMx9hXnVzpl79EJyocSqnWpiLXeTjqxDwKZKcE+teHVmHA==
   dependencies:
     "@ethereumjs/vm" "^5.5.2"
     "@ethersproject/abi" "^5.4.1"

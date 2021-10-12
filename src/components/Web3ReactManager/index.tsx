@@ -37,7 +37,6 @@ export default function Web3ReactManager({ children }: { children: JSX.Element }
     const { active, chainId } = useWeb3React()
     const { active: networkActive, error: networkError, activate: activateNetwork, account } = useWeb3React(NetworkContextName)
     const toggleWalletModal = useWalletModalToggle()
-
     console.info('web3', {
         chainId
     });
@@ -93,7 +92,7 @@ export default function Web3ReactManager({ children }: { children: JSX.Element }
 
                     <Message>
                         {i18n._(
-                            t`Oops! An unknown error occurred. Please refresh the page, visit from another browser or device, or try to re-connect a wallet`
+                            t`Connect your wallet to Behodler.`
                         )}
                     </Message>
 
