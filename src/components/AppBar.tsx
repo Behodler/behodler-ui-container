@@ -34,7 +34,7 @@ function AppBar(): JSX.Element {
     const tokensShowBalance = [
         {
             token: SCX[ChainId.MAINNET],
-            logo: <img src={ScxLogo} alt={'SCX'} />,
+            logo: <img width={24} src={ScxLogo} alt={'SCX'} />,
         },
         {
             token: EYE[ChainId.MAINNET],

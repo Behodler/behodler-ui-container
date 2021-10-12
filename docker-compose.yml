@@ -26,7 +26,7 @@ services:
     S3:
        image: amazon/aws-cli:latest
        tty: true
-       command:  s3 sync /app/build/ s3://horse.behodler.io
+       command:  s3 sync /app/build/ s3://app.behodler.io
        volumes:
         - ./:/app
         - ~/.aws:/root/.aws
