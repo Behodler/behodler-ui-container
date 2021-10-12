@@ -92,13 +92,9 @@ export default function Web3ReactManager({ children }: { children: JSX.Element }
 
                     <Message>
                         {i18n._(
-                            t`Connect your wallet to Behodler.`
+                            t`You are not connected to a blockchain. Connect your wallet to use Behodler.`
                         )}
                     </Message>
-
-                    <StyledWeb3StatusConnect id="connect-wallet" onClick={toggleWalletModal} faded={!account}>
-                        <Web3StatusText className="hidden sm:block">{i18n._(t`Connect to a wallet`)}</Web3StatusText>
-                    </StyledWeb3StatusConnect>
 
                 </StyledNetworkErrorWrapper>
             </MessageWrapper>
