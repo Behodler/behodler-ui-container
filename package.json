@@ -169,7 +169,7 @@
         "integration-test": "start-server-and-test 'serve build -l 3000' http://localhost:3000 'cypress run'",
         "prepare": "husky install",
         "lingui": "lingui extract && lingui compile",
-        "deploy": "yarn build && docker-compose up -d S3",
+        "deploy": "yarn build && docker-compose up -d S3 && docker-compose logs -f",
         "deploy:no-build": "docker-compose up -d S3"
     },
     "browserslist": {
