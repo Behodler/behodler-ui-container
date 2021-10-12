@@ -41,3 +41,5 @@ analysis/index.html
 
 *.pdf
 github.sh
+
+build/
