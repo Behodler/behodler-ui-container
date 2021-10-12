@@ -1583,10 +1583,10 @@
     react-router-dom "^5.2.0"
     styled-components "^4.2.0"
 
-"@behodler/pyrotokens-legacy@^0.3.0":
-  version "0.3.0"
-  resolved "https://npm.pkg.github.com/download/@behodler/pyrotokens-legacy/0.3.0/d45c4ed1b7bd827d0db0ee6ef0a48c4a08b5e3fe104e4fba806ebc6db5360d5a#c5bf623af43f70216cf9399200381b2e55ae9487"
-  integrity sha512-5lZjG4LeI0Lco5dvHip2KAB/wD7yTtF3wTOPBNE67Gil2nHvdHwp2dFSksSTjuR5J4ro5//siwAH1rG7bOT0Ew==
+"@behodler/pyrotokens-legacy@^0.3.1":
+  version "0.3.1"
+  resolved "https://npm.pkg.github.com/download/@behodler/pyrotokens-legacy/0.3.1/6b9f7094f8897600568a987404193c42d3321b9201490a1ccbf22736639ad402#f0f0eb2b1a990fe37673da08c68517cadb79816e"
+  integrity sha512-UHYiXE6PR6sNynAYw1I6cJmPquHu0Os7c7rMcb+0HeVGDkYDeJBkbiwDC25Y6GYukSR0xobiS/Rx1YZlAD1GoQ==
   dependencies:
     "@ethereumjs/vm" "^5.5.2"
     "@ethersproject/abi" "^5.4.1"
