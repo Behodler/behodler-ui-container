@@ -14,9 +14,7 @@ import { ReactComponent as X } from '../assets/images/x.svg'
 import { ReactComponent as Eye } from '../assets/images/eye-logo.svg'
 import ScxLogo from '../assets/images/scx-logo.png'
 import { SCX, EYE } from '../constants'
-import Web3Network from './Web3Network'
 import Web3Status from './Web3Status'
-import MoreMenu from './Menu'
 import { NavLink } from './Link'
 import { ReactComponent as ExternalLinkIcon } from '../assets/images/link.svg'
 import Loader from './Loader'
@@ -102,15 +100,15 @@ function AppBar(): JSX.Element {
                                 <div className="flex items-center w-1/2">
 
                                     <div className="flex-shrink-0">
-                                        <Link to="/">
-                                            <Logo title="Behodler" className="w-auto" style={{marginTop: -24}} />
-                                        </Link>
+                                        <a href="https://behodler.io" rel="noreferrer" target="_blank">
+                                            <Logo title="Behodler" className="w-auto" style={{ marginTop: -24 }} />
+                                        </a>
                                     </div>
 
-                                    <div className="text-white font-bold hidden sm:block" style={{fontSize: 24}}>
-                                        <Link to="/" className="hover:text-high-emphesis">
+                                    <div className="text-white font-bold hidden sm:block" style={{ fontSize: 24 }}>
+                                        <a href="https://behodler.io" rel="noreferrer" target="_blank" className="hover:text-high-emphesis">
                                             Behodler
-                                        </Link>
+                                        </a>
                                     </div>
 
                                     <div className="hidden md:block sm:ml-4">
