@@ -7,39 +7,25 @@ import { NetworkContextName } from '../../constants'
 import { useEagerConnect, useInactiveListener } from '../../hooks'
 import Loader from '../Loader'
 import { useLingui } from '@lingui/react'
-import { Web3StatusConnect, Text as Web3StatusText } from '../Web3Status'
 import { useWalletModalToggle } from '../../state/application/hooks'
 
 const MessageWrapper = styled.div`
-    display: flex;
     align-items: center;
-    justify-content: center;
+    display: flex;
     height: 20rem;
+    justify-content: center;
+    padding: 16px;
+    text-align: center;
 `
 
 const Message = styled.h2`
     color: ${({ theme }) => theme.secondary1};
 `
 
-const StyledNetworkErrorWrapper = styled.div`
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-`
-
-const StyledWeb3StatusConnect = styled(Web3StatusConnect)`
-  margin-top: 10px;
-  width: auto;
-`
-
 export default function Web3ReactManager({ children }: { children: JSX.Element }) {
     const { i18n } = useLingui()
     const { active, chainId } = useWeb3React()
     const { active: networkActive, error: networkError, activate: activateNetwork, account } = useWeb3React(NetworkContextName)
-    const toggleWalletModal = useWalletModalToggle()
-    console.info('web3', {
-        chainId
-    });
 
     // try to eagerly connect to an injected provider, if it exists and has granted access already
     const triedEager = useEagerConnect()
@@ -88,15 +74,11 @@ export default function Web3ReactManager({ children }: { children: JSX.Element }
     if (!active && networkError) {
         return (
             <MessageWrapper>
-                <StyledNetworkErrorWrapper>
-
-                    <Message>
-                        {i18n._(
-                            t`You are not connected to a blockchain. Connect your wallet to use Behodler.`
-                        )}
-                    </Message>
-
-                </StyledNetworkErrorWrapper>
+                <Message>
+                    {i18n._(
+                        t`You are not connected to a blockchain. Connect your wallet to use Behodler.`
+                    )}
+                </Message>
             </MessageWrapper>
         )
     }
