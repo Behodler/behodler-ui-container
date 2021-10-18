@@ -298,9 +298,8 @@ export interface WalletInfo {
     mobileOnly?: true
 }
 
-const ACTIVE_WALLET_PROVIDERS: string[] = process.env.REACT_APP_SUPPORTED_WALLET_PROVIDERS
-    ? process.env.REACT_APP_SUPPORTED_WALLET_PROVIDERS.split(',')
-    : ['METAMASK', 'WALLET_CONNECT']
+const ACTIVE_WALLET_PROVIDERS: string[] = process.env.REACT_APP_SUPPORTED_WALLET_PROVIDERS?.split(',')
+    ?? ['METAMASK', 'WALLET_CONNECT']
 
 type SupportedWallets = { [key: string]: WalletInfo }
 
