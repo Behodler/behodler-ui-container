@@ -111,7 +111,7 @@ function AppBar(): JSX.Element {
                                         </a>
                                     </div>
 
-                                    <div className="hidden md:block sm:ml-4">
+                                    <div className="hidden lg:block sm:ml-4">
                                         <div className="flex space-x-2">
 
                                             <NavLink id="swap-nav-link" to="/swap">
@@ -134,7 +134,7 @@ function AppBar(): JSX.Element {
                                         </div>
                                     </div>
 
-                                    <div className="-mr-2 flex md:hidden">
+                                    <div className="-mr-2 flex lg:hidden">
                                         {/* Mobile menu button */}
                                         <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-primary hover:text-high-emphesis focus:outline-none">
                                             <span className="sr-only">{i18n._(t`Open main menu`)}</span>
@@ -182,7 +182,7 @@ function AppBar(): JSX.Element {
                             </div>
                         </div>
 
-                        <Disclosure.Panel className="md:hidden">
+                        <Disclosure.Panel className="lg:hidden">
                             <div className="flex flex-col px-4 pt-2 pb-3 space-y-1">
 
                                 <Disclosure.Button as={NavLink} id="swap-nav-link" to="/swap">
