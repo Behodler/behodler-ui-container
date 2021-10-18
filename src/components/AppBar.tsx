@@ -22,7 +22,17 @@ import Loader from './Loader'
 const StyledExternalLinkIcon = styled(ExternalLinkIcon)`
   display: inline-block;
   margin: -1px 4px 0 0;
-  width: 17px; 
+  width: 17px;
+`
+
+const StyledBehodlerMonster = styled.a`
+  margin-top: -12px;
+  transform: scale(0.8);
+
+  @media (min-width: 976px) {
+    margin-top: -24px;
+    transform: scale(1);
+  }
 `
 
 function AppBar(): JSX.Element {
@@ -95,15 +105,13 @@ function AppBar(): JSX.Element {
                 {({ open }) => (
                     <>
                         <div className="px-4 py-0 md:py-4 bg-dark-1000 lg:bg-transparent">
-                            <div className="flex items-center justify-between h-18 md:h-16 w-full">
+                            <div className="flex items-center justify-between w-full">
 
                                 <div className="flex items-center w-1/2">
 
-                                    <div className="flex-shrink-0">
-                                        <a href="https://behodler.io" rel="noreferrer" target="_blank">
-                                            <Logo title="Behodler" className="w-auto" style={{ marginTop: -24 }} />
-                                        </a>
-                                    </div>
+                                    <StyledBehodlerMonster href="https://behodler.io" rel="noreferrer" target="_blank">
+                                        <Logo title="Behodler" className="w-auto" />
+                                    </StyledBehodlerMonster>
 
                                     <div className="text-white font-bold hidden sm:block" style={{ fontSize: 24 }}>
                                         <a href="https://behodler.io" rel="noreferrer" target="_blank" className="hover:text-high-emphesis">
