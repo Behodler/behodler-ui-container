@@ -6,7 +6,8 @@ import { Disclosure } from '@headlessui/react'
 import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 
-import { ReactComponent as Logo } from '../assets/images/logo.svg'
+import { ReactComponent as Logo } from '../assets/images/behodler-logo.svg'
+import { ReactComponent as LogoBlack } from '../assets/images/behodler-logo-black.svg'
 import { useActiveWeb3React } from '../hooks/useActiveWeb3React'
 import { useETHBalances, useTokenBalancesWithLoadingIndicator } from '../state/wallet/hooks'
 import { ReactComponent as Burger } from '../assets/images/burger.svg'
@@ -35,6 +36,10 @@ const StyledBehodlerMonster = styled.a`
   }
 `
 
+const StyledLogoBlack = styled(LogoBlack)`
+  filter: drop-shadow(0 0 28px #ffffffaa);
+`;
+
 function AppBar(): JSX.Element {
     const { i18n } = useLingui()
     const { account, chainId, library } = useActiveWeb3React()
@@ -60,6 +65,8 @@ function AppBar(): JSX.Element {
 
     const userEthBalance = useETHBalances(account ? [account] : [])?.[account ?? '']
     const [tokenBalances, isLoadingTokenBalances] = useTokenBalancesWithLoadingIndicator(account || undefined, tokensShowBalance.map(t => t.token))
+
+    const isLimboPath = pathname === '/limbo';
 
     useEffect(() => {
         if (pathname === '/trade') {
@@ -110,7 +117,11 @@ function AppBar(): JSX.Element {
                                 <div className="flex items-center w-1/2">
 
                                     <StyledBehodlerMonster href="https://behodler.io" rel="noreferrer" target="_blank">
-                                        <Logo title="Behodler" className="w-auto" />
+                                        {isLimboPath ? (
+                                            <StyledLogoBlack title="Behodler" className="w-auto" />
+                                        ) : (
+                                            <Logo title="Behodler" className="w-auto" />
+                                        )}
                                     </StyledBehodlerMonster>
 
                                     <div className="text-white font-bold hidden sm:block" style={{ fontSize: 24 }}>

@@ -12,17 +12,31 @@ import Routes from '../routes'
 import { AppDispatch } from '../state'
 import { updateUserDarkMode } from '../state/user/actions'
 
-const StyledApp = styled.div`
-  background: #19143C url(${swapBackgroundImage}) 50% 0 repeat;
-  background-size: cover;
+const StyledApp = styled.div<{
+    backgroundImageUrl?: string,
+    backgroundColor?: string,
+    noBackgroundImage?: boolean,
+}>`
+  ${({ 
+    backgroundImageUrl = swapBackgroundImage, 
+    backgroundColor = '#19143C',
+    noBackgroundImage = false,
+  }) => (
+    noBackgroundImage ? `
+      background-color: ${backgroundColor}
+    ` : ` 
+      background: ${backgroundColor} url(${backgroundImageUrl}) 50% 0 repeat;
+      background-size: cover;
+    `
+  )}
 `
 
 function App(): JSX.Element {
     const bodyRef = useRef<any>(null)
-
     const { pathname, search } = useLocation()
-
     const dispatch = useDispatch<AppDispatch>()
+
+    const isLimboPath = pathname === '/limbo'
 
     useEffect(() => {
         if (bodyRef.current) {
@@ -56,7 +70,11 @@ function App(): JSX.Element {
 
     return (
         <Suspense fallback={null}>
-            <StyledApp className="flex flex-col items-start overflow-x-hidden h-screen">
+            <StyledApp
+                className="flex flex-col items-start overflow-x-hidden h-screen"
+                noBackgroundImage={isLimboPath}
+                backgroundColor={isLimboPath ? '#000' : undefined}
+            >
                 <AppBar />
                 <div ref={bodyRef} className="flex flex-col flex-1 items-center justify-start w-screen h-full overflow-y-auto overflow-x-hidden z-0 lg:pb-0">
                     <Popups />
