@@ -1,7 +1,7 @@
 import { Currency, ChainId, TokenAmount } from '@sushiswap/sdk'
 import React, { useEffect, useState } from 'react'
 import { useLocation, Link } from 'react-router-dom'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { Disclosure } from '@headlessui/react'
 import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
@@ -38,6 +38,14 @@ const StyledBehodlerMonster = styled.a`
 
 const StyledLogoBlack = styled(LogoBlack)`
   filter: drop-shadow(0 0 28px #ffffffaa);
+`;
+
+const StyledTokenBalanceWrapper = styled.div<{ desaturated?: boolean }>`
+  ${({ desaturated }) => 
+    desaturated &&
+      css`
+         filter: grayscale(75%);   
+      `}
 `;
 
 function AppBar(): JSX.Element {
@@ -97,12 +105,16 @@ function AppBar(): JSX.Element {
         }
 
         return (
-            <div className="hidden md:flex flex-row" key={tokenAddress}>
+            <StyledTokenBalanceWrapper
+                className="hidden md:flex flex-row"
+                key={tokenAddress}
+                desaturated={isLimboPath}
+            >
                 <div>{token.logo}</div>
                 <div className="pl-1.5 text-white">
                     {formattedBalance}
                 </div>
-            </div>
+            </StyledTokenBalanceWrapper>
         )
     }
 
