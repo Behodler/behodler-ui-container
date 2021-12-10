@@ -16,20 +16,34 @@ const StyledApp = styled.div<{
     backgroundImageUrl?: string,
     backgroundColor?: string,
     noBackgroundImage?: boolean,
+    isLimboPath?: boolean,
 }>`
   ${({ 
     backgroundImageUrl = swapBackgroundImage, 
     backgroundColor = '#19143C',
     noBackgroundImage = false,
+    isLimboPath = false,
   }) => (
     noBackgroundImage ? `
       background-color: ${backgroundColor}
+      ${isLimboPath && `
+        border-radius: 24px 0 0 0;
+        overflow: hidden;
+        transform: translateX(10px);
+        width: calc(100vw - 10px);
+      `}
     ` : ` 
       background: ${backgroundColor} url(${backgroundImageUrl}) 50% 0 repeat;
       background-size: cover;
     `
   )}
 `
+
+const AppWrapper = ({ isLimboPath, children }: { isLimboPath: boolean, children: any }) => (
+    isLimboPath ? (
+        <div style={{ backgroundColor: '#fff', overflow: 'hidden' }}>{children}</div>
+    ) : children
+)
 
 function App(): JSX.Element {
     const bodyRef = useRef<any>(null)
@@ -70,20 +84,23 @@ function App(): JSX.Element {
 
     return (
         <Suspense fallback={null}>
-            <StyledApp
-                className="flex flex-col items-start overflow-x-hidden h-screen"
-                noBackgroundImage={isLimboPath}
-                backgroundColor={isLimboPath ? '#000' : undefined}
-            >
-                <AppBar />
-                <div ref={bodyRef} className="flex flex-col flex-1 items-center justify-start w-screen h-full overflow-y-auto overflow-x-hidden z-0 lg:pb-0">
-                    <Popups />
-                    <Polling />
-                    <Web3ReactManager>
-                        <Routes />
-                    </Web3ReactManager>
-                </div>
-            </StyledApp>
+            <AppWrapper isLimboPath={isLimboPath}>
+                <StyledApp
+                    className="flex flex-col items-start overflow-x-hidden h-screen"
+                    noBackgroundImage={isLimboPath}
+                    backgroundColor={isLimboPath ? '#000' : undefined}
+                    isLimboPath={isLimboPath}
+                >
+                    <AppBar />
+                    <div ref={bodyRef} className="flex flex-col flex-1 items-center justify-start w-full h-full overflow-y-auto overflow-x-hidden z-0 lg:pb-0">
+                        <Popups />
+                        <Polling />
+                        <Web3ReactManager>
+                            <Routes />
+                        </Web3ReactManager>
+                    </div>
+                </StyledApp>
+            </AppWrapper>
         </Suspense>
     )
 }

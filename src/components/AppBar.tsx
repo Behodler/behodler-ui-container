@@ -44,7 +44,7 @@ const StyledTokenBalanceWrapper = styled.div<{ desaturated?: boolean }>`
   ${({ desaturated }) => 
     desaturated &&
       css`
-         filter: grayscale(75%);   
+         filter: grayscale(50%);   
       `}
 `;
 
@@ -87,6 +87,8 @@ function AppBar(): JSX.Element {
 
         if (pathname === '/apps') {
             setHeaderClassList('flex flex-row flex-nowrap justify-between w-screen absolute')
+        } else if (isLimboPath) {
+            setHeaderClassList('flex flex-row flex-nowrap justify-between w-full')
         } else {
             setHeaderClassList('flex flex-row flex-nowrap justify-between w-screen')
         }
