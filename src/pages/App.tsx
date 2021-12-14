@@ -12,6 +12,15 @@ import Routes from '../routes'
 import { AppDispatch } from '../state'
 import { updateUserDarkMode } from '../state/user/actions'
 
+const limboAppStyles = `
+    background: none;
+    background-color: #000;
+    border-radius: 24px 0 0 0;
+    overflow: hidden;
+    transform: translateX(10px);
+    width: calc(100vw - 10px);
+`;
+
 const StyledApp = styled.div<{
     backgroundImageUrl?: string,
     backgroundColor?: string,
@@ -21,22 +30,13 @@ const StyledApp = styled.div<{
   ${({ 
     backgroundImageUrl = swapBackgroundImage, 
     backgroundColor = '#19143C',
-    noBackgroundImage = false,
     isLimboPath = false,
-  }) => (
-    noBackgroundImage ? `
-      background-color: ${backgroundColor}
-      ${isLimboPath && `
-        border-radius: 24px 0 0 0;
-        overflow: hidden;
-        transform: translateX(10px);
-        width: calc(100vw - 10px);
-      `}
-    ` : ` 
+  }) => (`
       background: ${backgroundColor} url(${backgroundImageUrl}) 50% 0 repeat;
       background-size: cover;
-    `
-  )}
+      color: #fff;
+      ${isLimboPath && limboAppStyles}
+  `)}
 `
 
 const AppWrapper = ({ isLimboPath, children }: { isLimboPath: boolean, children: any }) => (
