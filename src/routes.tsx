@@ -5,6 +5,7 @@ import { RedirectToSwap, RedirectPathToSwapOnly  } from '@behodler/swap'
 import DappsNavigation from "@behodler/dapps-navigation-page";
 import { BehodlerUISwap } from '@behodler/swap-legacy'
 import { BehodlerUIPyrotokens } from '@behodler/pyrotokens-legacy'
+import { Limbo } from '@behodler/limbo'
 
 import Connect from './pages/Connect'
 import Transactions from './pages/Transactions'
@@ -22,7 +23,7 @@ function Routes(): JSX.Element {
             <Route exact strict path="/swap/:outputCurrency" component={RedirectToSwap} />
             <Route exact strict path="/transactions" component={Transactions} />
             <Route exact strict path="/bonfire" component={ComingSoon} />
-            <Route exact strict path="/limbo" component={ComingSoon} />
+            <Route exact strict path="/limbo" component={Limbo} />
             <Route exact strict path="/analytics" component={ComingSoon} />
             <Route exact strict path="/pyrotokens" component={BehodlerUIPyrotokens} />
 

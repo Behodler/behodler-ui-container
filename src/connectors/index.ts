@@ -37,7 +37,7 @@ export const SUPPORTED_NETWORK_CHAIN_IDS: number[] = process.env.REACT_APP_SUPPO
     ? process.env.REACT_APP_SUPPORTED_NETWORK_CHAIN_IDS
         .split(',')
         .map(stringValue => parseInt(stringValue, 10))
-    : [ChainId.MAINNET]
+    : [ChainId.MAINNET, ChainId.ROPSTEN]
 
 export const ACTIVE_RPC = Object.fromEntries((
     Object
