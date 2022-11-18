@@ -15,10 +15,7 @@ import { updateUserDarkMode } from '../state/user/actions'
 const limboAppStyles = `
     background: none;
     background-color: #000;
-    border-radius: 24px 0 0 0;
     overflow: hidden;
-    transform: translateX(10px);
-    width: calc(100vw - 10px);
 `;
 
 const StyledApp = styled.div<{
