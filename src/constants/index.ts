@@ -1,4 +1,4 @@
-import { ChainId, JSBI, Percent, Token, WETH } from '@sushiswap/sdk'
+import { ChainId, JSBI, Percent, Token, WETH } from '@behodler/sdk'
 import { fortmatic, injected, lattice, portis, torus, walletconnect, walletlink } from '../connectors'
 
 import { AbstractConnector } from '@web3-react/abstract-connector'
@@ -7,7 +7,7 @@ import { AbstractConnector } from '@web3-react/abstract-connector'
 
 // a list of tokens by chain
 type ChainTokenList = {
-    readonly [chainId in ChainId]: Token[]
+    readonly [chainId: number]: Token[]
 }
 
 type ChainTokenMap = {
@@ -95,26 +95,21 @@ const WRAPPED_NATIVE_ONLY: ChainTokenList = {
     [ChainId.BSC]: [WETH[ChainId.BSC]],
     [ChainId.BSC_TESTNET]: [WETH[ChainId.BSC_TESTNET]],
     [ChainId.ARBITRUM]: [WETH[ChainId.ARBITRUM]],
-    [ChainId.MOONBASE]: [WETH[ChainId.MOONBASE]],
     [ChainId.AVALANCHE]: [WETH[ChainId.AVALANCHE]],
-    [ChainId.FUJI]: [WETH[ChainId.FUJI]],
     [ChainId.HECO]: [WETH[ChainId.HECO]],
     [ChainId.HECO_TESTNET]: [WETH[ChainId.HECO_TESTNET]],
     [ChainId.HARMONY]: [WETH[ChainId.HARMONY]],
     [ChainId.HARMONY_TESTNET]: [WETH[ChainId.HARMONY_TESTNET]],
     [ChainId.OKEX]: [WETH[ChainId.OKEX]],
-    [ChainId.OKEX_TESTNET]: [WETH[ChainId.OKEX_TESTNET]]
+    [ChainId.OKEX_TESTNET]: [WETH[ChainId.OKEX_TESTNET]],
+    [ChainId.GANACHE]: [],
 }
 
 // Default Ethereum chain tokens
 export const DAI = new Token(ChainId.MAINNET, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18, 'DAI', 'Dai Stablecoin')
 export const USDC = new Token(ChainId.MAINNET, '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', 6, 'USDC', 'USD Coin')
 export const USDT = new Token(ChainId.MAINNET, '0xdAC17F958D2ee523a2206206994597C13D831ec7', 6, 'USDT', 'Tether USD')
-export const AMPL = new Token(ChainId.MAINNET, '0xD46bA6D942050d489DBd938a2C909A5d5039A161', 9, 'AMPL', 'Ampleforth')
 export const WBTC = new Token(ChainId.MAINNET, '0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599', 8, 'WBTC', 'Wrapped BTC')
-export const RUNE = new Token(ChainId.MAINNET, '0x3155BA85D5F96b2d030a4966AF206230e46849cb', 18, 'RUNE', 'RUNE.ETH')
-export const NFTX = new Token(ChainId.MAINNET, '0x87d73E916D7057945c9BcD8cdd94e42A6F47f776', 18, 'NFTX', 'NFTX')
-export const STETH = new Token(ChainId.MAINNET, '0xDFe66B14D37C77F4E9b180cEb433d1b164f0281D', 18, 'stETH', 'stakedETH')
 
 export const BSC: { [key: string]: Token } = {
     DAI: new Token(ChainId.BSC, '0x1AF3F329e8BE154074D8769D1FFa4eE058B1DBc3', 18, 'DAI', 'Dai Stablecoin'),
@@ -144,82 +139,6 @@ export const MATIC: { [key: string]: Token } = {
 
 // used to construct intermediary pairs for trading
 
-
-export const CREAM = new Token(ChainId.MAINNET, '0x2ba592F78dB6436527729929AAf6c908497cB200', 18, 'CREAM', 'Cream')
-export const BAC = new Token(ChainId.MAINNET, '0x3449FC1Cd036255BA1EB19d65fF4BA2b8903A69a', 18, 'BAC', 'Basis Cash')
-export const FXS = new Token(ChainId.MAINNET, '0x3432B6A60D23Ca0dFCa7761B7ab56459D9C964D0', 18, 'FXS', 'Frax Share')
-export const ALPHA = new Token(ChainId.MAINNET, '0xa1faa113cbE53436Df28FF0aEe54275c13B40975', 18, 'ALPHA', 'AlphaToken')
-export const USDP = new Token(
-    ChainId.MAINNET,
-    '0x1456688345527bE1f37E9e627DA0837D6f08C925',
-    18,
-    'USDP',
-    'USDP Stablecoin'
-)
-export const DUCK = new Token(ChainId.MAINNET, '0x92E187a03B6CD19CB6AF293ba17F2745Fd2357D5', 18, 'DUCK', 'DUCK')
-export const BAB = new Token(ChainId.MAINNET, '0xC36824905dfF2eAAEE7EcC09fCC63abc0af5Abc5', 18, 'BAB', 'BAB')
-export const HBTC = new Token(ChainId.MAINNET, '0x0316EB71485b0Ab14103307bf65a021042c6d380', 18, 'HBTC', 'Huobi BTC')
-export const FRAX = new Token(ChainId.MAINNET, '0x853d955aCEf822Db058eb8505911ED77F175b99e', 18, 'FRAX', 'FRAX')
-export const IBETH = new Token(
-    ChainId.MAINNET,
-    '0xeEa3311250FE4c3268F8E684f7C87A82fF183Ec1',
-    8,
-    'ibETHv2',
-    'Interest Bearing Ether v2'
-)
-export const PONT = new Token(
-    ChainId.MAINNET,
-    '0xcb46C550539ac3DB72dc7aF7c89B11c306C727c2',
-    9,
-    'pONT',
-    'Poly Ontology Token'
-)
-export const PWING = new Token(
-    ChainId.MAINNET,
-    '0xDb0f18081b505A7DE20B18ac41856BCB4Ba86A1a',
-    9,
-    'pWING',
-    'Poly Ontology Wing Token'
-)
-
-export const UMA = new Token(ChainId.MAINNET, '0x04Fa0d235C4abf4BcF4787aF4CF447DE572eF828', 18, 'UMA', 'UMA')
-
-export const UMA_CALL = new Token(
-    ChainId.MAINNET,
-    '0x1062aD0E59fa67fa0b27369113098cC941Dd0D5F',
-    18,
-    'UMA',
-    'UMA 35 Call [30 Apr 2021]'
-)
-
-export const DOUGH = new Token(
-    ChainId.MAINNET,
-    '0xad32A8e6220741182940c5aBF610bDE99E737b2D',
-    18,
-    'DOUGH',
-    'PieDAO Dough v2'
-)
-
-export const PLAY = new Token(
-    ChainId.MAINNET,
-    '0x33e18a092a93ff21aD04746c7Da12e35D34DC7C4',
-    18,
-    'PLAY',
-    'Metaverse NFT Index'
-)
-
-export const XSUSHI_CALL = new Token(
-    ChainId.MAINNET,
-    '0xada279f9301C01A4eF914127a6C2a493Ad733924',
-    18,
-    'XSUc25-0531',
-    'XSUSHI 25 Call [31 May 2021]'
-)
-
-export const XSUSHI = new Token(ChainId.MAINNET, '0x8798249c2E607446EfB7Ad49eC89dD1865Ff4272', 18, 'xSUSHI', 'SushiBar')
-
-
-
 // used for display in the default list when adding liquidity
 export const SUGGESTED_BASES: ChainTokenList = {
     ...WRAPPED_NATIVE_ONLY,
@@ -227,27 +146,6 @@ export const SUGGESTED_BASES: ChainTokenList = {
     [ChainId.MATIC]: [...WRAPPED_NATIVE_ONLY[ChainId.MATIC], MATIC.USDC, MATIC.WBTC, MATIC.DAI, MATIC.WETH, MATIC.USDT],
     [ChainId.FANTOM]: [...WRAPPED_NATIVE_ONLY[ChainId.FANTOM], FANTOM.DAI, FANTOM.USDC, FANTOM.WBTC, FANTOM.WETH],
     [ChainId.BSC]: [...WRAPPED_NATIVE_ONLY[ChainId.BSC], BSC.DAI, BSC.USD, BSC.USDC, BSC.USDT, BSC.BTCB]
-}
-
-// used to construct the list of all pairs we consider by default in the frontend
-export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
-    ...WRAPPED_NATIVE_ONLY,
-    [ChainId.MAINNET]: [...WRAPPED_NATIVE_ONLY[ChainId.MAINNET], DAI, USDC, USDT, WBTC],
-    [ChainId.MATIC]: [...WRAPPED_NATIVE_ONLY[ChainId.MATIC], MATIC.USDC, MATIC.WBTC, MATIC.DAI, MATIC.WETH, MATIC.USDT],
-    [ChainId.FANTOM]: [...WRAPPED_NATIVE_ONLY[ChainId.FANTOM], FANTOM.DAI, FANTOM.USDC, FANTOM.WBTC, FANTOM.WETH],
-    [ChainId.BSC]: [...WRAPPED_NATIVE_ONLY[ChainId.BSC], BSC.DAI, BSC.USD, BSC.USDC, BSC.USDT, BSC.BTCB]
-}
-
-export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } = {
-    [ChainId.MAINNET]: [
-        [SUSHI[ChainId.MAINNET] as Token, WETH[ChainId.MAINNET]],
-        [
-            new Token(ChainId.MAINNET, '0x5d3a536E4D6DbD6114cc1Ead35777bAB948E3643', 8, 'cDAI', 'Compound Dai'),
-            new Token(ChainId.MAINNET, '0x39AA39c021dfbaE8faC545936693aC917d5E7563', 8, 'cUSDC', 'Compound USD Coin')
-        ],
-        [USDC, USDT],
-        [DAI, USDT]
-    ]
 }
 
 export interface WalletInfo {

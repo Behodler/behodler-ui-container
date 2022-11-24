@@ -1,4 +1,4 @@
-import { ChainId, Currency, CurrencyAmount, ETHER, JSBI, Percent, ROUTER_ADDRESS, Token } from '@sushiswap/sdk'
+import { ChainId, Currency, CurrencyAmount, NATIVE, JSBI, Percent, Token } from '@behodler/sdk'
 import { JsonRpcSigner, Web3Provider } from '@ethersproject/providers'
 
 import { AddressZero } from '@ethersproject/constants'
@@ -256,16 +256,8 @@ const chains: ChainObject = {
         chainName: 'arbitrum',
         builder: builders.arbitrum
     },
-    [ChainId.MOONBASE]: {
-        chainName: '',
-        builder: builders.moonbase
-    },
     [ChainId.AVALANCHE]: {
         chainName: '',
-        builder: builders.avalanche
-    },
-    [ChainId.FUJI]: {
-        chainName: 'test',
         builder: builders.avalanche
     },
     [ChainId.HECO]: {
@@ -291,7 +283,11 @@ const chains: ChainObject = {
     [ChainId.OKEX_TESTNET]: {
         chainName: '',
         builder: builders.okexTestnet
-    }
+    },
+    [ChainId.GANACHE]: {
+        chainName: '',
+        builder: builders.etherscan
+    },
 }
 
 export function getExplorerLink(
@@ -351,19 +347,7 @@ export function getContract(address: string, ABI: any, library: Web3Provider, ac
     return new Contract(address, ABI, getProviderOrSigner(library, account) as any)
 }
 
-export function getRouterAddress(chainId?: ChainId) {
-    if (!chainId) {
-        throw Error(`Undefined 'chainId' parameter '${chainId}'.`)
-    }
-    return ROUTER_ADDRESS[chainId]
-}
-
-// account is optional
-export function getRouterContract(chainId: number, library: Web3Provider, account?: string): Contract {
-    return getContract(getRouterAddress(chainId), IUniswapV2Router02ABI, library, account)
-}
-
 export function isTokenOnList(defaultTokens: TokenAddressMap, currency?: Currency): boolean {
-    if (currency === ETHER) return true
+    if (currency === NATIVE) return true
     return Boolean(currency instanceof Token && defaultTokens[currency.chainId]?.[currency.address])
 }

@@ -1,4 +1,4 @@
-import { Currency, ChainId, TokenAmount } from '@sushiswap/sdk'
+import { Currency, ChainId, TokenAmount } from '@behodler/sdk'
 import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import styled, { css } from 'styled-components'
@@ -50,7 +50,7 @@ const StyledTokenBalanceWrapper = styled.div<{ desaturated?: boolean }>`
 
 function AppBar(): JSX.Element {
     const { i18n } = useLingui()
-    const { account, chainId, library } = useActiveWeb3React()
+    const { account, chainId } = useActiveWeb3React()
     const { pathname } = useLocation()
     const tokensShowBalance = [
         {

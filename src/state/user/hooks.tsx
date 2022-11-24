@@ -1,4 +1,4 @@
-import { ChainId, Pair, Token } from '@sushiswap/sdk'
+import { ChainId, Token } from '@behodler/sdk'
 import { useCallback, useMemo } from 'react'
 import ReactGA from 'react-ga'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
@@ -146,13 +146,6 @@ export function useUserAddedTokens(): Token[] {
         if (!chainId) return []
         return Object.values(serializedTokensMap[chainId as ChainId] ?? {}).map(deserializeToken)
     }, [serializedTokensMap, chainId])
-}
-
-function serializePair(pair: Pair): SerializedPair {
-    return {
-        token0: serializeToken(pair.token0),
-        token1: serializeToken(pair.token1)
-    }
 }
 
 export function useURLWarningVisible(): boolean {

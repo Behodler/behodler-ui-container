@@ -1,4 +1,4 @@
-import { ChainId, Token } from '@sushiswap/sdk'
+import { ChainId, Token } from '@behodler/sdk'
 import { Tags, TokenInfo, TokenList } from '@uniswap/token-lists'
 
 import { AppState } from '../index'
@@ -31,7 +31,7 @@ export class WrappedTokenInfo extends Token {
 }
 
 export type TokenAddressMap = Readonly<
-    { [chainId in ChainId]: Readonly<{ [tokenAddress: string]: { token: WrappedTokenInfo; list: TokenList } }> }
+    { [chainId: number]: Readonly<{ [tokenAddress: string]: { token: WrappedTokenInfo; list: TokenList } }> }
 >
 
 /**
@@ -51,15 +51,14 @@ const EMPTY_LIST: TokenAddressMap = {
     [ChainId.BSC]: {},
     [ChainId.BSC_TESTNET]: {},
     [ChainId.ARBITRUM]: {},
-    [ChainId.MOONBASE]: {},
     [ChainId.AVALANCHE]: {},
-    [ChainId.FUJI]: {},
     [ChainId.HECO]: {},
     [ChainId.HECO_TESTNET]: {},
     [ChainId.HARMONY]: {},
     [ChainId.HARMONY_TESTNET]: {},
     [ChainId.OKEX]: {},
-    [ChainId.OKEX_TESTNET]: {}
+    [ChainId.OKEX_TESTNET]: {},
+    [ChainId.GANACHE]: {},
 }
 
 const listCache: WeakMap<TokenList, TokenAddressMap> | null =
@@ -131,7 +130,8 @@ function combineMaps(map1: TokenAddressMap, map2: TokenAddressMap): TokenAddress
         1666600000: { ...map1[1666600000], ...map2[1666600000] }, // harmony
         1666700000: { ...map1[1666700000], ...map2[1666700000] }, // harmony testnet
         66: { ...map1[66], ...map2[66] }, // okex
-        65: { ...map1[65], ...map2[65] } // okex testnet
+        65: { ...map1[65], ...map2[65] }, // okex testnet
+        1337: { ...map1[1337], ...map2[1337] }, // okex testnet
     }
 }
 

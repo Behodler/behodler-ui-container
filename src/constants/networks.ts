@@ -1,4 +1,4 @@
-import { ChainId } from '@sushiswap/sdk'
+import { ChainId } from '@behodler/sdk'
 
 import Avalanche from '../assets/networks/avalanche-network.jpg'
 import Fantom from '../assets/networks/fantom-network.jpg'
@@ -23,13 +23,12 @@ export const NETWORK_LABEL: { [chainId in ChainId]?: string } = {
     [ChainId.XDAI]: 'xDai',
     [ChainId.BSC]: 'BSC',
     [ChainId.BSC_TESTNET]: 'BSC Testnet',
-    [ChainId.MOONBASE]: 'Moonbase',
     [ChainId.AVALANCHE]: 'Avalanche',
-    [ChainId.FUJI]: 'Fuji',
     [ChainId.HECO]: 'HECO',
     [ChainId.HECO_TESTNET]: 'HECO Testnet',
     [ChainId.HARMONY]: 'Harmony',
     [ChainId.HARMONY_TESTNET]: 'Harmony Testnet',
     [ChainId.OKEX]: 'OKExChain',
-    [ChainId.OKEX_TESTNET]: 'OKExChain'
+    [ChainId.OKEX_TESTNET]: 'OKExChain',
+    [ChainId.GANACHE]: 'Dev Env',
 }

@@ -8,18 +8,9 @@ import { User, ExternalLink } from 'react-feather'
 import { Dots } from 'components'
 import { useActiveWeb3React } from '../../hooks/useActiveWeb3React'
 import { useETHBalances } from 'state/wallet/hooks'
-import { Currency } from '@sushiswap/sdk'
+import { Currency } from '@behodler/sdk'
 import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-
-const mock = {
-    transactions: [
-        'Swap 0.1234 ETH for 32.1245 SUSHI',
-        'Swap 0.1235 ETH for 32.1245 SUSHI',
-        'Swap 0.1236 ETH for 32.1245 SUSHI',
-        'Swap 0.1237 ETH for 32.1245 SUSHI'
-    ]
-}
 
 export default function Transactions() {
     const { i18n } = useLingui()
