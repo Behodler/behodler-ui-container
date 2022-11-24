@@ -1583,10 +1583,10 @@
     react-router-dom "^5.2.0"
     styled-components "^4.2.0"
 
-"@behodler/limbo@^0.1.0":
-  version "0.1.0"
-  resolved "https://npm.pkg.github.com/download/@behodler/limbo/0.1.0/17f66c022049c75eef73ef11d32c3cb9e8cea99aefa64ecd59fa6e9525d060a5#0ca0dd11c37d29a72be02dfa10e4739666ada00f"
-  integrity sha512-4zFr0DvEwdAhPoVHEFuriEW/DaAHyC1Pv/jbUf6LQXlfG2sp93v8IogfoUKsXNg/6G+nfXaaygveihQIHQwxrw==
+"@behodler/limbo@0.1.2":
+  version "0.1.2"
+  resolved "https://npm.pkg.github.com/download/@Behodler/limbo/0.1.2/69191ed61e73d8966aeaab7e94cffbd7415f85e5#69191ed61e73d8966aeaab7e94cffbd7415f85e5"
+  integrity sha512-YIAVK477zXH7T5ujI6Xbrpjq4EPev2dvq+kNDTusKwsPLOLgokOGikz+aNmMUaoDGi2FV8hfIPagpy3TOGS11g==
   dependencies:
     "@behodler/sdk" "0.1.1"
     "@lufycz/sushi-data" "^2.0.0-canary-21"
