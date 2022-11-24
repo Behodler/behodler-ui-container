@@ -1,7 +1,5 @@
 @tailwind base;
-
 @tailwind components;
-
 @tailwind utilities;
 
 button:focus {
@@ -45,46 +43,4 @@ input:focus {
   border-radius: 25px;
   background: #FA52A0;
   cursor: pointer;
-}
-
-@font-face {
-  src: url('../assets/fonts/SVN-Gilroy-Regular.otf');
-  font-family: Gilroy;
-  font-weight: 400;
-}
-
-@font-face {
-  src: url('../assets/fonts/SVN-Gilroy-Medium.otf');
-  font-family: Gilroy;
-  font-weight: 600;
-}
-
-@font-face {
-  src: url('../assets/fonts/SVN-Gilroy-Bold.otf');
-  font-family: Gilroy;
-  font-weight: 700;
-}
-
-@media (max-width: 360px) {
-  .token-selectors-and-monster > div > img {
-    width: 100px;
-  }
-}
-
-div.mobile-flippy-switch {
-  margin-top: -284px;
-}
-
-*::-webkit-scrollbar-track {
-  background-color: #15102f !important;
-}
-
-*::-webkit-scrollbar {
-  width: 8px;
-  background-color: #F5F5F5 !important;
-}
-
-*::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  background: rgba(107,80,181,0.7) !important;
 }
