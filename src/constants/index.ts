@@ -3,7 +3,7 @@ import { fortmatic, injected, lattice, portis, torus, walletconnect, walletlink 
 
 import { AbstractConnector } from '@web3-react/abstract-connector'
 
-export const POOL_DENY = ['14', '29', '45', '30']
+
 
 // a list of tokens by chain
 type ChainTokenList = {
@@ -17,7 +17,7 @@ type ChainTokenMap = {
 // Block time here is slightly higher (~1s) than average in order to avoid ongoing proposals past the displayed time
 export const AVERAGE_BLOCK_TIME_IN_SECS = 13
 export const PROPOSAL_LENGTH_IN_BLOCKS = 40_320
-export const PROPOSAL_LENGTH_IN_SECS = AVERAGE_BLOCK_TIME_IN_SECS * PROPOSAL_LENGTH_IN_BLOCKS
+
 
 export const TIMELOCK_ADDRESS = '0x1a9C8182C09F50C8318d769245beA52c32BE35BC'
 
@@ -69,10 +69,7 @@ export const EYE: ChainTokenMap = {
     )
 }
 
-export const COMMON_CONTRACT_NAMES: { [address: string]: string } = {
-    // [UNI_ADDRESS]: 'UNI',
-    [TIMELOCK_ADDRESS]: 'Timelock'
-}
+
 
 // TODO: specify merkle distributor for mainnet
 export const MERKLE_DISTRIBUTOR_ADDRESS: { [chainId in ChainId]?: string } = {
@@ -81,14 +78,7 @@ export const MERKLE_DISTRIBUTOR_ADDRESS: { [chainId in ChainId]?: string } = {
 }
 
 // TODO: update weekly with new constant
-export const MERKLE_ROOT =
-    //'https://raw.githubusercontent.com/sushiswap/sushi-vesting/master/merkle/week-01/merkle-10959148-11003985.json'
-    //'https://raw.githubusercontent.com/sushiswap/sushi-vesting/master/merkle/week-02/merkle-10959148-11049116.json'
-    //'https://raw.githubusercontent.com/sushiswap/sushi-vesting/master/merkle/week-03/merkle-10959148-11094829.json'
-    //'https://raw.githubusercontent.com/sushiswap/sushi-vesting/master/merkle/week-04/merkle-10959148-11140426.json'
-    //'https://raw.githubusercontent.com/sushiswap/sushi-vesting/master/merkle/week-05/merkle-10959148-11185970.json'
-    //'https://raw.githubusercontent.com/sushiswap/sushi-vesting/master/merkle/week-06/merkle-10959148-11231587.json'
-    'https://raw.githubusercontent.com/sushiswap/sushi-vesting/master/merkle/week-07/merkle-10959148-11277295.json'
+
 
 // TODO: SDK should have two maps, WETH map and WNATIVE map.
 const WRAPPED_NATIVE_ONLY: ChainTokenList = {
@@ -153,13 +143,7 @@ export const MATIC: { [key: string]: Token } = {
 }
 
 // used to construct intermediary pairs for trading
-export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
-    ...WRAPPED_NATIVE_ONLY,
-    [ChainId.MAINNET]: [...WRAPPED_NATIVE_ONLY[ChainId.MAINNET], DAI, USDC, USDT, WBTC, RUNE, NFTX, STETH],
-    [ChainId.MATIC]: [...WRAPPED_NATIVE_ONLY[ChainId.MATIC], MATIC.USDC, MATIC.WBTC, MATIC.DAI, MATIC.WETH, MATIC.USDT],
-    [ChainId.FANTOM]: [...WRAPPED_NATIVE_ONLY[ChainId.FANTOM], FANTOM.DAI, FANTOM.USDC, FANTOM.WBTC, FANTOM.WETH],
-    [ChainId.BSC]: [...WRAPPED_NATIVE_ONLY[ChainId.BSC], BSC.DAI, BSC.USD, BSC.USDC, BSC.USDT, BSC.BTCB]
-}
+
 
 export const CREAM = new Token(ChainId.MAINNET, '0x2ba592F78dB6436527729929AAf6c908497cB200', 18, 'CREAM', 'Cream')
 export const BAC = new Token(ChainId.MAINNET, '0x3449FC1Cd036255BA1EB19d65fF4BA2b8903A69a', 18, 'BAC', 'Basis Cash')
@@ -234,27 +218,7 @@ export const XSUSHI_CALL = new Token(
 
 export const XSUSHI = new Token(ChainId.MAINNET, '0x8798249c2E607446EfB7Ad49eC89dD1865Ff4272', 18, 'xSUSHI', 'SushiBar')
 
-/**
- * Some tokens can only be swapped via certain pairs, so we override the list of bases that are considered for these
- * tokens.
- */
-export const CUSTOM_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: Token[] } } = {
-    [ChainId.MAINNET]: {
-        [AMPL.address]: [DAI, WETH[ChainId.MAINNET]],
-        [DUCK.address]: [USDP, WETH[ChainId.MAINNET]],
-        [BAB.address]: [BAC, WETH[ChainId.MAINNET]],
-        [HBTC.address]: [CREAM, WETH[ChainId.MAINNET]],
-        [FRAX.address]: [FXS, WETH[ChainId.MAINNET]],
-        [IBETH.address]: [ALPHA, WETH[ChainId.MAINNET]],
-        [PONT.address]: [PWING, WETH[ChainId.MAINNET]],
-        [UMA_CALL.address]: [UMA, WETH[ChainId.MAINNET]],
-        [PLAY.address]: [DOUGH, WETH[ChainId.MAINNET]],
-        [XSUSHI_CALL.address]: [XSUSHI, WETH[ChainId.MAINNET]]
-    },
-    [ChainId.MATIC]: {
-        [MATIC.TEL.address]: [MATIC.SUSHI, MATIC.AAVE]
-    }
-}
+
 
 // used for display in the default list when adding liquidity
 export const SUGGESTED_BASES: ChainTokenList = {
@@ -402,50 +366,36 @@ export const INITIAL_ALLOWED_SLIPPAGE = 50
 export const DEFAULT_DEADLINE_FROM_NOW = 60 * 20
 
 // used for rewards deadlines
-export const BIG_INT_SECONDS_IN_WEEK = JSBI.BigInt(60 * 60 * 24 * 7)
+JSBI.BigInt(60 * 60 * 24 * 7)
 
-export const BIG_INT_ZERO = JSBI.BigInt(0)
+JSBI.BigInt(0)
 
 // one basis point
-export const ONE_BIPS = new Percent(JSBI.BigInt(1), JSBI.BigInt(10000))
+new Percent(JSBI.BigInt(1), JSBI.BigInt(10000))
 export const BIPS_BASE = JSBI.BigInt(10000)
 // used for warning states
-export const ALLOWED_PRICE_IMPACT_LOW: Percent = new Percent(JSBI.BigInt(100), BIPS_BASE) // 1%
-export const ALLOWED_PRICE_IMPACT_MEDIUM: Percent = new Percent(JSBI.BigInt(300), BIPS_BASE) // 3%
-export const ALLOWED_PRICE_IMPACT_HIGH: Percent = new Percent(JSBI.BigInt(500), BIPS_BASE) // 5%
+new Percent(JSBI.BigInt(100), BIPS_BASE)  // 1%
+new Percent(JSBI.BigInt(300), BIPS_BASE)  // 3%
+new Percent(JSBI.BigInt(500), BIPS_BASE)  // 5%
 // if the price slippage exceeds this number, force the user to type 'confirm' to execute
-export const PRICE_IMPACT_WITHOUT_FEE_CONFIRM_MIN: Percent = new Percent(JSBI.BigInt(1000), BIPS_BASE) // 10%
+new Percent(JSBI.BigInt(1000), BIPS_BASE)  // 10%
 // for non expert mode disable swaps above this
-export const BLOCKED_PRICE_IMPACT_NON_EXPERT: Percent = new Percent(JSBI.BigInt(1500), BIPS_BASE) // 15%
+new Percent(JSBI.BigInt(1500), BIPS_BASE)  // 15%
 
 // used to ensure the user doesn't send so much ETH so they end up with <.01
 export const MIN_ETH: JSBI = JSBI.exponentiate(JSBI.BigInt(10), JSBI.BigInt(16)) // .01 ETH
-export const BETTER_TRADE_LESS_HOPS_THRESHOLD = new Percent(JSBI.BigInt(50), JSBI.BigInt(10000))
+new Percent(JSBI.BigInt(50), JSBI.BigInt(10000))
 
 export const ZERO_PERCENT = new Percent('0')
 export const ONE_HUNDRED_PERCENT = new Percent('1')
 
 // SDN OFAC addresses
-export const BLOCKED_ADDRESSES: string[] = [
-    '0x7F367cC41522cE07553e823bf3be79A889DEbe1B',
-    '0xd882cFc20F52f2599D84b8e8D58C7FB62cfE344b',
-    '0x901bb9583b24D97e995513C6778dc6888AB6870e',
-    '0xA7e5d5A720f06526557c513402f2e6B5fA20b008'
-]
+
 
 // BentoBox Swappers
-export const BASE_SWAPPER: { [chainId in ChainId]?: string } = {
-    [ChainId.MAINNET]: '0x0',
-    [ChainId.ROPSTEN]: '0xe4E2540D421e56b0B786d40c5F5268891288c6fb'
-}
+
 
 // Boring Helper
 // export const BORING_HELPER_ADDRESS = '0x11Ca5375AdAfd6205E41131A4409f182677996E6'
 
-export const ANALYTICS_URL: { [chainId in ChainId]?: string } = {
-    [ChainId.MAINNET]: 'https://analytics.sushi.com',
-    [ChainId.MATIC]: 'https://analytics-polygon.sushi.com',
-    [ChainId.FANTOM]: 'https://analytics-ftm.sushi.com',
-    [ChainId.BSC]: 'https://analytics-bsc.sushi.com',
-    [ChainId.XDAI]: 'https://analytics-xdai.sushi.com'
-}
+

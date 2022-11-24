@@ -1,6 +1,6 @@
 import { Currency, ChainId, TokenAmount } from '@sushiswap/sdk'
 import React, { useEffect, useState } from 'react'
-import { useLocation, Link } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import styled, { css } from 'styled-components'
 import { Disclosure } from '@headlessui/react'
 import { t } from '@lingui/macro'

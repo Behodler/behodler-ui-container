@@ -1,6 +1,4 @@
-import QuestionHelper from 'components/QuestionHelper'
 import React from 'react'
-import Settings from './Settings'
 
 export type Color = 'pink' | 'blue'
 

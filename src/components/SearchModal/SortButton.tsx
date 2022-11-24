@@ -15,15 +15,13 @@ export const FilterWrapper = styled(RowFixed)`
     :hover {
         cursor: pointer;
     }
-`
-
-export default function SortButton({
+` function SortButton({
     toggleSortOrder,
     ascending
 }: {
     toggleSortOrder: () => void
     ascending: boolean
-}) {
+}){
     return (
         <FilterWrapper onClick={toggleSortOrder}>
             <Text fontSize={14} fontWeight={500}>
@@ -32,3 +30,4 @@ export default function SortButton({
         </FilterWrapper>
     )
 }
+

@@ -1,5 +1,5 @@
 import { parseBytes32String } from '@ethersproject/strings'
-import { Currency, ETHER, Token, currencyEquals } from '@sushiswap/sdk'
+import { Currency, Token, currencyEquals } from '@sushiswap/sdk'
 import { arrayify } from 'ethers/lib/utils'
 import { useMemo } from 'react'
 import { filterTokens } from '../components/SearchModal/filtering'
@@ -7,7 +7,7 @@ import { useCombinedActiveList, useCombinedInactiveList } from '../state/lists/h
 import { NEVER_RELOAD, useSingleCallResult } from 'state/multicall/hooks'
 import { useUserAddedTokens } from 'state/user/hooks'
 import { isAddress } from '../utils'
-import { TokenAddressMap, useDefaultTokenList, useUnsupportedTokenList } from './../state/lists/hooks'
+import { TokenAddressMap } from './../state/lists/hooks'
 import { useActiveWeb3React } from './useActiveWeb3React'
 import { useBytes32TokenContract, useTokenContract } from './useContract'
 
@@ -48,11 +48,6 @@ function useTokensFromMap(tokenMap: TokenAddressMap, includeUserAdded: boolean):
     }, [chainId, userAddedTokens, tokenMap, includeUserAdded])
 }
 
-export function useDefaultTokens(): { [address: string]: Token } {
-    const defaultList = useDefaultTokenList()
-    return useTokensFromMap(defaultList, false)
-}
-
 export function useAllTokens(): { [address: string]: Token } {
     const allTokens = useCombinedActiveList()
     return useTokensFromMap(allTokens, true)
@@ -75,11 +70,6 @@ export function useAllInactiveTokens(): { [address: string]: Token } {
         : inactiveTokens
 
     return filteredInactive
-}
-
-export function useUnsupportedTokens(): { [address: string]: Token } {
-    const unsupportedTokensMap = useUnsupportedTokenList()
-    return useTokensFromMap(unsupportedTokensMap, false)
 }
 
 export function useIsTokenActive(token: Token | undefined | null): boolean {
@@ -188,8 +178,3 @@ export function useToken(tokenAddress?: string): Token | undefined | null {
     ])
 }
 
-export function useCurrency(currencyId: string | undefined): Currency | null | undefined {
-    const isETH = currencyId?.toUpperCase() === 'ETH'
-    const token = useToken(isETH ? undefined : currencyId)
-    return isETH ? ETHER : token
-}

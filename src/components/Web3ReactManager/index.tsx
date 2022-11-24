@@ -8,7 +8,6 @@ import { network, SUPPORTED_NETWORK_CHAIN_IDS } from '../../connectors'
 import { NetworkContextName } from '../../constants'
 import { useEagerConnect, useInactiveListener } from '../../hooks'
 import Loader from '../Loader'
-import { useWalletModalToggle } from '../../state/application/hooks'
 
 const MessageWrapper = styled.div`
     align-items: center;

@@ -35,9 +35,7 @@ export interface ToggleProps {
     isActive: boolean
     bgColor: string
     toggle: () => void
-}
-
-export default function ChartToggle({ id, isActive, bgColor, toggle }: ToggleProps) {
+} function ChartToggle({ id, isActive, bgColor, toggle }: ToggleProps){
     return (
         <Wrapper id={id} isActive={isActive} onClick={toggle}>
             {isActive && (
@@ -54,3 +52,4 @@ export default function ChartToggle({ id, isActive, bgColor, toggle }: TogglePro
         </Wrapper>
     )
 }
+

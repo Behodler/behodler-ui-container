@@ -108,4 +108,4 @@ function CurrencySearchModal({
     )
 }
 
-export default CurrencySearchModal
+

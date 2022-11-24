@@ -1,5 +1,5 @@
 import { classNames } from 'functions'
-import React, { FunctionComponent } from 'react'
+import React from 'react'
 
 export type TypographyWeight = 400 | 700
 
