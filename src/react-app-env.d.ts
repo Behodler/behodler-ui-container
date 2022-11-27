@@ -11,6 +11,7 @@ declare module 'fortmatic'
 interface Window {
     ethereum?: {
         isMetaMask?: true
+        isFrame?: false
         on?: (...args: any[]) => void
         removeListener?: (...args: any[]) => void
         autoRefreshOnNetworkChange?: boolean

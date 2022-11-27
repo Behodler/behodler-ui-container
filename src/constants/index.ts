@@ -161,7 +161,7 @@ export interface WalletInfo {
 }
 
 const ACTIVE_WALLET_PROVIDERS: string[] = process.env.REACT_APP_SUPPORTED_WALLET_PROVIDERS?.split(',')
-    ?? ['METAMASK', 'WALLET_CONNECT']
+    ?? ['INJECTED', 'FRAME', 'METAMASK', 'WALLET_CONNECT']
 
 type SupportedWallets = { [key: string]: WalletInfo }
 
@@ -174,6 +174,14 @@ const ALL_SUPPORTED_WALLETS: SupportedWallets = {
         href: null,
         color: '#010101',
         primary: true
+    },
+    FRAME: {
+        connector: injected,
+        name: 'Frame',
+        iconName: 'frame.svg',
+        description: 'A privacy focused Ethereum wallet',
+        href: null,
+        color: '#ccc'
     },
     METAMASK: {
         connector: injected,
