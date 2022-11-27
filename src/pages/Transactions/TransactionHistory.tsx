@@ -1,10 +1,7 @@
 import { ArrowUpRight, CheckCircle } from 'react-feather'
 import React, { useContext } from 'react'
 
-import { Currency } from '@sushiswap/sdk'
 import { Dots } from '../../components'
-import DoubleCurrencyLogo from 'components/DoubleLogo'
-import { LinkStyledButton } from '../../theme'
 import { NETWORK_LABEL } from '../../constants/networks'
 import { ThemeContext } from 'styled-components'
 import { getExplorerLink } from '../../utils'

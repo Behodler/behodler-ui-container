@@ -2,12 +2,12 @@ import { useWeb3React } from '@web3-react/core'
 import React, { useEffect, useState } from 'react'
 import { t } from '@lingui/macro'
 import styled from 'styled-components'
-import { network } from '../../connectors'
+import { useLingui } from '@lingui/react'
+
+import { network, SUPPORTED_NETWORK_CHAIN_IDS } from '../../connectors'
 import { NetworkContextName } from '../../constants'
 import { useEagerConnect, useInactiveListener } from '../../hooks'
 import Loader from '../Loader'
-import { useLingui } from '@lingui/react'
-import { useWalletModalToggle } from '../../state/application/hooks'
 
 const MessageWrapper = styled.div`
     align-items: center;
@@ -19,7 +19,7 @@ const MessageWrapper = styled.div`
 `
 
 const Message = styled.h2`
-    color: ${({ theme }) => theme.secondary1};
+    color: ${({ theme }) => theme.text2};
 `
 
 export default function Web3ReactManager({ children }: { children: JSX.Element }) {
@@ -58,7 +58,7 @@ export default function Web3ReactManager({ children }: { children: JSX.Element }
     }
 
     // if the account context isn't active, and there's an error on the network context, it's an irrecoverable error
-    if (chainId && chainId !== 1) {
+    if (chainId && !SUPPORTED_NETWORK_CHAIN_IDS.includes(chainId)) {
         return (
             <MessageWrapper>
                 <Message>

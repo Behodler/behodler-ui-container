@@ -1,4 +1,4 @@
-import { ChainId, Currency, ETHER, Token } from '@sushiswap/sdk'
+import { ChainId, Currency, Token, NATIVE } from '@behodler/sdk'
 import React, { useMemo } from 'react'
 
 import AvalancheLogo from '../../assets/images/avalanche-logo.png'
@@ -57,9 +57,7 @@ const logo: { readonly [chainId in ChainId]?: string } = {
     [ChainId.XDAI]: xDaiLogo,
     [ChainId.BSC]: BinanceCoinLogo,
     [ChainId.BSC_TESTNET]: BinanceCoinLogo,
-    [ChainId.MOONBASE]: MoonbeamLogo,
     [ChainId.AVALANCHE]: AvalancheLogo,
-    [ChainId.FUJI]: AvalancheLogo,
     [ChainId.HECO]: HecoLogo,
     [ChainId.HECO_TESTNET]: HecoLogo,
     [ChainId.HARMONY]: HarmonyLogo,
@@ -81,7 +79,7 @@ export default function CurrencyLogo({
     const uriLocations = useHttpLocations(currency instanceof WrappedTokenInfo ? currency.logoURI : undefined)
 
     const srcs: string[] = useMemo(() => {
-        if (currency === ETHER) return []
+        if (currency === NATIVE) return []
 
         if (currency instanceof Token) {
             if (currency instanceof WrappedTokenInfo) {
@@ -93,7 +91,7 @@ export default function CurrencyLogo({
         return []
     }, [chainId, currency, uriLocations])
 
-    if (currency === ETHER && chainId) {
+    if (currency === NATIVE && chainId) {
         return <StyledNativeCurrencyLogo src={logo[chainId]} size={size} style={style} />
     }
 

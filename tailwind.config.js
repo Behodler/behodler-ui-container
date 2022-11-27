@@ -39,8 +39,9 @@ module.exports = {
             red: '#FF3838',
             blue: '#27B0E6',
             pink: '#FA52A0',
-            purple: '#A755DD',
+            purple: '#9a76ff',
             green: '#7CFF6B',
+            yellow: '#F7B22A',
 
             'pink-red': '#FE5A75',
             'light-brown': '#FEC464',
@@ -51,25 +52,31 @@ module.exports = {
             'dark-pink': '#221825',
             'dark-blue': '#0F182A',
             'dark-1000': '#0D0415',
-            'dark-950': '#0d0d1f',
             'dark-900': '#161522',
-            'dark-850': '#1d1e2c',
-            'dark-800': '#202231',
-            'dark-700': '#2E3348',
-            'dark-600': '#1C2D49',
-            'dark-500': '#223D5E',
+            'dark-800': '#15151A',
+            'dark-700': '#202022',
+            'dark-500': '#373642',
+            // 'dark-850': '#1d1e2c',
+            // 'dark-800': '#202231',
+            // 'dark-700': '#2E3348',
+            // 'dark-600': '#1C2D49',
+            // 'dark-500': '#223D5E',
+            'dark-400': '#3A365F',
 
             // TODO: bad... these are causing issues with text colors
             // 'high-emphesis': '#E3E3E3',
-            primary: '#BFBFBF',
-            secondary: '#7F7F7F',
-            'low-emphesis': '#575757'
+            // primary: '#BFBFBF',
+            // secondary: '#7F7F7F',
+            // 'low-emphesis': '#575757'
+
+            'horizontal-line': "#595959"
         },
         screens: {
             sm: '480px',
             md: '768px',
             lg: '976px',
-            xl: '1440px'
+            xl: '1280px',
+            xxl: '1406px'
         },
         fontSize: {
             ...defaultTheme.fontSize,
@@ -114,7 +121,7 @@ module.exports = {
                 }
             ],
             h5: [
-                '24px',
+                '20px',
                 {
                     letterSpacing: '-0.01em;',
                     lineHeight: '28px',
@@ -129,15 +136,34 @@ module.exports = {
                 }
             ],
             caption: [
-                '16px',
+                '14px',
                 {
-                    lineHeight: '24px'
+                    fontWeight: 600
+                }
+            ],
+            caption1: [
+                '14px',
+                {
+                    fontWeight: 400
                 }
             ],
             caption2: [
-                '14px',
+                '10px',
                 {
-                    lineHeight: '20px'
+                    fontWeight: 400,
+                }
+            ],
+            caption3: [
+                '12px',
+                {
+                    fontWeight: 800,
+                }
+            ],
+            header: [
+                '32px',
+                {
+                    lineHeight: '43px',
+                    fontWeight: 600
                 }
             ]
         },
@@ -146,11 +172,6 @@ module.exports = {
                 ...defaultTheme.lineHeight,
                 '48px': '48px'
             },
-            backgroundImage: theme => ({
-                ...defaultTheme.backgroundImage,
-                'bentobox-hero': "url('/src/assets/kashi/bentobox-hero.jpg')",
-                'bentobox-logo': "url('/src/assets/kashi/bentobox-logo.png')"
-            }),
             fontFamily: {
                 sans: ['DM Sans', ...defaultTheme.fontFamily.sans]
             },
@@ -164,8 +185,9 @@ module.exports = {
             textColor: {
                 ...defaultTheme.textColor,
                 'low-emphesis': '#575757',
-                primary: '#BFBFBF',
-                secondary: '#7F7F7F',
+                primary: '#FFFFFF',
+                secondary: '#C1C1C1',
+                tertiary: '#96969F',
                 'high-emphesis': '#E3E3E3'
             },
             backgroundColor: {
@@ -174,11 +196,11 @@ module.exports = {
             },
             boxShadow: {
                 ...defaultTheme.boxShadow,
+                'soul-glow': '0px 4px 53px rgba(255, 255, 255, 0.15)',
                 'pink-glow': '0px 57px 90px -47px rgba(250, 82, 160, 0.15)',
                 'blue-glow': '0px 57px 90px -47px rgba(39, 176, 230, 0.17)',
                 'pink-glow-hovered': '0px 57px 90px -47px rgba(250, 82, 160, 0.30)',
                 'blue-glow-hovered': '0px 57px 90px -47px rgba(39, 176, 230, 0.34)',
-
                 'swap-blue-glow': '0px 50px 250px -47px rgba(39, 176, 230, 0.29)',
                 'liquidity-purple-glow': '0px 50px 250px -47px rgba(123, 97, 255, 0.23);'
             },

@@ -5,6 +5,7 @@ import { RedirectToSwap, RedirectPathToSwapOnly  } from '@behodler/swap'
 import DappsNavigation from "@behodler/dapps-navigation-page";
 import { BehodlerUISwap } from '@behodler/swap-legacy'
 import { BehodlerUIPyrotokens } from '@behodler/pyrotokens-legacy'
+import { Limbo } from '@behodler/limbo'
 
 import Connect from './pages/Connect'
 import Transactions from './pages/Transactions'
@@ -22,7 +23,7 @@ function Routes(): JSX.Element {
             <Route exact strict path="/swap/:outputCurrency" component={RedirectToSwap} />
             <Route exact strict path="/transactions" component={Transactions} />
             <Route exact strict path="/bonfire" component={ComingSoon} />
-            <Route exact strict path="/limbo" component={ComingSoon} />
+            <Route exact strict path="/limbo" component={Limbo} />
             <Route exact strict path="/analytics" component={ComingSoon} />
             <Route exact strict path="/pyrotokens" component={BehodlerUIPyrotokens} />
 
@@ -75,29 +76,4 @@ export const PublicRoute = ({ component: Component, children, ...rest }: any) =>
 
 // A wrapper for <Route> that redirects to the Connect Wallet
 // screen if you're not yet authenticated.
-export const WalletRoute = ({ component: Component, children, ...rest }: any) => {
-    const { account } = useActiveWeb3React()
-    return (
-        <>
-            <Route
-                {...rest}
-                render={({ location, props, match }: any) => {
-                    return account ? (
-                        Component ? (
-                            <Component {...props} {...rest} match={match} />
-                        ) : (
-                            children
-                        )
-                    ) : (
-                        <Redirect
-                            to={{
-                                pathname: '/connect',
-                                state: { from: location }
-                            }}
-                        />
-                    )
-                }}
-            />
-        </>
-    )
-}
+

@@ -1,12 +1,13 @@
-import { Currency, ChainId, TokenAmount } from '@sushiswap/sdk'
+import { Currency, ChainId, TokenAmount } from '@behodler/sdk'
 import React, { useEffect, useState } from 'react'
-import { useLocation, Link } from 'react-router-dom'
-import styled from 'styled-components'
+import { useLocation } from 'react-router-dom'
+import styled, { css } from 'styled-components'
 import { Disclosure } from '@headlessui/react'
 import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 
-import { ReactComponent as Logo } from '../assets/images/logo.svg'
+import { ReactComponent as Logo } from '../assets/images/behodler-logo.svg'
+import { ReactComponent as LogoBlack } from '../assets/images/behodler-logo-black.svg'
 import { useActiveWeb3React } from '../hooks/useActiveWeb3React'
 import { useETHBalances, useTokenBalancesWithLoadingIndicator } from '../state/wallet/hooks'
 import { ReactComponent as Burger } from '../assets/images/burger.svg'
@@ -35,9 +36,21 @@ const StyledBehodlerMonster = styled.a`
   }
 `
 
+const StyledLogoBlack = styled(LogoBlack)`
+  filter: drop-shadow(0 0 28px #ffffffaa);
+`;
+
+const StyledTokenBalanceWrapper = styled.div<{ desaturated?: boolean }>`
+  ${({ desaturated }) => 
+    desaturated &&
+      css`
+         filter: grayscale(50%);   
+      `}
+`;
+
 function AppBar(): JSX.Element {
     const { i18n } = useLingui()
-    const { account, chainId, library } = useActiveWeb3React()
+    const { account, chainId } = useActiveWeb3React()
     const { pathname } = useLocation()
     const tokensShowBalance = [
         {
@@ -61,6 +74,8 @@ function AppBar(): JSX.Element {
     const userEthBalance = useETHBalances(account ? [account] : [])?.[account ?? '']
     const [tokenBalances, isLoadingTokenBalances] = useTokenBalancesWithLoadingIndicator(account || undefined, tokensShowBalance.map(t => t.token))
 
+    const isLimboPath = pathname === '/limbo';
+
     useEffect(() => {
         if (pathname === '/trade') {
             setNavClassList('w-screen bg-transparent z-10 backdrop-filter backdrop-blur')
@@ -72,6 +87,8 @@ function AppBar(): JSX.Element {
 
         if (pathname === '/apps') {
             setHeaderClassList('flex flex-row flex-nowrap justify-between w-screen absolute')
+        } else if (isLimboPath) {
+            setHeaderClassList('flex flex-row flex-nowrap justify-between w-full')
         } else {
             setHeaderClassList('flex flex-row flex-nowrap justify-between w-screen')
         }
@@ -90,12 +107,16 @@ function AppBar(): JSX.Element {
         }
 
         return (
-            <div className="hidden md:flex flex-row" key={tokenAddress}>
+            <StyledTokenBalanceWrapper
+                className="hidden md:flex flex-row"
+                key={tokenAddress}
+                desaturated={isLimboPath}
+            >
                 <div>{token.logo}</div>
                 <div className="pl-1.5 text-white">
                     {formattedBalance}
                 </div>
-            </div>
+            </StyledTokenBalanceWrapper>
         )
     }
 
@@ -110,7 +131,11 @@ function AppBar(): JSX.Element {
                                 <div className="flex items-center w-1/2">
 
                                     <StyledBehodlerMonster href="https://behodler.io" rel="noreferrer" target="_blank">
-                                        <Logo title="Behodler" className="w-auto" />
+                                        {isLimboPath ? (
+                                            <StyledLogoBlack title="Behodler" className="w-auto" />
+                                        ) : (
+                                            <Logo title="Behodler" className="w-auto" />
+                                        )}
                                     </StyledBehodlerMonster>
 
                                     <div className="text-white font-bold hidden sm:block" style={{ fontSize: 24 }}>

@@ -75,6 +75,7 @@ export default function PendingView({
     tryActivation: (connector: AbstractConnector) => void
 }) {
     const isMetamask = window?.ethereum?.isMetaMask
+    const isFrame = window?.ethereum?.isFrame
 
     return (
         <PendingSection>
@@ -104,12 +105,15 @@ export default function PendingView({
                 const option = SUPPORTED_WALLETS[key]
                 if (option.connector === connector) {
                     if (option.connector === injected) {
-                        if (isMetamask && option.name !== 'MetaMask') {
+                        if (
+                            (isMetamask && option.name !== 'MetaMask')
+                            || (!isMetamask && option.name === 'MetaMask')
+                            || (isFrame && option.name !== 'Frame')
+                            || (!isFrame && option.name === 'Frame')
+                        ) {
                             return null
                         }
-                        if (!isMetamask && option.name === 'MetaMask') {
-                            return null
-                        }
+
                     }
                     return (
                         <Option

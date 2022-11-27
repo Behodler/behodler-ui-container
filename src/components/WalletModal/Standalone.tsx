@@ -205,7 +205,9 @@ export default function WalletStandalone({
 
     // get wallets user can switch too, depending on device/browser
     function getOptions() {
-        const isMetamask = window.ethereum && window.ethereum.isMetaMask
+        const isMetamask = window?.ethereum?.isMetaMask
+        const isFrame = window?.ethereum?.isFrame
+
         return Object.keys(SUPPORTED_WALLETS).map(key => {
             const option = SUPPORTED_WALLETS[key]
 
@@ -260,8 +262,15 @@ export default function WalletStandalone({
                 else if (option.name === 'MetaMask' && !isMetamask) {
                     return null
                 }
+                // don't return frame if injected provider isn't frame
+                else if (option.name === 'Frame' && !isFrame) {
+                    return null
+                }
                 // likewise for generic
-                else if (option.name === 'Injected' && isMetamask) {
+                else if (
+                    (option.name === 'Injected' && isMetamask)
+                    || (option.name === 'Injected' && isFrame)
+                ) {
                     return null
                 }
             }

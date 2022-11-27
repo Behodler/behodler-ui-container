@@ -1,6 +1,6 @@
 import { darken } from 'polished'
 import React, { HTMLProps, useCallback } from 'react'
-import { ArrowLeft, ExternalLink as LinkIconFeather, Trash, X } from 'react-feather'
+import { ExternalLink as LinkIconFeather, Trash, X } from 'react-feather'
 import ReactGA from 'react-ga'
 import { Link } from 'react-router-dom'
 import styled, { keyframes } from 'styled-components'
@@ -23,7 +23,10 @@ export const ButtonText = styled.button`
     }
 `
 
-export const Button = styled.button.attrs<{ warning: boolean }, { backgroundColor: string }>(({ warning, theme }) => ({
+styled.button.attrs<{ warning: boolean }, { backgroundColor: string }>(({
+                                                                            warning,
+                                                                            theme
+                                                                        }) => ({
     backgroundColor: warning ? theme.red1 : theme.primary1
 }))`
     padding: 1rem 2rem 1rem 2rem;
@@ -191,11 +194,7 @@ const rotateImg = keyframes`
   }
 `
 
-export const UniTokenAnimated = styled.img`
-    animation: ${rotateImg} 5s cubic-bezier(0.83, 0, 0.17, 1) infinite;
-    padding: 2rem 0 0 0;
-    filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.15));
-`
+
 
 /**
  * Outbound link that handles firing google analytics events
@@ -274,34 +273,14 @@ export const Spinner = styled.img`
 const BackArrowLink = styled(StyledInternalLink)`
     color: ${({ theme }) => theme.text1};
 `
-export function BackArrow({ to }: { to: string }) {
-    return (
-        <BackArrowLink to={to}>
-            <ArrowLeft />
-        </BackArrowLink>
-    )
-}
 
-export const CustomLightSpinner = styled(Spinner)<{ size: string }>`
+styled(Spinner)<{ size: string }>`
     height: ${({ size }) => size};
     width: ${({ size }) => size};
 `
 
-export const HideSmall = styled.span`
-    ${({ theme }) => theme.mediaWidth.upToSmall`
-    display: none;
-  `};
-`
 
-export const HideExtraSmall = styled.span`
-    ${({ theme }) => theme.mediaWidth.upToExtraSmall`
-    display: none;
-  `};
-`
 
-export const ExtraSmallOnly = styled.span`
-    display: none;
-    ${({ theme }) => theme.mediaWidth.upToExtraSmall`
-    display: block;
-  `};
-`
+
+
+

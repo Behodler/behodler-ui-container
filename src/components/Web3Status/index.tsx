@@ -22,6 +22,7 @@ import WalletModal from '../WalletModal'
 import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import Identicon from '../Identicon'
+import { useLocation } from 'react-router-dom'
 
 const IconWrapper = styled.div<{ size?: number }>`
     ${({ theme }) => theme.flexColumnNoWrap};
@@ -56,7 +57,10 @@ const Web3StatusError = styled(Web3StatusGeneric)`
     }
 `
 
-export const Web3StatusConnect = styled(Web3StatusGeneric) <{ faded?: boolean }>`
+export const Web3StatusConnect = styled(Web3StatusGeneric) <{
+    faded?: boolean,
+    greyed?: boolean,
+}>`
     background-color: ${({ theme }) => theme.primary4};
     border: none;
     color: ${({ theme }) => theme.primaryText1};
@@ -78,6 +82,20 @@ export const Web3StatusConnect = styled(Web3StatusGeneric) <{ faded?: boolean }>
             :hover,
             :focus {
                 border: 1px solid ${({ theme }) => darken(0.05, theme.primary4)};
+                color: ${({ theme }) => darken(0.05, theme.primaryText1)};
+            }
+        `}
+
+    ${({ greyed }) =>
+        greyed &&
+        css`
+            background-color: ${({ theme }) => theme.bg1};
+            border: 1px solid ${({ theme }) => theme.bg1};
+            color: ${({ theme }) => theme.primaryText1};
+
+            :hover,
+            :focus {
+                border: 1px solid ${({ theme }) => darken(0.05, theme.bg2)};
                 color: ${({ theme }) => darken(0.05, theme.primaryText1)};
             }
         `}
@@ -185,6 +203,9 @@ function Web3StatusInner() {
     const hasPendingTransactions = !!pending.length
 
     const toggleWalletModal = useWalletModalToggle()
+    const { pathname } = useLocation()
+
+    const isLimboPath = pathname === '/limbo';
 
     if (account) {
         return (
@@ -219,7 +240,12 @@ function Web3StatusInner() {
         )
     } else {
         return (
-            <Web3StatusConnect id="connect-wallet" onClick={toggleWalletModal} faded={!account}>
+            <Web3StatusConnect
+                id="connect-wallet"
+                onClick={toggleWalletModal}
+                faded={!account}
+                greyed={isLimboPath}
+            >
                 <Text className="hidden sm:block">{i18n._(t`Connect to a wallet`)}</Text>
                 <Text className="sm:hidden">{i18n._(t`Connect`)}</Text>
             </Web3StatusConnect>

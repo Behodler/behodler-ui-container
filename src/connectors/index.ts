@@ -1,4 +1,4 @@
-import { ChainId } from '@sushiswap/sdk'
+import { ChainId } from '@behodler/sdk'
 import { FortmaticConnector } from './Fortmatic'
 import { InjectedConnector } from '@web3-react/injected-connector'
 import { LatticeConnector } from '@web3-react/lattice-connector'
@@ -22,22 +22,21 @@ const RPC = {
     [ChainId.XDAI]: process.env.REACT_APP_XDAI_RPC ?? '',
     [ChainId.BSC]: process.env.REACT_APP_BSC_RPC ?? '',
     [ChainId.BSC_TESTNET]: process.env.REACT_APP_BSC_TESTNET_RPC ?? '',
-    [ChainId.MOONBASE]: process.env.REACT_APP_MOONBASE_RPC ?? '',
     [ChainId.AVALANCHE]: process.env.REACT_APP_AVALANCHE_RPC ?? '',
-    [ChainId.FUJI]: process.env.REACT_APP_FUJI_RPC ?? '',
     [ChainId.HECO]: process.env.REACT_APP_HECO_RPC ?? '',
     [ChainId.HECO_TESTNET]: process.env.REACT_APP_HECO_TESTNET_RPC ?? '',
     [ChainId.HARMONY]: process.env.REACT_APP_HARMONY_RPC ?? '',
     [ChainId.HARMONY_TESTNET]: process.env.REACT_APP_HARMONY_TESTNET_RPC ?? '',
     [ChainId.OKEX]: process.env.REACT_APP_OKEX_RPC ?? '',
     [ChainId.OKEX_TESTNET]: process.env.REACT_APP_OKEX_TESTNET_RPC ?? '',
+    [ChainId.GANACHE]: process.env.REACT_APP_GANACHE_RPC ?? '',
 }
 
 export const SUPPORTED_NETWORK_CHAIN_IDS: number[] = process.env.REACT_APP_SUPPORTED_NETWORK_CHAIN_IDS
     ? process.env.REACT_APP_SUPPORTED_NETWORK_CHAIN_IDS
         .split(',')
         .map(stringValue => parseInt(stringValue, 10))
-    : [ChainId.MAINNET]
+    : [ChainId.MAINNET, ChainId.ROPSTEN]
 
 export const ACTIVE_RPC = Object.fromEntries((
     Object
@@ -78,7 +77,8 @@ export const injected = new InjectedConnector({
         1666600000, // harmony
         1666700000, // harmony testnet
         66, // okex testnet
-        65 // okex testnet
+        65, // okex testnet
+        1337, // local env
     ]
 })
 

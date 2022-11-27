@@ -1,4 +1,4 @@
-import { Currency, CurrencyAmount, ETHER, JSBI, Token, TokenAmount } from '@sushiswap/sdk'
+import { Currency, CurrencyAmount, NATIVE, JSBI, Token, TokenAmount } from '@behodler/sdk'
 import { useMemo } from 'react'
 import ERC20_INTERFACE from '../../constants/abis/erc20'
 import { useActiveWeb3React } from '../../hooks/useActiveWeb3React'
@@ -6,7 +6,6 @@ import { useAllTokens } from '../../hooks/Tokens'
 import { useMulticallContract } from '../../hooks/useContract'
 import { isAddress } from '../../utils'
 import { useMultipleContractSingleData, useSingleContractMultipleData } from '../multicall/hooks'
-import { SUSHI } from './../../constants/index'
 
 /**
  * Returns a map of the given addresses to their eventually consistent ETH balances.
@@ -104,7 +103,7 @@ export function useCurrencyBalances(
     ])
 
     const tokenBalances = useTokenBalances(account, tokens)
-    const containsETH: boolean = useMemo(() => currencies?.some(currency => currency === ETHER) ?? false, [currencies])
+    const containsETH: boolean = useMemo(() => currencies?.some(currency => currency === NATIVE) ?? false, [currencies])
     const ethBalance = useETHBalances(containsETH ? [account] : [])
 
     return useMemo(
@@ -112,7 +111,7 @@ export function useCurrencyBalances(
             currencies?.map(currency => {
                 if (!account || !currency) return undefined
                 if (currency instanceof Token) return tokenBalances[currency.address]
-                if (currency === ETHER) return ethBalance[account]
+                if (currency === NATIVE) return ethBalance[account]
                 return undefined
             }) ?? [],
         [account, currencies, ethBalance, tokenBalances]
@@ -133,14 +132,3 @@ export function useAllTokenBalances(): { [tokenAddress: string]: TokenAmount | u
 }
 
 // get the total owned, unclaimed, and unharvested UNI for account
-export function useAggregateUniBalance(): TokenAmount | undefined {
-    const { account, chainId } = useActiveWeb3React()
-
-    const uni = chainId ? SUSHI[chainId] : undefined
-
-    const uniBalance: TokenAmount | undefined = useTokenBalance(account ?? undefined, uni)
-
-    if (!uni) return undefined
-
-    return new TokenAmount(uni, uniBalance?.raw ?? JSBI.BigInt(0))
-}
