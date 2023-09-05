@@ -1,4 +1,5 @@
-import { ChainId } from '@sushiswap/sdk'
+
+import {ChainId} from 'extendedSushiSwapSDK'
 
 import Arbitrum from '../assets/networks/arbitrum-network.jpg'
 import Avalanche from '../assets/networks/avalanche-network.jpg'

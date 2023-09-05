@@ -45,7 +45,7 @@ export function SubmittedView({
     onDismiss: () => void
     hash: string | undefined
 }) {
-    const theme = useContext(ThemeContext)
+    const theme = useContext(ThemeContext as any)
     const { chainId } = useActiveWeb3React()
 
     return (
@@ -55,7 +55,7 @@ export function SubmittedView({
                 <CloseIcon onClick={onDismiss} />
             </RowBetween>
             <ConfirmedIcon>
-                <ArrowUpCircle strokeWidth={0.5} size={90} color={theme.primary1} />
+                <ArrowUpCircle strokeWidth={0.5} size={90} color={(theme as any).primary1} />
             </ConfirmedIcon>
             <AutoColumn gap="100px" justify={'center'}>
                 {children}

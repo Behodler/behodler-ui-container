@@ -3,7 +3,6 @@ import { NetworkContextName } from '../../constants'
 import React from 'react'
 import { UIContainerContextProps } from 'contexts/UIContainerContext'
 import { useAllTransactions, useTransactionAdder } from 'state/transactions/hooks'
-import { useIsDarkMode } from 'state/user/hooks'
 import { useWalletModalToggle } from 'state/application/hooks'
 
 /**
@@ -22,7 +21,7 @@ const withUIContainerContext = <P extends object>(
     const addTransaction = useTransactionAdder()
 
     // user state
-    const userDarkMode = useIsDarkMode()
+    const userDarkMode = true
 
     return (
         <Component

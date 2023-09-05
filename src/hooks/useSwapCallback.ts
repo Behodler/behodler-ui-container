@@ -1,6 +1,6 @@
 import { BigNumber } from '@ethersproject/bignumber'
 import { Contract } from '@ethersproject/contracts'
-import { JSBI, Percent, Router, SwapParameters, Trade, TradeType } from '@sushiswap/sdk'
+import { JSBI, Percent, Router, SwapParameters, Trade, TradeType } from 'extendedSushiSwapSDK'
 import { useMemo } from 'react'
 import { BIPS_BASE, INITIAL_ALLOWED_SLIPPAGE } from '../constants'
 import { useTransactionAdder } from '../state/transactions/hooks'
@@ -9,8 +9,6 @@ import { isZero } from 'functions'
 import { useActiveWeb3React } from './useActiveWeb3React'
 import useENS from './useENS'
 import useTransactionDeadline from './useTransactionDeadline'
-import { t } from '@lingui/macro'
-import { useLingui } from '@lingui/react'
 
 export enum SwapCallbackState {
     INVALID,
@@ -62,24 +60,8 @@ function useSwapCallArguments(
 
         const swapMethods = []
 
-        swapMethods.push(
-            Router.swapCallParameters(trade, {
-                feeOnTransfer: false,
-                allowedSlippage: new Percent(JSBI.BigInt(allowedSlippage), BIPS_BASE),
-                recipient,
-                deadline: deadline.toNumber()
-            })
-        )
-
         if (trade.tradeType === TradeType.EXACT_INPUT) {
-            swapMethods.push(
-                Router.swapCallParameters(trade, {
-                    feeOnTransfer: true,
-                    allowedSlippage: new Percent(JSBI.BigInt(allowedSlippage), BIPS_BASE),
-                    recipient,
-                    deadline: deadline.toNumber()
-                })
-            )
+
         }
 
         return swapMethods.map(parameters => ({ parameters, contract }))
@@ -93,7 +75,6 @@ export function useSwapCallback(
     allowedSlippage: number = INITIAL_ALLOWED_SLIPPAGE, // in bips
     recipientAddressOrName: string | null // the ENS name or address of the recipient of the trade, or null if swap should be returned to sender
 ): { state: SwapCallbackState; callback: null | (() => Promise<string>); error: string | null } {
-    const { i18n } = useLingui()
 
     const { account, chainId, library } = useActiveWeb3React()
 
@@ -158,14 +139,11 @@ export function useSwapCallback(
                                         switch (callError.reason) {
                                             case 'UniswapV2Router: INSUFFICIENT_OUTPUT_AMOUNT':
                                             case 'UniswapV2Router: EXCESSIVE_INPUT_AMOUNT':
-                                                errorMessage = i18n._(
-                                                    t`This transaction will not succeed either due to price movement or fee on transfer. Try increasing your slippage tolerance.`
-                                                )
+                                                errorMessage = `This transaction will not succeed either due to price movement or fee on transfer. Try increasing your slippage tolerance.`
+
                                                 break
                                             default:
-                                                errorMessage = i18n._(
-                                                    t`The transaction cannot succeed due to error: ${callError.reason}. This is probably an issue with one of the tokens you are swapping.`
-                                                )
+                                                errorMessage = `The transaction cannot succeed due to error: ${callError.reason}. This is probably an issue with one of the tokens you are swapping.`
                                         }
                                         return { call, error: new Error(errorMessage) }
                                     })
@@ -207,11 +185,10 @@ export function useSwapCallback(
                         const withRecipient =
                             recipient === account
                                 ? base
-                                : `${base} to ${
-                                      recipientAddressOrName && isAddress(recipientAddressOrName)
-                                          ? shortenAddress(recipientAddressOrName)
-                                          : recipientAddressOrName
-                                  }`
+                                : `${base} to ${recipientAddressOrName && isAddress(recipientAddressOrName)
+                                    ? shortenAddress(recipientAddressOrName)
+                                    : recipientAddressOrName
+                                }`
 
                         addTransaction(response, {
                             summary: withRecipient

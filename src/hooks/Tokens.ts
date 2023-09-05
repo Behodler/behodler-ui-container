@@ -1,11 +1,11 @@
 import { parseBytes32String } from '@ethersproject/strings'
-import { Currency, ETHER, Token, currencyEquals } from '@sushiswap/sdk'
+import { Currency, ETHER, Token, currencyEquals } from 'extendedSushiSwapSDK'
 import { arrayify } from 'ethers/lib/utils'
 import { useMemo } from 'react'
 import { filterTokens } from '../components/SearchModal/filtering'
 import { useCombinedActiveList, useCombinedInactiveList } from '../state/lists/hooks'
 import { NEVER_RELOAD, useSingleCallResult } from 'state/multicall/hooks'
-import { useUserAddedTokens } from 'state/user/hooks'
+
 import { isAddress } from '../utils'
 import { TokenAddressMap, useDefaultTokenList, useUnsupportedTokenList } from './../state/lists/hooks'
 import { useActiveWeb3React } from './useActiveWeb3React'
@@ -14,7 +14,7 @@ import { useBytes32TokenContract, useTokenContract } from './useContract'
 // reduce token map into standard address <-> Token mapping, optionally include user added tokens
 function useTokensFromMap(tokenMap: TokenAddressMap, includeUserAdded: boolean): { [address: string]: Token } {
     const { chainId } = useActiveWeb3React()
-    const userAddedTokens = useUserAddedTokens()
+    const userAddedTokens = [{address:""}]
 
     return useMemo(() => {
         if (!chainId) return {}
@@ -34,7 +34,7 @@ function useTokensFromMap(tokenMap: TokenAddressMap, includeUserAdded: boolean):
                     // reduce into all ALL_TOKENS filtered by the current chain
                     .reduce<{ [address: string]: Token }>(
                         (tokenMap, token) => {
-                            tokenMap[token.address] = token
+                          
                             return tokenMap
                         },
                         // must make a copy because reduce modifies the map, and we do not
@@ -109,13 +109,13 @@ export function useFoundOnInactiveList(searchQuery: string): Token[] | undefined
 
 // Check if currency is included in custom list from user storage
 export function useIsUserAddedToken(currency: Currency | undefined | null): boolean {
-    const userAddedTokens = useUserAddedTokens()
+
 
     if (!currency) {
         return false
     }
 
-    return !!userAddedTokens.find(token => currencyEquals(currency, token))
+    return true
 }
 
 // parse a name or symbol from a token response

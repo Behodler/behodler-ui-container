@@ -1,11 +1,10 @@
-import { ChainId, Token } from '@sushiswap/sdk'
+import {Token} from 'extendedSushiSwapSDK'
+import {ChainId} from 'extendedSushiSwapSDK'
 import { Tags, TokenInfo, TokenList } from '@uniswap/token-lists'
 
 import { AppState } from '../index'
 import DEFAULT_TOKEN_LIST from '@sushiswap/default-token-list'
 import { UNSUPPORTED_LIST_URLS } from './../../constants/lists'
-import UNSUPPORTED_TOKEN_LIST from '../../constants/token-lists/sushiswap-v2-unsupported.tokenlist.json'
-import sortByListPriority from 'utils/listSort'
 import { useMemo } from 'react'
 import { useSelector } from 'react-redux'
 
@@ -59,7 +58,8 @@ const EMPTY_LIST: TokenAddressMap = {
     [ChainId.HARMONY]: {},
     [ChainId.HARMONY_TESTNET]: {},
     [ChainId.OKEX]: {},
-    [ChainId.OKEX_TESTNET]: {}
+    [ChainId.OKEX_TESTNET]: {},
+    [ChainId.SEPOLIA]:{}
 }
 
 const listCache: WeakMap<TokenList, TokenAddressMap> | null =
@@ -131,7 +131,8 @@ function combineMaps(map1: TokenAddressMap, map2: TokenAddressMap): TokenAddress
         1666600000: { ...map1[1666600000], ...map2[1666600000] }, // harmony
         1666700000: { ...map1[1666700000], ...map2[1666700000] }, // harmony testnet
         66: { ...map1[66], ...map2[66] }, // okex
-        65: { ...map1[65], ...map2[65] } // okex testnet
+        65: { ...map1[65], ...map2[65] }, // okex testnet
+        11155111:{...map1[11155111],...map1[11155111]}
     }
 }
 
@@ -146,7 +147,6 @@ function useCombinedTokenMapFromUrls(urls: string[] | undefined): TokenAddressMa
             urls
                 .slice()
                 // sort by priority so top priority goes last
-                .sort(sortByListPriority)
                 .reduce((allTokens, currentUrl) => {
                     const current = lists[currentUrl]?.current
                     if (!current) return allTokens
@@ -197,13 +197,12 @@ export function useDefaultTokenList(): TokenAddressMap {
 // list of tokens not supported on interface, used to show warnings and prevent swaps and adds
 export function useUnsupportedTokenList(): TokenAddressMap {
     // get hard coded unsupported tokens
-    const localUnsupportedListMap = listToTokenMap(UNSUPPORTED_TOKEN_LIST)
 
     // get any loaded unsupported tokens
     const loadedUnsupportedListMap = useCombinedTokenMapFromUrls(UNSUPPORTED_LIST_URLS)
 
     // format into one token address map
-    return combineMaps(localUnsupportedListMap, loadedUnsupportedListMap)
+    return  loadedUnsupportedListMap
 }
 
 export function useIsListActive(url: string): boolean {

@@ -1,6 +1,6 @@
-import { ChainId, Currency, ETHER, Token } from '@sushiswap/sdk'
+import { Currency, ETHER, Token } from 'extendedSushiSwapSDK'
 import React, { useMemo } from 'react'
-
+import {ChainId} from 'extendedSushiSwapSDK'
 import AvalancheLogo from '../../assets/images/avalanche-logo.png'
 import BinanceCoinLogo from '../../assets/images/binance-coin-logo.png'
 import EthereumLogo from '../../assets/images/ethereum-logo.png'

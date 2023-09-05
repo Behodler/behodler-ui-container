@@ -6,7 +6,7 @@ function Position({ pair }: any) {
     const { account, chainId } = useActiveWeb3React()
     const userDefaultPoolBalance = useTokenBalance(account ?? undefined, pair.liquidityToken)
 
-    console.log('Position...')
+  
 
     return userDefaultPoolBalance ? (
         <div>

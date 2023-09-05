@@ -1,5 +1,6 @@
 import React from 'react'
-import { ChainId } from '@sushiswap/sdk'
+
+import {ChainId} from 'extendedSushiSwapSDK'
 
 import { NETWORK_ICON, NETWORK_LABEL } from '../../constants/networks'
 import { ACTIVE_RPC } from '../../connectors'

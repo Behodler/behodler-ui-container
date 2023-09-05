@@ -1,4 +1,4 @@
-import { Currency, Token } from '@sushiswap/sdk'
+import { Currency, Token } from 'extendedSushiSwapSDK'
 import { ButtonPrimary } from 'components/ButtonLegacy'
 import Card from 'components/Card'
 import { AutoColumn } from 'components/Column'
@@ -12,7 +12,6 @@ import { transparentize } from 'polished'
 import React, { useState } from 'react'
 import { AlertTriangle, ArrowLeft } from 'react-feather'
 import { useCombinedInactiveList } from 'state/lists/hooks'
-import { useAddUserToken } from 'state/user/hooks'
 import styled from 'styled-components'
 import { CloseIcon, TYPE } from 'theme'
 import { getExplorerLink } from 'utils'
@@ -53,7 +52,7 @@ export function ImportToken({ tokens, onBack, onDismiss, handleCurrencySelect }:
 
     const [confirmed, setConfirmed] = useState(false)
 
-    const addToken = useAddUserToken()
+
 
     // use for showing import source on inactive tokens
     const inactiveTokenList = useCombinedInactiveList()
@@ -164,7 +163,7 @@ export function ImportToken({ tokens, onBack, onDismiss, handleCurrencySelect }:
                     borderRadius="20px"
                     padding="10px 1rem"
                     onClick={() => {
-                        tokens.map(token => addToken(token))
+                    
                         handleCurrencySelect && handleCurrencySelect(tokens[0])
                     }}
                     className=".token-dismiss-button"

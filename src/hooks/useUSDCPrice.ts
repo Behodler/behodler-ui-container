@@ -1,4 +1,5 @@
-import { ChainId, Currency, JSBI, Price, WETH, currencyEquals } from '@sushiswap/sdk'
+import {Currency, JSBI, Price, WETH, currencyEquals} from 'extendedSushiSwapSDK'
+import {ChainId} from 'extendedSushiSwapSDK'
 import { useMemo } from 'react'
 import { USDC } from '../constants'
 import { PairState, usePairs } from '../data/Reserves'

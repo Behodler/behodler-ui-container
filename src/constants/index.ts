@@ -1,4 +1,6 @@
-import { ChainId, JSBI, Percent, Token, WETH } from '@sushiswap/sdk'
+import {JSBI, Percent, ChainId,Token, WETH} from 'extendedSushiSwapSDK'
+
+
 import { fortmatic, injected, lattice, portis, torus, walletconnect, walletlink } from '../connectors'
 
 import { AbstractConnector } from '@web3-react/abstract-connector'
@@ -90,31 +92,7 @@ export const MERKLE_ROOT =
     //'https://raw.githubusercontent.com/sushiswap/sushi-vesting/master/merkle/week-06/merkle-10959148-11231587.json'
     'https://raw.githubusercontent.com/sushiswap/sushi-vesting/master/merkle/week-07/merkle-10959148-11277295.json'
 
-// TODO: SDK should have two maps, WETH map and WNATIVE map.
-const WRAPPED_NATIVE_ONLY: ChainTokenList = {
-    [ChainId.MAINNET]: [WETH[ChainId.MAINNET]],
-    [ChainId.ROPSTEN]: [WETH[ChainId.ROPSTEN]],
-    [ChainId.RINKEBY]: [WETH[ChainId.RINKEBY]],
-    [ChainId.GÖRLI]: [WETH[ChainId.GÖRLI]],
-    [ChainId.KOVAN]: [WETH[ChainId.KOVAN]],
-    [ChainId.FANTOM]: [WETH[ChainId.FANTOM]],
-    [ChainId.FANTOM_TESTNET]: [WETH[ChainId.FANTOM_TESTNET]],
-    [ChainId.MATIC]: [WETH[ChainId.MATIC]],
-    [ChainId.MATIC_TESTNET]: [WETH[ChainId.MATIC_TESTNET]],
-    [ChainId.XDAI]: [WETH[ChainId.XDAI]],
-    [ChainId.BSC]: [WETH[ChainId.BSC]],
-    [ChainId.BSC_TESTNET]: [WETH[ChainId.BSC_TESTNET]],
-    [ChainId.ARBITRUM]: [WETH[ChainId.ARBITRUM]],
-    [ChainId.MOONBASE]: [WETH[ChainId.MOONBASE]],
-    [ChainId.AVALANCHE]: [WETH[ChainId.AVALANCHE]],
-    [ChainId.FUJI]: [WETH[ChainId.FUJI]],
-    [ChainId.HECO]: [WETH[ChainId.HECO]],
-    [ChainId.HECO_TESTNET]: [WETH[ChainId.HECO_TESTNET]],
-    [ChainId.HARMONY]: [WETH[ChainId.HARMONY]],
-    [ChainId.HARMONY_TESTNET]: [WETH[ChainId.HARMONY_TESTNET]],
-    [ChainId.OKEX]: [WETH[ChainId.OKEX]],
-    [ChainId.OKEX_TESTNET]: [WETH[ChainId.OKEX_TESTNET]]
-}
+
 
 // Default Ethereum chain tokens
 export const DAI = new Token(ChainId.MAINNET, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18, 'DAI', 'Dai Stablecoin')
@@ -153,13 +131,6 @@ export const MATIC: { [key: string]: Token } = {
 }
 
 // used to construct intermediary pairs for trading
-export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
-    ...WRAPPED_NATIVE_ONLY,
-    [ChainId.MAINNET]: [...WRAPPED_NATIVE_ONLY[ChainId.MAINNET], DAI, USDC, USDT, WBTC, RUNE, NFTX, STETH],
-    [ChainId.MATIC]: [...WRAPPED_NATIVE_ONLY[ChainId.MATIC], MATIC.USDC, MATIC.WBTC, MATIC.DAI, MATIC.WETH, MATIC.USDT],
-    [ChainId.FANTOM]: [...WRAPPED_NATIVE_ONLY[ChainId.FANTOM], FANTOM.DAI, FANTOM.USDC, FANTOM.WBTC, FANTOM.WETH],
-    [ChainId.BSC]: [...WRAPPED_NATIVE_ONLY[ChainId.BSC], BSC.DAI, BSC.USD, BSC.USDC, BSC.USDT, BSC.BTCB]
-}
 
 export const CREAM = new Token(ChainId.MAINNET, '0x2ba592F78dB6436527729929AAf6c908497cB200', 18, 'CREAM', 'Cream')
 export const BAC = new Token(ChainId.MAINNET, '0x3449FC1Cd036255BA1EB19d65fF4BA2b8903A69a', 18, 'BAC', 'Basis Cash')
@@ -254,24 +225,6 @@ export const CUSTOM_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: To
     [ChainId.MATIC]: {
         [MATIC.TEL.address]: [MATIC.SUSHI, MATIC.AAVE]
     }
-}
-
-// used for display in the default list when adding liquidity
-export const SUGGESTED_BASES: ChainTokenList = {
-    ...WRAPPED_NATIVE_ONLY,
-    [ChainId.MAINNET]: [...WRAPPED_NATIVE_ONLY[ChainId.MAINNET], DAI, USDC, USDT, WBTC],
-    [ChainId.MATIC]: [...WRAPPED_NATIVE_ONLY[ChainId.MATIC], MATIC.USDC, MATIC.WBTC, MATIC.DAI, MATIC.WETH, MATIC.USDT],
-    [ChainId.FANTOM]: [...WRAPPED_NATIVE_ONLY[ChainId.FANTOM], FANTOM.DAI, FANTOM.USDC, FANTOM.WBTC, FANTOM.WETH],
-    [ChainId.BSC]: [...WRAPPED_NATIVE_ONLY[ChainId.BSC], BSC.DAI, BSC.USD, BSC.USDC, BSC.USDT, BSC.BTCB]
-}
-
-// used to construct the list of all pairs we consider by default in the frontend
-export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
-    ...WRAPPED_NATIVE_ONLY,
-    [ChainId.MAINNET]: [...WRAPPED_NATIVE_ONLY[ChainId.MAINNET], DAI, USDC, USDT, WBTC],
-    [ChainId.MATIC]: [...WRAPPED_NATIVE_ONLY[ChainId.MATIC], MATIC.USDC, MATIC.WBTC, MATIC.DAI, MATIC.WETH, MATIC.USDT],
-    [ChainId.FANTOM]: [...WRAPPED_NATIVE_ONLY[ChainId.FANTOM], FANTOM.DAI, FANTOM.USDC, FANTOM.WBTC, FANTOM.WETH],
-    [ChainId.BSC]: [...WRAPPED_NATIVE_ONLY[ChainId.BSC], BSC.DAI, BSC.USD, BSC.USDC, BSC.USDT, BSC.BTCB]
 }
 
 export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } = {

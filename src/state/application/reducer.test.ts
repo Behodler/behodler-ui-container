@@ -1,4 +1,5 @@
-import { ChainId } from '@sushiswap/sdk'
+
+import {ChainId} from 'extendedSushiSwapSDK'
 import { createStore, Store } from 'redux'
 import { addPopup, ApplicationModal, removePopup, setOpenModal, updateBlockNumber } from './actions'
 import reducer, { ApplicationState } from './reducer'

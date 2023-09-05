@@ -1,4 +1,5 @@
-import { ChainId } from '@sushiswap/sdk'
+
+import {ChainId} from 'extendedSushiSwapSDK'
 import { signERC2612Permit } from 'eth-permit'
 import { ethers } from 'ethers'
 import { useCallback } from 'react'
@@ -74,7 +75,6 @@ const useSushiRoll = (version: 'v1' | 'v2' = 'v2') => {
                     permit.s
                 ]
 
-                console.log('migrate with permit', args)
 
                 const gasLimit = await sushiRoll.estimateGas.migrateWithPermit(...args)
                 const tx = await sushiRoll.migrateWithPermit(...args, {

@@ -1,7 +1,5 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
 import { load, save } from 'redux-localstorage-simple'
-import { swapReducer } from '@behodler/swap'
-
 import application from './application/reducer'
 import { updateVersion } from './global/actions'
 import multicall from './multicall/reducer'
@@ -16,7 +14,6 @@ const store = configureStore({
         application,
         user,
         transactions,
-        swap: swapReducer,
         multicall,
         lists
     },

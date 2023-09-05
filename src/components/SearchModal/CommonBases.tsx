@@ -1,4 +1,5 @@
-import { ChainId, Currency, currencyEquals, ETHER, Token } from '@sushiswap/sdk'
+import {Currency, currencyEquals, ETHER, Token} from 'extendedSushiSwapSDK'
+import {ChainId} from 'extendedSushiSwapSDK'
 import React from 'react'
 import { Text } from 'rebass'
 import styled from 'styled-components'

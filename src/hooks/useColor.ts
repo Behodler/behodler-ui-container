@@ -1,4 +1,5 @@
-import { ChainId, Token } from '@sushiswap/sdk'
+import {Token} from 'extendedSushiSwapSDK'
+import {ChainId} from 'extendedSushiSwapSDK'
 import Vibrant from 'node-vibrant'
 import { shade } from 'polished'
 import { useLayoutEffect, useState } from 'react'

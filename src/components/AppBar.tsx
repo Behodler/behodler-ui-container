@@ -1,10 +1,9 @@
-import { Currency, ChainId, TokenAmount } from '@sushiswap/sdk'
+import { Currency, TokenAmount } from 'extendedSushiSwapSDK'
+import {ChainId} from 'extendedSushiSwapSDK'
 import React, { useEffect, useState } from 'react'
 import { useLocation, Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { Disclosure } from '@headlessui/react'
-import { t } from '@lingui/macro'
-import { useLingui } from '@lingui/react'
 
 import { ReactComponent as Logo } from '../assets/images/logo.svg'
 import { useActiveWeb3React } from '../hooks/useActiveWeb3React'
@@ -18,7 +17,6 @@ import Web3Status from './Web3Status'
 import { NavLink } from './Link'
 import { ReactComponent as ExternalLinkIcon } from '../assets/images/link.svg'
 import Loader from './Loader'
-
 const StyledExternalLinkIcon = styled(ExternalLinkIcon)`
   display: inline-block;
   margin: -1px 4px 0 0;
@@ -36,8 +34,8 @@ const StyledBehodlerMonster = styled.a`
 `
 
 function AppBar(): JSX.Element {
-    const { i18n } = useLingui()
     const { account, chainId, library } = useActiveWeb3React()
+
     const { pathname } = useLocation()
     const tokensShowBalance = [
         {
@@ -123,11 +121,11 @@ function AppBar(): JSX.Element {
                                         <div className="flex space-x-2">
 
                                             <NavLink id="swap-nav-link" to="/swap">
-                                                {i18n._(t`Swap`)}
+                                                {`Swap`}
                                             </NavLink>
 
                                             <NavLink id="apps-nav-link" to="/apps">
-                                                {i18n._(t`Apps`)}
+                                                {`Apps`}
                                             </NavLink>
 
                                             <a
@@ -136,7 +134,7 @@ function AppBar(): JSX.Element {
                                                 target="blank"
                                                 className="text-baseline text-primary hover:text-high-emphesis focus:text-high-emphesis p-2 md:p-3 whitespace-nowrap flex items-center"
                                             >
-                                                <StyledExternalLinkIcon /> {i18n._(t`Analytics`)}
+                                                <StyledExternalLinkIcon /> {`Analytics`}
                                             </a>
 
                                         </div>
@@ -145,7 +143,7 @@ function AppBar(): JSX.Element {
                                     <div className="-mr-2 flex lg:hidden">
                                         {/* Mobile menu button */}
                                         <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-primary hover:text-high-emphesis focus:outline-none">
-                                            <span className="sr-only">{i18n._(t`Open main menu`)}</span>
+                                            <span className="sr-only">{`Open main menu`}</span>
                                             {open ? (
                                                 <X title="Close" className="block h-6 w-6" aria-hidden="true" />
                                             ) : (
@@ -194,11 +192,11 @@ function AppBar(): JSX.Element {
                             <div className="flex flex-col px-4 pt-2 pb-3 space-y-1">
 
                                 <Disclosure.Button as={NavLink} id="swap-nav-link" to="/swap">
-                                    {i18n._(t`Swap`)}
+                                    {`Swap`}
                                 </Disclosure.Button>
 
                                 <Disclosure.Button as={NavLink} id="apps-nav-link" to="/apps">
-                                    {i18n._(t`Apps`)}
+                                    {`Apps`}
                                 </Disclosure.Button>
 
                                 <Disclosure.Button
@@ -208,7 +206,7 @@ function AppBar(): JSX.Element {
                                     target="blank"
                                     className="text-baseline text-primary hover:text-high-emphesis focus:text-high-emphesis p-2 md:p-3 whitespace-nowrap flex items-center"
                                 >
-                                    <StyledExternalLinkIcon /> {i18n._(t`Analytics`)}
+                                    <StyledExternalLinkIcon /> {`Analytics`}
                                 </Disclosure.Button>
 
                             </div>

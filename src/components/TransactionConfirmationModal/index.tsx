@@ -1,4 +1,5 @@
-import { ChainId } from '@sushiswap/sdk'
+
+import {ChainId} from 'extendedSushiSwapSDK'
 import React, { useContext } from 'react'
 import { AlertTriangle, ArrowUpCircle } from 'react-feather'
 import { Text } from 'rebass'
@@ -21,7 +22,7 @@ const Section = styled(AutoColumn)`
 `
 
 const BottomSection = styled(Section)`
-    background-color: ${({ theme }) => theme.bg2};
+    background-color: ${({ theme }) => (theme as any).bg2};
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
 `
@@ -68,7 +69,7 @@ function TransactionSubmittedContent({
     hash: string | undefined
     chainId: ChainId
 }) {
-    const theme = useContext(ThemeContext)
+    const theme = useContext(ThemeContext as any)
 
     return (
         <Wrapper>
@@ -78,7 +79,7 @@ function TransactionSubmittedContent({
                     <CloseIcon onClick={onDismiss} />
                 </RowBetween>
                 <ConfirmedIcon>
-                    <ArrowUpCircle strokeWidth={0.5} size={90} color={theme.primary1} />
+                    <ArrowUpCircle strokeWidth={0.5} size={90} color={(theme as any).primary1} />
                 </ConfirmedIcon>
                 <AutoColumn gap="12px" justify={'center'}>
                     <Text fontWeight={500} fontSize={20}>
@@ -86,7 +87,7 @@ function TransactionSubmittedContent({
                     </Text>
                     {chainId && hash && (
                         <ExternalLink href={getExplorerLink(chainId, hash, 'transaction')}>
-                            <Text fontWeight={500} fontSize={14} color={theme.primary1}>
+                            <Text fontWeight={500} fontSize={14} color={(theme as any).primary1}>
                                 View on explorer
                             </Text>
                         </ExternalLink>
@@ -141,11 +142,11 @@ export function TransactionErrorContent({ message, onDismiss }: { message: strin
                     <CloseIcon onClick={onDismiss} />
                 </RowBetween>
                 <AutoColumn style={{ marginTop: 20, padding: '2rem 0' }} gap="24px" justify="center">
-                    <AlertTriangle color={theme.red1} style={{ strokeWidth: 1.5 }} size={64} />
+                    <AlertTriangle color={(theme as any).red1} style={{ strokeWidth: 1.5 }} size={64} />
                     <Text
                         fontWeight={500}
                         fontSize={16}
-                        color={theme.red1}
+                        color={(theme as any).red1}
                         style={{ textAlign: 'center', width: '85%' }}
                     >
                         {message}

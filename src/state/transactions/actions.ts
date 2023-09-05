@@ -1,5 +1,6 @@
 import { createAction } from '@reduxjs/toolkit'
-import { ChainId } from '@sushiswap/sdk'
+
+import {ChainId} from 'extendedSushiSwapSDK'
 
 export interface SerializableTransactionReceipt {
     to: string

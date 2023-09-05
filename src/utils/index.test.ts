@@ -1,6 +1,7 @@
 import { BigNumber } from '@ethersproject/bignumber'
 import { AddressZero } from '@ethersproject/constants'
-import { ChainId, JSBI, Percent, Token, TokenAmount } from '@sushiswap/sdk'
+import {JSBI, Percent, Token, TokenAmount} from 'extendedSushiSwapSDK'
+import {ChainId} from 'extendedSushiSwapSDK'
 import {
     basisPointsToPercent,
     calculateGasMargin,

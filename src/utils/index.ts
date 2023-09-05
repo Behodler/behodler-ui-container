@@ -1,4 +1,5 @@
-import { ChainId, Currency, CurrencyAmount, ETHER, JSBI, Percent, ROUTER_ADDRESS, Token } from '@sushiswap/sdk'
+import {Currency, CurrencyAmount, ETHER, JSBI, Percent, ROUTER_ADDRESS, Token} from 'extendedSushiSwapSDK'
+import {ChainId} from 'extendedSushiSwapSDK'
 import { JsonRpcSigner, Web3Provider } from '@ethersproject/providers'
 
 import { AddressZero } from '@ethersproject/constants'

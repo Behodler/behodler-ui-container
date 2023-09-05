@@ -1,4 +1,6 @@
-import { ChainId } from '@sushiswap/sdk'
+
+import {ChainId} from 'extendedSushiSwapSDK'
+
 import { FortmaticConnector } from './Fortmatic'
 import { InjectedConnector } from '@web3-react/injected-connector'
 import { LatticeConnector } from '@web3-react/lattice-connector'
@@ -31,13 +33,15 @@ const RPC = {
     [ChainId.HARMONY_TESTNET]: process.env.REACT_APP_HARMONY_TESTNET_RPC ?? '',
     [ChainId.OKEX]: process.env.REACT_APP_OKEX_RPC ?? '',
     [ChainId.OKEX_TESTNET]: process.env.REACT_APP_OKEX_TESTNET_RPC ?? '',
+    [ChainId.SEPOLIA]: process.env.REACT_APP_SEPOLIA_RPC ?? '',//https://rpc.bordel.wtf/sepolia
+    
 }
 
 export const SUPPORTED_NETWORK_CHAIN_IDS: number[] = process.env.REACT_APP_SUPPORTED_NETWORK_CHAIN_IDS
     ? process.env.REACT_APP_SUPPORTED_NETWORK_CHAIN_IDS
         .split(',')
         .map(stringValue => parseInt(stringValue, 10))
-    : [ChainId.MAINNET]
+    : [ChainId.MAINNET,ChainId.SEPOLIA]
 
 export const ACTIVE_RPC = Object.fromEntries((
     Object
@@ -78,7 +82,8 @@ export const injected = new InjectedConnector({
         1666600000, // harmony
         1666700000, // harmony testnet
         66, // okex testnet
-        65 // okex testnet
+        65, // okex testnet,
+        11155111
     ]
 })
 
@@ -89,7 +94,6 @@ export const walletconnect = new WalletConnectConnector({
     },
     bridge: 'https://bridge.walletconnect.org',
     qrcode: true,
-    pollingInterval: 15000
 })
 
 // mainnet only

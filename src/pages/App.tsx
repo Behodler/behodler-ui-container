@@ -6,8 +6,7 @@ import styled from 'styled-components'
 import { useDispatch } from 'react-redux'
 import ReactGA from 'react-ga'
 
-import { AppBar, Polling, Popups } from '../components'
-import Web3ReactManager from '../components/Web3ReactManager'
+import { AppBar, Popups } from '../components'
 import Routes from '../routes'
 import { AppDispatch } from '../state'
 import { updateUserDarkMode } from '../state/user/actions'
@@ -60,10 +59,10 @@ function App(): JSX.Element {
                 <AppBar />
                 <div ref={bodyRef} className="flex flex-col flex-1 items-center justify-start w-screen h-full overflow-y-auto overflow-x-hidden z-0 lg:pb-0">
                     <Popups />
-                    <Polling />
-                    <Web3ReactManager>
+                    {/* <Polling /> */}
+              
                         <Routes />
-                    </Web3ReactManager>
+                
                 </div>
             </StyledApp>
         </Suspense>

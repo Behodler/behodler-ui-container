@@ -130,7 +130,7 @@ const AccountControl = styled.div`
     }
 `
 
-const AddressLink = styled(ExternalLink)<{ hasENS: boolean; isENS: boolean }>`
+const AddressLink = styled(ExternalLink) <{ hasENS: boolean; isENS: boolean }>`
     font-size: 0.825rem;
     color: ${({ theme }) => theme.text3};
     margin-left: 1rem;
@@ -225,7 +225,7 @@ export default function AccountDetails({
     openOptions
 }: AccountDetailsProps): any {
     const { chainId, account, connector } = useActiveWeb3React()
-    const theme = useContext(ThemeContext)
+    const theme = useContext(ThemeContext as any)
     const dispatch = useDispatch<AppDispatch>()
 
     function formatConnectorName() {
@@ -312,7 +312,7 @@ export default function AccountDetails({
                                         <WalletAction
                                             style={{ fontSize: '.825rem', fontWeight: 400, marginRight: '8px' }}
                                             onClick={() => {
-                                                ;(connector as any).close()
+                                                (connector as any).close()
                                             }}
                                         >
                                             Disconnect
@@ -409,7 +409,7 @@ export default function AccountDetails({
                 </LowerSection>
             ) : (
                 <LowerSection>
-                    <TYPE.body color={theme.text1}>Your transactions will appear here...</TYPE.body>
+                    <TYPE.body color={(theme as any).text1}>Your transactions will appear here...</TYPE.body>
                 </LowerSection>
             )}
         </>

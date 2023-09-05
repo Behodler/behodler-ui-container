@@ -9,18 +9,18 @@ import Modal from '../Modal'
 import TransactionConfirmationModal, { TransactionErrorContent } from '../TransactionConfirmationModal'
 
 const Wrapper = styled.div`
-    ${({ theme }) => theme.flexColumnNoWrap}
+    ${({ theme }) => (theme as any).flexColumnNoWrap}
     margin: 0;
     padding: 0;
     width: 100%;
 `
 
 const HeaderRow = styled.div`
-    ${({ theme }) => theme.flexRowNoWrap};
+    ${({ theme }) => (theme as any).flexRowNoWrap};
     padding: 1rem 1rem;
     font-weight: 500;
-    color: ${props => (props.color === 'blue' ? ({ theme }) => theme.primary1 : 'inherit')};
-    ${({ theme }) => theme.mediaWidth.upToMedium`
+    color: ${props => (props.color === 'blue' ? ({ theme }) => (theme as any).primary1 : 'inherit')};
+    ${({ theme }) => (theme as any).mediaWidth.upToMedium`
     padding: 1rem;
   `};
 `
@@ -57,11 +57,11 @@ const CloseIcon = styled.div`
 
 const CloseColor = styled(Close)`
     path {
-        stroke: ${({ theme }) => theme.text4};
+        stroke: ${({ theme }) => (theme as any).text4};
 `
 
 const LowerSection = styled.div`
-    ${({ theme }) => theme.flexColumnNoWrap}
+    ${({ theme }) => (theme as any).flexColumnNoWrap}
     padding: 1.5rem;
     flex-grow: 1;
     overflow: auto;
@@ -71,12 +71,12 @@ const LowerSection = styled.div`
     h5 {
         margin: 0;
         font-weight: 400;
-        color: ${({ theme }) => theme.text3};
+        color: ${({ theme }) => (theme as any).text3};
     }
 `
 
 export default function FaucetModal() {
-    const theme = useContext(ThemeContext)
+    const theme = useContext(ThemeContext as any)
 
     const faucetModalOpen = useModalOpen(ApplicationModal.FAUCET)
     const toggleFaucetModal = useFaucetModalToggle()
@@ -122,7 +122,7 @@ export default function FaucetModal() {
                 </CloseIcon>
                 <HeaderRow>Faucet</HeaderRow>
                 <LowerSection>
-                    <TYPE.body color={theme.text1}>Claim your test tokens here...</TYPE.body>
+                    <TYPE.body color={(theme as any).text1}>Claim your test tokens here...</TYPE.body>
                     <button
                         onClick={claimFaucet}
                         className="flex items-center bg-dark-800 hover:bg-dark-700 w-full rounded p-3 cursor-pointer mt-5"

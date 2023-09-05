@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useActivePopups } from '../../state/application/hooks'
-import { useURLWarningVisible } from '../../state/user/hooks'
+
 import { AutoColumn } from '../Column'
 import PopupItem from './PopupItem'
 
@@ -47,11 +47,11 @@ export default function Popups() {
     // get all popups
     const activePopups = useActivePopups()
 
-    const urlWarningActive = useURLWarningVisible()
+
 
     return (
         <>
-            <FixedPopupColumn gap="20px" extraPadding={urlWarningActive}>
+            <FixedPopupColumn gap="20px" extraPadding={true}>
                 {activePopups.map(item => (
                     <PopupItem
                         key={item.key}

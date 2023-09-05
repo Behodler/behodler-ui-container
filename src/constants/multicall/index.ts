@@ -1,4 +1,5 @@
-import { ChainId } from '@sushiswap/sdk'
+
+import {ChainId} from 'extendedSushiSwapSDK'
 import MULTICALL_ABI from './abi.json'
 
 const MULTICALL_NETWORKS: { [chainId in ChainId]: string } = {
@@ -23,7 +24,8 @@ const MULTICALL_NETWORKS: { [chainId in ChainId]: string } = {
     [ChainId.HARMONY]: '0xFE4980f62D708c2A84D3929859Ea226340759320',
     [ChainId.HARMONY_TESTNET]: '0xbcd3451992B923531615293Cb2b2c38ba8DE9529',
     [ChainId.OKEX]: '0x0769fd68dFb93167989C6f7254cd0D766Fb2841F',
-    [ChainId.OKEX_TESTNET]: '0x0769fd68dFb93167989C6f7254cd0D766Fb2841F'
+    [ChainId.OKEX_TESTNET]: '0x0769fd68dFb93167989C6f7254cd0D766Fb2841F',
+    [ChainId.SEPOLIA]:'0xC7B6a6450D4a490E42FCdF7f071A096704055f47'
 }
 
 export { MULTICALL_ABI, MULTICALL_NETWORKS }

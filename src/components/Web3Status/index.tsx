@@ -19,8 +19,6 @@ import { shortenAddress } from '../../utils'
 import { ButtonSecondary } from '../ButtonLegacy'
 import Loader from '../Loader'
 import WalletModal from '../WalletModal'
-import { t } from '@lingui/macro'
-import { useLingui } from '@lingui/react'
 import Identicon from '../Identicon'
 
 const IconWrapper = styled.div<{ size?: number }>`
@@ -168,7 +166,6 @@ function StatusIcon({ connector }: { connector: AbstractConnector }) {
 }
 
 function Web3StatusInner() {
-    const { i18n } = useLingui()
     const { account, connector, error } = useWeb3React()
 
     const { ENSName } = useENSName(account ?? undefined)
@@ -196,7 +193,7 @@ function Web3StatusInner() {
                 {hasPendingTransactions ? (
                     <div className="flex justify-between items-center">
                         <div className="pr-2">
-                            {pending?.length} {i18n._(t`Pending`)}
+                            {pending?.length} {`Pending`}
                         </div>{' '}
                         <Loader stroke="white" />
                     </div>
@@ -212,16 +209,16 @@ function Web3StatusInner() {
                 <NetworkIcon />
                 <Text>
                     {error instanceof UnsupportedChainIdError
-                        ? i18n._(t`You are on the wrong network`)
-                        : i18n._(t`Error`)}
+                        ? `You are on the wrong network`
+                        : `Error`}
                 </Text>
             </Web3StatusError>
         )
     } else {
         return (
             <Web3StatusConnect id="connect-wallet" onClick={toggleWalletModal} faded={!account}>
-                <Text className="hidden sm:block">{i18n._(t`Connect to a wallet`)}</Text>
-                <Text className="sm:hidden">{i18n._(t`Connect`)}</Text>
+                <Text className="hidden sm:block">{`Connect to a wallet`}</Text>
+                <Text className="sm:hidden">{`Connect`}</Text>
             </Web3StatusConnect>
         )
     }

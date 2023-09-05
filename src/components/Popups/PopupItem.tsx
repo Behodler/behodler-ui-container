@@ -20,14 +20,14 @@ export const Popup = styled.div`
     display: inline-block;
     width: 100%;
     padding: 1em;
-    background-color: ${({ theme }) => theme.bg1};
+    background-color: ${({ theme }) => (theme as any).bg1};
     position: relative;
     border-radius: 10px;
     padding: 20px;
     padding-right: 35px;
     overflow: hidden;
 
-    ${({ theme }) => theme.mediaWidth.upToSmall`
+    ${({ theme }) => (theme as any).mediaWidth.upToSmall`
     min-width: 290px;
     &:not(:last-of-type) {
       margin-right: 20px;
@@ -40,7 +40,7 @@ const Fader = styled.div`
     left: 0px;
     width: 100%;
     height: 2px;
-    background-color: ${({ theme }) => theme.bg3};
+    background-color: ${({ theme }) => (theme as any).bg3};
 `
 
 const AnimatedFader = animated(Fader)
@@ -68,7 +68,7 @@ export default function PopupItem({
         }
     }, [removeAfterMs, removeThisPopup])
 
-    const theme = useContext(ThemeContext)
+    const theme = useContext(ThemeContext as any)
 
     let popupContent
     if ('txn' in content) {
@@ -86,7 +86,7 @@ export default function PopupItem({
 
     return (
         <Popup>
-            <StyledClose color={theme.text2} onClick={removeThisPopup} />
+            <StyledClose color={(theme as any).text2} onClick={removeThisPopup} />
             {popupContent}
             {removeAfterMs !== null ? <AnimatedFader style={faderStyle} /> : null}
         </Popup>
